@@ -17,7 +17,14 @@
 
   <ItemGroup>
     <Folder Include="Models\" />
+    <Folder Include="picks\" />
     <Folder Include="Services\" />
     <Folder Include="ViewModels\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Views\EnterPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

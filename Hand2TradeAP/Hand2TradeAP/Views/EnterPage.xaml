@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Hand2TradeAP.Views.EnterPage"
+             BackgroundImageSource="unnamed.jpg">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Hand 2 Trade"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand"
+                   TextColor="#C89DC9"
+                   FontAttributes="Bold"
+                   FontSize="40"/>
+            <Button Text="Log In" BackgroundColor="#7C97F8"></Button>
+            <Button Text="sign Up" BackgroundColor="#4EB16A" ></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

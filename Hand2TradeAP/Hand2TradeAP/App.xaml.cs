@@ -1,6 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Hand2TradeAP.Views;
 
 namespace Hand2TradeAP
 {
@@ -10,7 +11,7 @@ namespace Hand2TradeAP
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new EnterPage();
         }
 
         protected override void OnStart()
