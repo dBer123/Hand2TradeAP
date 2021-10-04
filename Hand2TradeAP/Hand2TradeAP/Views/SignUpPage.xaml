@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Hand2TradeAP.Views.SignUpPage"
+             Style="{StaticResource pageStyle}">
+    <ContentPage.Content >
+        <ScrollView>
+        <StackLayout>
+                <Label Text="SIGN UP NOW!"></Label>
+                <Entry></Entry>
+ 
+                <Entry IsPassword="True" Placeholder="Password"  Style="{StaticResource EntryStyle}"></Entry>
+
+                <Entry Placeholder="Email"  ></Entry>
+                <Entry Placeholder="User Name" PlaceholderColor="White" ClearButtonVisibility="Never"></Entry>
+                <Entry Placeholder="Adress"  PlaceholderColor="White"></Entry>
+            <Label Text="Birth Date" ></Label>
+            <DatePicker></DatePicker>
+            <Entry Placeholder="Credit Number" PlaceholderColor="White"></Entry>
+            <Label Text="Credit Date"></Label>
+            <DatePicker></DatePicker>
+                <Entry Placeholder="CVV"  PlaceholderColor="White" ></Entry>
+                <Button Text="SIGN UP"  BorderRadius="6"  HeightRequest="40" WidthRequest="200" x:Name="ShopIDSubmit" TextColor="White" BackgroundColor="#2FA999"></Button>
+        </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
