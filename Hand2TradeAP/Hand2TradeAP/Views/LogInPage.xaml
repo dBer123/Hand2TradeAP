@@ -3,17 +3,39 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Hand2TradeAP.Views.LogInPage">
     <ContentPage.Content>
-        
         <StackLayout>
-            
-                <Label Text="LOG IN NOW"
+
+            <Label Text="LOG IN NOW"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
-            <Entry IsPassword="True" Placeholder="Password"  PlaceholderColor="White"></Entry>
-            <Entry Placeholder="Email"  PlaceholderColor="White"></Entry >
+            <Frame Style="{DynamicResource InputFieldStyle}" Margin="0,17,0,0" Padding="15,0,0,0" >
+                <Grid x:Name="passwordGrid" VerticalOptions="CenterAndExpand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Image Source="passIcon.jpg" Grid.Column="0" HorizontalOptions="Center" ScaleX="100" >
+
+                    </Image>
+                    <Entry Placeholder="Password" IsPassword="True"  Grid.Column="1" />
+                </Grid>
+            </Frame>
+            <Frame Style="{DynamicResource InputFieldStyle}" Margin="0,17,0,0" Padding="15,0,0,0" >
+                <Grid x:Name="emailGrid" VerticalOptions="CenterAndExpand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Image Source="email.jpg" Grid.Column="0" HorizontalOptions="Center" >
+
+                    </Image>
+                    <Entry Placeholder="Email"   Grid.Column="1" />
+                </Grid>
+            </Frame>
             <Button Text="LOG IN"></Button>
-            
+
         </StackLayout>
-        
+
+
     </ContentPage.Content>
 </ContentPage>

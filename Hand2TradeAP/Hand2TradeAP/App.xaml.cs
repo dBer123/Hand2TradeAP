@@ -11,7 +11,7 @@ namespace Hand2TradeAP
         {
             InitializeComponent();
 
-            MainPage = new SignUpPage();
+            MainPage = new LogInPage();
         }
 
         protected override void OnStart()
