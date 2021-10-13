@@ -2,26 +2,107 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Hand2TradeAP.Views.SignUpPage"
-             Style="{StaticResource pageStyle}">
+            >
     <ContentPage.Content >
         <ScrollView>
-        <StackLayout>
-                <Label Text="SIGN UP NOW!"></Label>
-                <Entry></Entry>
- 
-                <Entry IsPassword="True" Placeholder="Password"  Style="{StaticResource EntryStyle}"></Entry>
+            <StackLayout BackgroundColor="#e6e6e6">
+           
+                <Grid>
+                    <StackLayout Padding="0" Margin="0" HorizontalOptions="FillAndExpand">
+                        <Frame HeightRequest="150" BackgroundColor="#7C97F8" Padding="0" Margin="0">
+                            <Image Source="https://images.pexels.com/photos/247431/pexels-photo-247431.jpeg" Aspect="AspectFill" Margin="0" />
+                        </Frame>
+                    </StackLayout>
+                    <StackLayout Padding="0" Margin="10,100,10,0" HorizontalOptions="FillAndExpand">
+                        <Frame  BackgroundColor="White" HeightRequest="500" HasShadow="True" Padding="0" Margin="0">
 
-                <Entry Placeholder="Email"  ></Entry>
-                <Entry Placeholder="User Name" PlaceholderColor="White" ClearButtonVisibility="Never"></Entry>
-                <Entry Placeholder="Adress"  PlaceholderColor="White"></Entry>
-            <Label Text="Birth Date" ></Label>
-            <DatePicker></DatePicker>
-            <Entry Placeholder="Credit Number" PlaceholderColor="White"></Entry>
-            <Label Text="Credit Date"></Label>
-            <DatePicker></DatePicker>
-                <Entry Placeholder="CVV"  PlaceholderColor="White" ></Entry>
-                <Button Text="SIGN UP"  BorderRadius="6"  HeightRequest="40" WidthRequest="200" x:Name="ShopIDSubmit" TextColor="White" BackgroundColor="#2FA999"></Button>
+                            <StackLayout>
+
+
+                                <StackLayout Margin="10">
+                                    <Label Text="SIGN IN" TextColor="Black" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="50"/>
+                                </StackLayout>
+
+                                <StackLayout Padding="0" Margin="15,10">
+
+                                    <Frame BackgroundColor="Transparent" BorderColor="DarkGray" Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="30">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Frame BackgroundColor="SkyBlue" HeightRequest="40" WidthRequest="40" CornerRadius="30" Padding="0" Margin="5">
+                                                <Image Source="email.jpg" Aspect="AspectFill" Margin="0"/>
+                                            </Frame>
+
+                                            <Entry Placeholder="Email" TextColor="#7C97F8" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
+                                        </StackLayout>
+                                    </Frame>
+
+                                    <Frame BackgroundColor="Transparent" BorderColor="DarkGray" Margin="0,15,0,0" Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="30">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Frame BackgroundColor="SkyBlue" HeightRequest="40" WidthRequest="40" CornerRadius="30" Padding="0" Margin="5">
+                                                <Image Source="lockicon.jpg" Aspect="AspectFill" Margin="0"/>
+                                            </Frame>
+
+                                            <Entry Placeholder="Password" IsPassword="True" TextColor="#7C97F8" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
+                                        </StackLayout>
+                                    </Frame>
+                                    <Frame BackgroundColor="Transparent" BorderColor="DarkGray" Margin="0,15,0,0" Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="30">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Frame BackgroundColor="SkyBlue" HeightRequest="40" WidthRequest="40" CornerRadius="30" Padding="0" Margin="5">
+                                                <Image Source="profile.png" Aspect="AspectFill" Margin="0"/>
+                                            </Frame>
+
+                                            <Entry Placeholder="User-Name"  TextColor="#7C97F8" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
+                                        </StackLayout>
+                                    </Frame>
+                                    <Frame BackgroundColor="Transparent" BorderColor="DarkGray" Margin="0,15,0,0" Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="30">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Frame BackgroundColor="SkyBlue" HeightRequest="40" WidthRequest="40" CornerRadius="30" Padding="0" Margin="5">
+                                                <Image Source="location.png" Aspect="AspectFill" Margin="0"/>
+                                            </Frame>
+                                            <Entry Placeholder="Address" IsPassword="True" TextColor="#7C97F8" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
+                                        </StackLayout>
+                                        
+                                    </Frame>
+                                    <Label Text="Birth-Date"></Label>
+                                    <DatePicker></DatePicker>
+
+                                    <Frame BackgroundColor="Transparent" BorderColor="DarkGray" Margin="0,15,0,0" Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="30">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Frame BackgroundColor="SkyBlue" HeightRequest="40" WidthRequest="40" CornerRadius="30" Padding="0" Margin="5">
+                                                <Image Source="creditCard.png" Aspect="AspectFill" Margin="0"/>
+                                            </Frame>
+
+                                            <Entry Placeholder="Password" IsPassword="True" TextColor="#7C97F8" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
+                                        </StackLayout>
+                                    </Frame>
+                                    <Label Text="Card-Date"></Label>
+                                    <DatePicker></DatePicker>
+                                    <Frame BackgroundColor="Transparent" BorderColor="DarkGray" Margin="0,15,0,0" Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="30">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Frame BackgroundColor="SkyBlue" HeightRequest="40" WidthRequest="40" CornerRadius="30" Padding="0" Margin="5">
+                                                <Image Source="CVV.jpg" Aspect="AspectFill" Margin="0"/>
+                                            </Frame>
+
+                                            <Entry Placeholder="CVV" TextColor="#7C97F8" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
+                                        </StackLayout>
+                                    </Frame>
+                                    <Frame BackgroundColor="SkyBlue" HeightRequest="40" WidthRequest="40" CornerRadius="30" Padding="0" Margin="5">
+                                        <Image Source="logo.jpg" Aspect="AspectFill" Margin="0"/>
+                                    </Frame>
+                               
+
+                                    <Button Text="SIGN UP"  BorderRadius="6"  HeightRequest="40" WidthRequest="200" x:Name="ShopIDSubmit" TextColor="White" BackgroundColor="#2FA999"></Button>
+
+                                </StackLayout>
+
+
+                            </StackLayout>
+
+                        </Frame>
+                    </StackLayout>
+                </Grid>
         </StackLayout>
         </ScrollView>
+
+
     </ContentPage.Content>
 </ContentPage>

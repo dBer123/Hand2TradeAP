@@ -3,39 +3,67 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Hand2TradeAP.Views.LogInPage">
     <ContentPage.Content>
-        <StackLayout>
+        <ScrollView>
+        <StackLayout BackgroundColor="#e6e6e6">
+            <Grid>
+                <StackLayout Padding="0" Margin="0" HorizontalOptions="FillAndExpand">
+                    <Frame HeightRequest="150" BackgroundColor="HotPink" Padding="0" Margin="0">
+                        <Image Source="https://images.pexels.com/photos/247431/pexels-photo-247431.jpeg" Aspect="AspectFill" Margin="0" />
+                    </Frame>
+                </StackLayout>
+                <StackLayout Padding="0" Margin="10,100,10,0" HorizontalOptions="FillAndExpand">
+                    <Frame  BackgroundColor="White" HeightRequest="500" HasShadow="True" Padding="0" Margin="0">
 
-            <Label Text="LOG IN NOW"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-            <Frame Style="{DynamicResource InputFieldStyle}" Margin="0,17,0,0" Padding="15,0,0,0" >
-                <Grid x:Name="passwordGrid" VerticalOptions="CenterAndExpand">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Image Source="passIcon.jpg" Grid.Column="0" HorizontalOptions="Center" ScaleX="100" >
+                        <StackLayout>
 
-                    </Image>
-                    <Entry Placeholder="Password" IsPassword="True"  Grid.Column="1" />
-                </Grid>
-            </Frame>
-            <Frame Style="{DynamicResource InputFieldStyle}" Margin="0,17,0,0" Padding="15,0,0,0" >
-                <Grid x:Name="emailGrid" VerticalOptions="CenterAndExpand">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Image Source="email.jpg" Grid.Column="0" HorizontalOptions="Center" >
 
-                    </Image>
-                    <Entry Placeholder="Email"   Grid.Column="1" />
-                </Grid>
-            </Frame>
-            <Button Text="LOG IN"></Button>
+                            <StackLayout Margin="10">
+                                <Label Text="SIGN IN" TextColor="Black" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="50"/>
+                            </StackLayout>
 
+                            <StackLayout Padding="0" Margin="15,10">
+
+                                <Frame BackgroundColor="Transparent" BorderColor="DarkGray" Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="30">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Frame BackgroundColor="SkyBlue" HeightRequest="40" WidthRequest="40" CornerRadius="30" Padding="0" Margin="5">
+                                            <Image Source="https://www.findool.com/images/avatars/avatar.png" Aspect="AspectFill" Margin="0"/>
+                                        </Frame>
+
+                                        <Entry Placeholder="Email" TextColor="HotPink" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
+                                    </StackLayout>
+                                </Frame>
+
+                                <Frame BackgroundColor="Transparent" BorderColor="DarkGray" Margin="0,15,0,0" Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="30">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Frame BackgroundColor="SkyBlue" HeightRequest="40" WidthRequest="40" CornerRadius="30" Padding="0" Margin="5">
+                                                <Image Source="lockicon.jpg" Aspect="AspectFill" Margin="0"/>
+                                        </Frame>
+
+                                        <Entry Placeholder="Password" IsPassword="True" TextColor="HotPink" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
+                                    </StackLayout>
+                                </Frame>
+                                <Button Text="SIGN IN" BackgroundColor="HotPink" FontAttributes="Bold" FontSize="20" TextColor="White" CornerRadius="30" />
+
+
+                                <StackLayout Margin="0,4,0,0" Padding="0">
+                                    <Grid>
+                                        <BoxView BackgroundColor="DarkGray" HeightRequest="1" WidthRequest="150"  HorizontalOptions="Center" VerticalOptions="Center"/>
+                                        <Frame BackgroundColor="White" HeightRequest="45" WidthRequest="45" CornerRadius="45" HasShadow="False" BorderColor="DarkGray" Margin="0" HorizontalOptions="Center" Padding="0">
+                                            <Label Text="OR" TextColor="DarkGray" FontSize="Small" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                                        </Frame>
+                                    </Grid>
+                                    <Button Text="SIGN UP" BackgroundColor="#7C97F8" TextColor="White" FontAttributes="Bold" FontSize="20" CornerRadius="30"/>
+                                </StackLayout>
+                           
+                            </StackLayout>
+
+
+                        </StackLayout>
+
+                    </Frame>
+                </StackLayout>
+            </Grid>
         </StackLayout>
-
-
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
