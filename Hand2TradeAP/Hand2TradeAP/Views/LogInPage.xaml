@@ -7,8 +7,8 @@
         <StackLayout BackgroundColor="#e6e6e6">
             <Grid>
                 <StackLayout Padding="0" Margin="0" HorizontalOptions="FillAndExpand">
-                    <Frame HeightRequest="150" BackgroundColor="HotPink" Padding="0" Margin="0">
-                        <Image Source="https://images.pexels.com/photos/247431/pexels-photo-247431.jpeg" Aspect="AspectFill" Margin="0" />
+                        <Frame HeightRequest="150" BackgroundColor="#00c7a8" Padding="0" Margin="0">
+                            <Image Source="loginback.jpg" Aspect="AspectFill" Margin="0" />
                     </Frame>
                 </StackLayout>
                 <StackLayout Padding="0" Margin="10,100,10,0" HorizontalOptions="FillAndExpand">
@@ -25,8 +25,8 @@
 
                                 <Frame BackgroundColor="Transparent" BorderColor="DarkGray" Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="30">
                                     <StackLayout Orientation="Horizontal">
-                                        <Frame BackgroundColor="SkyBlue" HeightRequest="40" WidthRequest="40" CornerRadius="30" Padding="0" Margin="5">
-                                            <Image Source="https://www.findool.com/images/avatars/avatar.png" Aspect="AspectFill" Margin="0"/>
+                                        <Frame BackgroundColor="SkyBlue" HeightRequest="40" WidthRequest="40" CornerRadius="30" Padding="0" Margin="6">
+                                                <Image Source="email.png" Aspect="AspectFill" Margin="0"/>
                                         </Frame>
 
                                         <Entry Placeholder="Email" TextColor="HotPink" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
@@ -42,7 +42,7 @@
                                         <Entry Placeholder="Password" IsPassword="True" TextColor="HotPink" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
                                     </StackLayout>
                                 </Frame>
-                                <Button Text="SIGN IN" BackgroundColor="HotPink" FontAttributes="Bold" FontSize="20" TextColor="White" CornerRadius="30" />
+                                    <Button Text="SIGN IN" BackgroundColor="HotPink" FontAttributes="Bold" FontSize="20" TextColor="White" CornerRadius="30"  Margin="6" />
 
 
                                 <StackLayout Margin="0,4,0,0" Padding="0">
@@ -52,7 +52,7 @@
                                             <Label Text="OR" TextColor="DarkGray" FontSize="Small" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
                                         </Frame>
                                     </Grid>
-                                    <Button Text="SIGN UP" BackgroundColor="#7C97F8" TextColor="White" FontAttributes="Bold" FontSize="20" CornerRadius="30"/>
+                                        <Button Text="SIGN UP" BackgroundColor="#7C97F8" TextColor="White"  Margin="6" FontAttributes="Bold" FontSize="20" CornerRadius="30"/>
                                 </StackLayout>
                            
                             </StackLayout>

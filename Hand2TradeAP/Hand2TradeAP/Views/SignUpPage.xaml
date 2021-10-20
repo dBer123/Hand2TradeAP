@@ -2,15 +2,15 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Hand2TradeAP.Views.SignUpPage"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
             >
     <ContentPage.Content >
-        <ScrollView>
-            <StackLayout BackgroundColor="#e6e6e6">
+           <StackLayout BackgroundColor="#e6e6e6">
            
                 <Grid>
                     <StackLayout Padding="0" Margin="0" HorizontalOptions="FillAndExpand">
-                        <Frame HeightRequest="150" BackgroundColor="#7C97F8" Padding="0" Margin="0">
-                            <Image Source="https://images.pexels.com/photos/247431/pexels-photo-247431.jpeg" Aspect="AspectFill" Margin="0" />
+                    <Frame HeightRequest="150" BackgroundColor="#40bfae" Padding="0" Margin="0">
+                        <Image Source="signunbackground.jpg"  Margin="0" Aspect="AspectFit" />
                         </Frame>
                     </StackLayout>
                     <StackLayout Padding="0" Margin="10,100,10,0" HorizontalOptions="FillAndExpand">
@@ -20,9 +20,9 @@
 
 
                                 <StackLayout Margin="10">
-                                    <Label Text="SIGN IN" TextColor="Black" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="50"/>
+                                    <Label Text="SIGN UP!" TextColor="Black" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="50"/>
                                 </StackLayout>
-
+                            <ScrollView>
                                 <StackLayout Padding="0" Margin="15,10">
 
                                     <Frame BackgroundColor="Transparent" BorderColor="DarkGray" Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="30">
@@ -71,7 +71,7 @@
                                                 <Image Source="creditCard.png" Aspect="AspectFill" Margin="0"/>
                                             </Frame>
 
-                                            <Entry Placeholder="Password" IsPassword="True" TextColor="#7C97F8" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
+                                            <Entry Placeholder="Credit-Number" IsPassword="True" TextColor="#7C97F8" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
                                         </StackLayout>
                                     </Frame>
                                     <Label Text="Card-Date"></Label>
@@ -85,23 +85,21 @@
                                             <Entry Placeholder="CVV" TextColor="#7C97F8" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
                                         </StackLayout>
                                     </Frame>
-                                    <Frame BackgroundColor="SkyBlue" HeightRequest="40" WidthRequest="40" CornerRadius="30" Padding="0" Margin="5">
-                                        <Image Source="logo.jpg" Aspect="AspectFill" Margin="0"/>
-                                    </Frame>
-                               
 
-                                    <Button Text="SIGN UP"  BorderRadius="6"  HeightRequest="40" WidthRequest="200" x:Name="ShopIDSubmit" TextColor="White" BackgroundColor="#2FA999"></Button>
+                                    <controls:CircleImage  Source="fsaf.jpg" WidthRequest="160" HeightRequest="160"></controls:CircleImage>
 
+                                    <Button Text="SIGN UP"  BorderRadius="6" Margin="15" HeightRequest="40" WidthRequest="200" x:Name="ShopIDSubmit" TextColor="White" BackgroundColor="#2FA999"></Button>
+                                  
                                 </StackLayout>
 
+                            </ScrollView>
 
-                            </StackLayout>
-
-                        </Frame>
+                        </StackLayout>
+                    </Frame>
                     </StackLayout>
                 </Grid>
-        </StackLayout>
-        </ScrollView>
+           </StackLayout>
+       
 
 
     </ContentPage.Content>
