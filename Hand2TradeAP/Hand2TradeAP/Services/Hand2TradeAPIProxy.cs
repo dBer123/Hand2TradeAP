@@ -29,9 +29,11 @@ namespace Hand2TradeAP.Services
         private string baseUri;
         private string basePhotosUri;
         private static Hand2TradeAPIProxy proxy = null;
+         
 
         public static Hand2TradeAPIProxy CreateProxy()
         {
+            App.Current = null;
             string baseUri;
             string basePhotosUri;
             if (App.IsDevEnv)
@@ -84,6 +86,7 @@ namespace Hand2TradeAP.Services
         //Login!
         public async Task<User> LoginAsync(string email, string pass)
         {
+
             try
             {
                 HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/Login?email={email}&pass={pass}");
@@ -111,5 +114,6 @@ namespace Hand2TradeAP.Services
         }
     }
 
+    
     
 }

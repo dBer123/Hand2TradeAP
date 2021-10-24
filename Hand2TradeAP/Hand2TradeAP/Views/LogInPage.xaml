@@ -7,8 +7,8 @@
         <StackLayout BackgroundColor="#e6e6e6">
             <Grid>
                 <StackLayout Padding="0" Margin="0" HorizontalOptions="FillAndExpand">
-                        <Frame HeightRequest="150" BackgroundColor="#00c7a8" Padding="0" Margin="0">
-                            <Image Source="loginback.jpg" Aspect="AspectFill" Margin="0" />
+                        <Frame HeightRequest="150" BackgroundColor="#00c7a8"  Padding="0" Margin="0">
+                            <Image Source="loginback.jpg" Aspect="Fill"  Margin="0" />
                     </Frame>
                 </StackLayout>
                 <StackLayout Padding="0" Margin="10,100,10,0" HorizontalOptions="FillAndExpand">
@@ -29,7 +29,8 @@
                                                 <Image Source="email.png" Aspect="AspectFill" Margin="0"/>
                                         </Frame>
 
-                                        <Entry Placeholder="Email" TextColor="HotPink" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
+                                            <Entry Placeholder="Email" Text="{Binding Email}"
+                                                   TextColor="HotPink" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
                                     </StackLayout>
                                 </Frame>
 
@@ -39,10 +40,10 @@
                                                 <Image Source="lockicon.jpg" Aspect="AspectFill" Margin="0"/>
                                         </Frame>
 
-                                        <Entry Placeholder="Password" IsPassword="True" TextColor="HotPink" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
+                                            <Entry Placeholder="Password"  Text="{Binding Password}" IsPassword="True" TextColor="HotPink" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
                                     </StackLayout>
                                 </Frame>
-                                    <Button Text="SIGN IN" BackgroundColor="HotPink" FontAttributes="Bold" FontSize="20" TextColor="White" CornerRadius="30"  Margin="6" />
+                                    <Button Text="SIGN IN" Command="{Binding SubmitCommand}" BackgroundColor="HotPink" FontAttributes="Bold" FontSize="20" TextColor="White" CornerRadius="30"  Margin="6" />
 
 
                                 <StackLayout Margin="0,4,0,0" Padding="0">
@@ -52,7 +53,7 @@
                                             <Label Text="OR" TextColor="DarkGray" FontSize="Small" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
                                         </Frame>
                                     </Grid>
-                                        <Button Text="SIGN UP" BackgroundColor="#7C97F8" TextColor="White"  Margin="6" FontAttributes="Bold" FontSize="20" CornerRadius="30"/>
+                                        <Button Text="SIGN UP" Command="{Binding NevigateToSignUp}" BackgroundColor="#7C97F8" TextColor="White"  Margin="6" FontAttributes="Bold" FontSize="20" CornerRadius="30"/>
                                 </StackLayout>
                            
                             </StackLayout>

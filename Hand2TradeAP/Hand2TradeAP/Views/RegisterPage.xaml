@@ -1,27 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Hand2TradeAP.Views.SignUpPage"
+             x:Class="Hand2TradeAP.Views.RegisterPage"
              xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
             >
     <ContentPage.Content >
-           <StackLayout BackgroundColor="#e6e6e6">
-           
-                <Grid>
-                    <StackLayout Padding="0" Margin="0" HorizontalOptions="FillAndExpand">
+        <StackLayout BackgroundColor="#e6e6e6">
+
+            <Grid>
+                <StackLayout Padding="0" Margin="0" HorizontalOptions="FillAndExpand">
                     <Frame HeightRequest="150" BackgroundColor="#40bfae" Padding="0" Margin="0">
                         <Image Source="signunbackground.jpg"  Margin="0" Aspect="AspectFit" />
-                        </Frame>
-                    </StackLayout>
-                    <StackLayout Padding="0" Margin="10,100,10,0" HorizontalOptions="FillAndExpand">
-                        <Frame  BackgroundColor="White" HeightRequest="500" HasShadow="True" Padding="0" Margin="0">
+                    </Frame>
+                </StackLayout>
+                <StackLayout Padding="0" Margin="10,100,10,0" HorizontalOptions="FillAndExpand">
+                    <Frame  BackgroundColor="White" HeightRequest="500" HasShadow="True" Padding="0" Margin="0">
 
-                            <StackLayout>
+                        <StackLayout>
 
 
-                                <StackLayout Margin="10">
-                                    <Label Text="SIGN UP!" TextColor="Black" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="50"/>
-                                </StackLayout>
+                            <StackLayout Margin="10">
+                                <Label Text="SIGN UP!" TextColor="Black" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="50"/>
+                            </StackLayout>
                             <ScrollView>
                                 <StackLayout Padding="0" Margin="15,10">
 
@@ -60,7 +60,7 @@
                                             </Frame>
                                             <Entry Placeholder="Address" IsPassword="True" TextColor="#7C97F8" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
                                         </StackLayout>
-                                        
+
                                     </Frame>
                                     <Label Text="Birth-Date"></Label>
                                     <DatePicker></DatePicker>
@@ -88,19 +88,17 @@
 
                                     <controls:CircleImage  Source="fsaf.jpg" WidthRequest="160" HeightRequest="160"></controls:CircleImage>
 
-                                    <Button Text="SIGN UP"  BorderRadius="6" Margin="15" HeightRequest="40" WidthRequest="200" x:Name="ShopIDSubmit" TextColor="White" BackgroundColor="#2FA999"></Button>
-                                  
+                                    <Button Text="SIGN UP"  BorderRadius="6" Margin="15" HeightRequest="40" WidthRequest="200" TextColor="White" BackgroundColor="#2FA999"></Button>
+                                    <Button Text="TO LOG IN" Command="{Binding NevigateToSignIn}" BorderRadius="6" Margin="15" HeightRequest="40" WidthRequest="200" TextColor="White" BackgroundColor="MediumPurple"></Button>
+
                                 </StackLayout>
 
                             </ScrollView>
 
                         </StackLayout>
                     </Frame>
-                    </StackLayout>
-                </Grid>
-           </StackLayout>
-       
-
-
+                </StackLayout>
+            </Grid>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

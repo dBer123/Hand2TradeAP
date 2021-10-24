@@ -6,11 +6,12 @@ using System.ComponentModel;
 using System.Windows.Input;
 using Xamarin.Forms;
 using Hand2TradeAP.Services;
+using Hand2TradeAP.Views;
 using Hand2TradeAP.Models;
 using Xamarin.Essentials;
 using System.Linq;
 
-namespace ContactsApp.ViewModels
+namespace Hand2TradeAP.ViewModels
 {
     class LoginViewModel : INotifyPropertyChanged
     {
@@ -50,61 +51,42 @@ namespace ContactsApp.ViewModels
             SubmitCommand = new Command(OnSubmit);
         }
 
-        private string serverStatus;
-        public string ServerStatus
-        {
-            get { return serverStatus; }
-            set
-            {
-                serverStatus = value;
-                OnPropertyChanged("ServerStatus");
-            }
-        }
+      
 
         public async void OnSubmit()
         {
-            ServerStatus = "מתחבר לשרת...";
-            await App.Current.MainPage.Navigation.PushModalAsync(new Views.ServerStatusPage(this));
             Hand2TradeAPIProxy proxy = Hand2TradeAPIProxy.CreateProxy();
             User user = await proxy.LoginAsync(Email, Password);
             if (user == null)
             {
-                await App.Current.MainPage.Navigation.PopModalAsync();
-                await App.Current.MainPage.DisplayAlert("שגיאה", "התחברות נכשלה, בדוק שם משתמש וסיסמה ונסה שוב", "בסדר");
+                await App.Current.MainPage.DisplayAlert("Error", "Login failed, please check username and password and try again", "OK");
             }
             else
             {
-                ServerStatus = "קורא נתונים...";
+               
                 App theApp = (App)App.Current;
                 theApp.CurrentUser = user;
-                bool success = await LoadPhoneTypes(theApp);
-                if (!success)
-                {
-                    await App.Current.MainPage.Navigation.PopModalAsync();
-                    await App.Current.MainPage.DisplayAlert("שגיאה", "קריאת נתונים נכשלה. נסה שוב מאוחר יותר", "בסדר");
-                }
-                else
-                {
-                    //Initiate all phone types refrence to the same objects of PhoneTypes
-                    foreach (UserContact uc in user.UserContacts)
-                    {
-                        foreach (Models.ContactPhone cp in uc.ContactPhones)
-                            cp.PhoneType = theApp.PhoneTypes.Where(pt => pt.TypeId == cp.PhoneTypeId).FirstOrDefault();
-                    }
+                Page p = new ProfilePage();
+                App.Current.MainPage = p;
 
-                    Page p = new NavigationPage(new Views.ContactsList());
-                    App.Current.MainPage = p;
-                }
 
 
             }
         }
 
-        private async Task<bool> LoadPhoneTypes(App theApp)
+
+
+        public ICommand NevigateToSignUp => new Command(ToSignUp);
+        void ToSignUp()
         {
-            ContactsAPIProxy proxy = ContactsAPIProxy.CreateProxy();
-            theApp.PhoneTypes = await proxy.GetPhoneTypesAsync();
-            return theApp.PhoneTypes != null;
+
+            Page p = new RegisterPage();
+            App.Current.MainPage = p;
+
+
+
         }
     }
+
+  
 }
