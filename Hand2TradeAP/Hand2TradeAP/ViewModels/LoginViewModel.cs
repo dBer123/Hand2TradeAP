@@ -64,7 +64,7 @@ namespace Hand2TradeAP.ViewModels
             else
             {
                
-                App theApp = (App)App.Current;
+                App theApp = (App)Application.Current;
                 theApp.CurrentUser = user;
                 Page p = new ProfilePage();
                 App.Current.MainPage = p;
