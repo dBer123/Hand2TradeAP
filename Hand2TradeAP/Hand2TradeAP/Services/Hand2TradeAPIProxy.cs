@@ -33,7 +33,6 @@ namespace Hand2TradeAP.Services
 
         public static Hand2TradeAPIProxy CreateProxy()
         {
-            App.Current = null;
             string baseUri;
             string basePhotosUri;
             if (App.IsDevEnv)

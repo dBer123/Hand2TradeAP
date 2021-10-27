@@ -16,5 +16,6 @@ namespace Hand2TradeAP.Models
         public DateTime BearthDate { get; set; }
         public string Adress { get; set; }
         public bool IsBlocked { get; set; }
+        
     }
 }
