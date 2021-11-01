@@ -10,12 +10,14 @@ namespace Hand2TradeAP.Models
         public string Passwrd { get; set; }
         public string UserName { get; set; }
         public bool IsAdmin { get; set; }
-        public int Coins { get; set; }
-        public int Reports { get; set; }       
+        public int Coins { get; set; }      
         public int TotalRank { get; set; }
         public DateTime BearthDate { get; set; }
         public string Adress { get; set; }
         public bool IsBlocked { get; set; }
+        public int CreditNum { get; set; }
+        public int CVV { get; set; }
+        public DateTime CardDate { get; set; }
         
     }
 }

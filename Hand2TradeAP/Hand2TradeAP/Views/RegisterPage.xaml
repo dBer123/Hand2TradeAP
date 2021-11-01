@@ -32,6 +32,7 @@
                                             </Frame>
 
                                             <Entry Placeholder="Email" TextColor="#7C97F8" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
+                                            <Label Text="{Binding EmailError}" TextColor="Red" IsVisible="{Binding ShowEmailError}" />
                                         </StackLayout>
                                     </Frame>
 
@@ -42,6 +43,7 @@
                                             </Frame>
 
                                             <Entry Placeholder="Password" IsPassword="True" TextColor="#7C97F8" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
+                                            <Label Text="{Binding PasswordError}" TextColor="Red" IsVisible="{Binding ShowPasswordError}" />
                                         </StackLayout>
                                     </Frame>
                                     <Frame BackgroundColor="Transparent" BorderColor="DarkGray" Margin="0,15,0,0" Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="30">
@@ -50,7 +52,8 @@
                                                 <Image Source="profile.png" Aspect="AspectFill" Margin="0"/>
                                             </Frame>
 
-                                            <Entry Placeholder="User-Name"  TextColor="#7C97F8" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
+                                            <Entry Placeholder="UserName"  TextColor="#7C97F8" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
+                                            <Label Text="{Binding UsernameError}" TextColor="Red" IsVisible="{Binding ShowUsernameError}" />
                                         </StackLayout>
                                     </Frame>
                                     <Frame BackgroundColor="Transparent" BorderColor="DarkGray" Margin="0,15,0,0" Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="30">
@@ -64,6 +67,7 @@
                                     </Frame>
                                     <Label Text="Birth-Date"></Label>
                                     <DatePicker></DatePicker>
+                                    <Label Text="{Binding AgeError}" TextColor="Red" IsVisible="{Binding ShowAgeError}" />
 
                                     <Frame BackgroundColor="Transparent" BorderColor="DarkGray" Margin="0,15,0,0" Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="30">
                                         <StackLayout Orientation="Horizontal">
