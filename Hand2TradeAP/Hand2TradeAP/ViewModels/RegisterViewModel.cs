@@ -10,10 +10,11 @@ using Hand2TradeAP.Views;
 using Hand2TradeAP.Models;
 using Xamarin.Essentials;
 using System.Linq;
+using System.Net.Mail;
 
 namespace Hand2TradeAP.ViewModels
 {
-    class RegisterViewModel
+    class RegisterViewModel : INotifyPropertyChanged
     {
 
         #region INotifyPropertyChanged
@@ -31,6 +32,7 @@ namespace Hand2TradeAP.ViewModels
             set
             {
                 email = value;
+                ValidateEmail();
                 OnPropertyChanged("Email");
             }
         }
@@ -41,6 +43,7 @@ namespace Hand2TradeAP.ViewModels
             set
             {
                 password = value;
+                ValidatePassword();
                 OnPropertyChanged("Password");
             }
         }
@@ -51,6 +54,7 @@ namespace Hand2TradeAP.ViewModels
             set
             {
                 username = value;
+                ValidateUsername();
                 OnPropertyChanged("Username");
             }
         }
@@ -66,13 +70,14 @@ namespace Hand2TradeAP.ViewModels
             }
         }
 
-        private int cvv;
-        public int CVV
+        private string cvv;
+        public string CVV
         {
             get { return cvv; }
             set
             {
                 cvv = value;
+                ValidateCVV();
                 OnPropertyChanged("CVV");
             }
         }
@@ -106,6 +111,7 @@ namespace Hand2TradeAP.ViewModels
             set
             {
                 birthDate = value;
+                ValidateAge();
                 OnPropertyChanged("BirthDate");
             }
         }
@@ -121,28 +127,7 @@ namespace Hand2TradeAP.ViewModels
             }
         }
 
-        private bool showEmailError;
-
-        public bool ShowEmailError
-        {
-            get => showEmailError;
-            set
-            {
-                showEmailError = value;
-                OnPropertyChanged("ShowEmailError");
-            }
-        }
-        private string emailError;
-
-        public string EmailError
-        {
-            get => emailError;
-            set
-            {
-                emailError = value;
-                OnPropertyChanged("EmailError");
-            }
-        }
+      
 
         private bool showPasswordError;
 
@@ -178,6 +163,52 @@ namespace Hand2TradeAP.ViewModels
                 ShowPasswordError = false;
         }
 
+        private bool showEmailError;
+
+        public bool ShowEmailError
+        {
+            get => showEmailError;
+            set
+            {
+                showEmailError = value;
+                OnPropertyChanged("ShowEmailError");
+            }
+        }
+
+        private string emailError;
+
+        public string EmailError
+        {
+            get => emailError;
+            set
+            {
+                emailError = value;
+                OnPropertyChanged("EmailError");
+            }
+        }
+        private void ValidateEmail()
+        {
+            ShowEmailError = true;
+            if (!IsValid(Email))
+                EmailError = "Email is not valid";
+           
+            else
+                ShowEmailError = false;
+        }
+        public bool IsValid(string emailaddress)
+        {
+            if(emailaddress=="")return false;
+            try
+            {
+                MailAddress m = new MailAddress(emailaddress);
+
+                return true;
+            }
+            catch (FormatException)
+            {
+                return false;
+            }
+        }
         private bool showUsernameError;
 
         public bool ShowUsernameError
@@ -246,6 +277,38 @@ namespace Hand2TradeAP.ViewModels
                 ShowAgeError = false;
         }
 
+        private bool showCVVError;
+
+        public bool ShowCVVError
+        {
+            get => showCVVError;
+            set
+            {
+                showCVVError = value;
+                OnPropertyChanged("ShowCVVError");
+            }
+        }
+        private string cvvError;
+
+        public string CVVError
+        {
+            get => cvvError;
+            set
+            {
+                cvvError = value;
+                OnPropertyChanged("CVVError");
+            }
+        }
+        private void ValidateCVV()
+        {
+            ShowCVVError = true;
+            if (CVV.Length > 4 || CVV.Length < 3)
+                CVVError = "CVV Must Have 3-4 Digits";
+
+            else
+                ShowCVVError = false;
+        }
+
         private bool showGeneralError;
 
         public bool ShowGeneralError
@@ -256,6 +319,39 @@ namespace Hand2TradeAP.ViewModels
                 showGeneralError = value;
                 OnPropertyChanged("ShowGeneralError");
             }
+        }
+
+        private bool showCardDateError;
+
+        public bool ShowCardDateError
+        {
+            get => showCardDateError;
+            set
+            {
+                showCardDateError = value;
+                OnPropertyChanged("ShowCardDateError");
+            }
+        }
+
+        private string cardDateError;
+
+        public string CardDateError
+        {
+            get => cardDateError;
+            set
+            {
+                cardDateError = value;
+                OnPropertyChanged("CardDateError");
+            }
+        }
+        private void ValidateCardDate()
+        {
+            ShowCardDateError = true;
+            if (DateTime.Now.Year - BirthDate.Year < 13)
+                CardDateError = "Card is expired";
+
+            else
+                ShowAgeError = false;
         }
 
         private bool ValidateForm()
@@ -291,7 +387,7 @@ namespace Hand2TradeAP.ViewModels
                     BearthDate = BirthDate,
                     CreditNum = CreditNum,
                     CardDate = CardDate,
-                    CVV = CVV,
+                    CVV =Convert.ToInt32(CVV),
                     IsAdmin = false,
                     IsBlocked = false,
                     TotalRank = 0
