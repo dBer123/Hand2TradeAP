@@ -47,6 +47,7 @@ namespace Hand2TradeAP.ViewModels
                 OnPropertyChanged("Password");
             }
         }
+
         private string username;
         public string Username
         {
@@ -66,6 +67,7 @@ namespace Hand2TradeAP.ViewModels
             set
             {
                 address = value;
+                ValidateAddress();
                 OnPropertyChanged("Address");
             }
         }
@@ -82,24 +84,15 @@ namespace Hand2TradeAP.ViewModels
             }
         }
 
-        private int coins;
-        public int Coins
-        {
-            get { return coins; }
-            set
-            {
-                coins = value;
-                OnPropertyChanged("Coins");
-            }
-        }
 
-        private int creditNum;
-        public int CreditNum
+        private string creditNum;
+        public string CreditNum
         {
             get { return creditNum; }
             set
             {
                 creditNum = value;
+                ValidateCard();
                 OnPropertyChanged("CreditNum");
             }
         }
@@ -123,6 +116,7 @@ namespace Hand2TradeAP.ViewModels
             set
             {
                 cardDate = value;
+                ValidateCardDate();
                 OnPropertyChanged("CardDate");
             }
         }
@@ -197,7 +191,7 @@ namespace Hand2TradeAP.ViewModels
         }
         public bool IsValid(string emailaddress)
         {
-            if(emailaddress=="")return false;
+            if (string.IsNullOrEmpty(emailaddress)) return false;
             try
             {
                 MailAddress m = new MailAddress(emailaddress);
@@ -242,6 +236,42 @@ namespace Hand2TradeAP.ViewModels
             {
                 UsernameError = "Username cannot be blank";
                 ShowUsernameError = true;
+            }
+        }
+
+        private bool showAddressError;
+
+        public bool ShowAddressError
+        {
+            get => showAddressError;
+            set
+            {
+                showAddressError = value;
+                OnPropertyChanged("ShowAddressError");
+            }
+        }
+
+        private string addressError;
+
+        public string AddressError
+        {
+            get => addressError;
+            set
+            {
+                addressError = value;
+                OnPropertyChanged("AddressError");
+            }
+        }
+
+        private void ValidateAddress()
+        {
+            ShowAddressError = false;
+
+
+            if (string.IsNullOrEmpty(Address))
+            {
+                AddressError = "Address cannot be blank";
+                ShowAddressError = true;
             }
         }
 
@@ -302,25 +332,14 @@ namespace Hand2TradeAP.ViewModels
         private void ValidateCVV()
         {
             ShowCVVError = true;
-            if (CVV.Length > 4 || CVV.Length < 3)
-                CVVError = "CVV Must Have 3-4 Digits";
 
+            if (CVV == null || CVV.Length > 4 || CVV.Length < 3)
+                CVVError = "CVV must have 3-4 digits";
+            else if (!CVV.All(char.IsDigit))
+                CVVError = "Enter only digits";
             else
                 ShowCVVError = false;
         }
-
-        private bool showGeneralError;
-
-        public bool ShowGeneralError
-        {
-            get => showGeneralError;
-            set
-            {
-                showGeneralError = value;
-                OnPropertyChanged("ShowGeneralError");
-            }
-        }
-
         private bool showCardDateError;
 
         public bool ShowCardDateError
@@ -347,12 +366,60 @@ namespace Hand2TradeAP.ViewModels
         private void ValidateCardDate()
         {
             ShowCardDateError = true;
-            if (DateTime.Now.Year - BirthDate.Year < 13)
+            if (DateTime.Now.Date > CardDate.Date)
                 CardDateError = "Card is expired";
 
             else
-                ShowAgeError = false;
+                ShowCardDateError = false;
         }
+
+        private bool showCardError;
+
+        public bool ShowCardError
+        {
+            get => showCardError;
+            set
+            {
+                showCardError = value;
+                OnPropertyChanged("ShowCardError");
+            }
+        }
+
+        private string cardError;
+
+        public string CardError
+        {
+            get => cardError;
+            set
+            {
+                cardError = value;
+                OnPropertyChanged("CardError");
+            }
+        }
+        private void ValidateCard()
+        {
+            ShowCardError = true;
+
+            if (CreditNum == null || CreditNum.Length > 19 || CreditNum.Length < 13)
+                CardError = "Credit must have 13-19 digits";
+            else if (!CreditNum.All(char.IsDigit))
+                CardError = "Enter only digits";
+            else
+                ShowCardError = false;
+        }
+
+        private bool showGeneralError;
+
+        public bool ShowGeneralError
+        {
+            get => showGeneralError;
+            set
+            {
+                showGeneralError = value;
+                OnPropertyChanged("ShowGeneralError");
+            }
+        }
+
 
         private bool ValidateForm()
         {
@@ -360,8 +427,13 @@ namespace Hand2TradeAP.ViewModels
             ValidatePassword();
             ValidateUsername();
             ValidateAge();
+            ValidateEmail();
+            ValidateCard();
+            ValidateCVV();
+            ValidateCardDate();
+            ValidateAddress(); 
 
-            return !(ShowPasswordError || ShowUsernameError || ShowAgeError);
+            return !(ShowPasswordError || ShowUsernameError || ShowAgeError || ShowCardDateError || ShowEmailError || ShowCardError || ShowCVVError || ShowAddressError);
         }
         public ICommand SubmitCommand { protected set; get; }
 
@@ -383,11 +455,11 @@ namespace Hand2TradeAP.ViewModels
                     Passwrd = Password,
                     UserName = Username,
                     Adress = Address,
-                    Coins = Coins,
-                    BearthDate = BirthDate,
+                    Coins = 0,
+                    BirthDate = BirthDate,
                     CreditNum = CreditNum,
                     CardDate = CardDate,
-                    CVV =Convert.ToInt32(CVV),
+                    CVV =CVV,
                     IsAdmin = false,
                     IsBlocked = false,
                     TotalRank = 0

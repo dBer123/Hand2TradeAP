@@ -14,7 +14,13 @@ namespace Hand2TradeAP.Views
     {
         public ProfilePage()
         {
+           
             InitializeComponent();
+        }
+        void OnItemClicked(object sender, EventArgs e)
+        {
+            ToolbarItem item = (ToolbarItem)sender;
+            messageLabel.Text = $"You clicked the \"{item.Text}\" toolbar item.";
         }
     }
 }

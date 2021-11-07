@@ -58,12 +58,14 @@
                                         </StackLayout>
                                     </Frame>
 
+                                    <Label Text="{Binding AddressError}" TextColor="Red" IsVisible="{Binding ShowAddressError}" />
+
                                     <Frame BackgroundColor="Transparent" BorderColor="DarkGray" Margin="0,15,0,0" Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="30">
                                         <StackLayout Orientation="Horizontal">
                                             <Frame BackgroundColor="SkyBlue" HeightRequest="40" WidthRequest="40" CornerRadius="30" Padding="0" Margin="5">
                                                 <Image Source="location.png" Aspect="AspectFill" Margin="0"/>
                                             </Frame>
-                                            <Entry Placeholder="Address" IsPassword="True" TextColor="#7C97F8" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
+                                            <Entry Placeholder="Address" Text="{Binding Address}" IsPassword="True" TextColor="#7C97F8" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
                                         </StackLayout>
 
                                     </Frame>
@@ -71,17 +73,22 @@
                                     <Label Text="{Binding AgeError}" TextColor="Red" IsVisible="{Binding ShowAgeError}" />
                                     <DatePicker Date="{Binding BirthDate}"></DatePicker>
 
+                                    <Label Text="{Binding CardError}" TextColor="Red" IsVisible="{Binding ShowCardError}" />
+
                                     <Frame BackgroundColor="Transparent" BorderColor="DarkGray" Margin="0,15,0,0" Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="30">
                                         <StackLayout Orientation="Horizontal">
                                             <Frame BackgroundColor="SkyBlue" HeightRequest="40" WidthRequest="40" CornerRadius="30" Padding="0" Margin="5">
                                                 <Image Source="creditCard.png" Aspect="AspectFill" Margin="0"/>
                                             </Frame>
 
-                                            <Entry Placeholder="Credit-Number" Keyboard="Numeric" IsPassword="True" TextColor="#7C97F8" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
+                                            <Entry Placeholder="Credit-Number" Text="{Binding CreditNum}" Keyboard="Numeric"  TextColor="#7C97F8" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
                                         </StackLayout>
                                     </Frame>
+                                    
                                     <Label Text="Card-Date" FontSize="Large"></Label>
-                                    <DatePicker></DatePicker>
+                                    <Label Text="{Binding CardDateError}" TextColor="Red" IsVisible="{Binding ShowCardDateError}" />
+
+                                    <DatePicker Date="{Binding CardDate}"></DatePicker>
                                     <Label Text="{Binding CVVError}" TextColor="Red" IsVisible="{Binding ShowCVVError}" />
                                     <Frame BackgroundColor="Transparent" BorderColor="DarkGray" Margin="0,15,0,0" Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="30">
                                         <StackLayout Orientation="Horizontal">

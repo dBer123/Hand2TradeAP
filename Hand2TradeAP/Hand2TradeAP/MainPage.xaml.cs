@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hand2TradeAP.Views;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace Hand2TradeAP
         public MainPage()
         {
             InitializeComponent();
+
         }
     }
 }
