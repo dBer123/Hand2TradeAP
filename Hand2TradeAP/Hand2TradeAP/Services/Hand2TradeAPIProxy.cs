@@ -29,7 +29,7 @@ namespace Hand2TradeAP.Services
         private string baseUri;
         private string basePhotosUri;
         private static Hand2TradeAPIProxy proxy = null;
-         
+
 
         public static Hand2TradeAPIProxy CreateProxy()
         {
@@ -118,17 +118,18 @@ namespace Hand2TradeAP.Services
             {
                 JsonSerializerOptions options = new JsonSerializerOptions
                 {
+                    ReferenceHandler = ReferenceHandler.Preserve, //avoid reference loops!
                     PropertyNameCaseInsensitive = true
                 };
-                string json = JsonSerializer.Serialize<User>(u, options);
-                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                string jsonObject = JsonSerializer.Serialize(u, options);
+                StringContent content = new StringContent(jsonObject, Encoding.UTF8, "application/json");
                 HttpResponseMessage response = await this.client.PostAsync($"{this.baseUri}/SignUp", content);
+
                 if (response.IsSuccessStatusCode)
                 {
-
-                    string jsonContent = await response.Content.ReadAsStringAsync();
-                    bool b = JsonSerializer.Deserialize<bool>(jsonContent, options);
-                    return b;
+                    string respContent = await response.Content.ReadAsStringAsync();
+                    User result = JsonSerializer.Deserialize<User>(respContent);
+                    return true;
                 }
                 else
                 {
@@ -141,8 +142,7 @@ namespace Hand2TradeAP.Services
                 return false;
             }
         }
-    }
 
-    
+    }
     
 }

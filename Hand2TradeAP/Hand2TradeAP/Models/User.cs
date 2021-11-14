@@ -10,7 +10,7 @@ namespace Hand2TradeAP.Models
         public string Passwrd { get; set; }
         public string UserName { get; set; }
         public bool IsAdmin { get; set; }
-        public int Coins { get; set; }      
+        public int Coins { get; set; }
         public int TotalRank { get; set; }
         public DateTime BirthDate { get; set; }
         public string Adress { get; set; }
@@ -18,6 +18,7 @@ namespace Hand2TradeAP.Models
         public string CreditNum { get; set; }
         public string CVV { get; set; }
         public DateTime CardDate { get; set; }
-        
+
+
     }
 }
