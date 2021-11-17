@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Hand2TradeAP.Views.CheckEmailPage">
+    <ContentPage.Content>
+       
+            <StackLayout BackgroundColor="#e6e6e6">
+                <Grid>
+                    <StackLayout Padding="0" Margin="0" HorizontalOptions="FillAndExpand">
+                        <Frame HeightRequest="150"  Padding="-15" BackgroundColor="#18d6d4" Margin="0">
+                            <Image Source="emailCheckBack.jpg" Aspect="AspectFit"  Margin="0" />
+                        </Frame>
+                    </StackLayout>
+                    <StackLayout Padding="0" Margin="10,100,10,150" HorizontalOptions="FillAndExpand">
+                        <Frame  BackgroundColor="White" HeightRequest="500" HasShadow="True" Padding="0" Margin="0">
+                            <StackLayout>
+                            <StackLayout Margin="15">
+                                <Label Text="Enter the password we sent to your email!" FontAttributes="Bold" FontSize="30" HorizontalOptions="CenterAndExpand"></Label>
+
+                            </StackLayout>
+                            <StackLayout Padding="0" Margin="10,10">
+                                    <Frame BackgroundColor="Transparent" BorderColor="DarkGray" Margin="0,15,0,0" Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="30">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Frame BackgroundColor="SkyBlue" HeightRequest="40" WidthRequest="40" CornerRadius="30" Padding="0" Margin="5">
+                                                <Image Source="lockicon.jpg" Aspect="AspectFill" Margin="0"/>
+                                            </Frame>
+
+                                            <Entry Placeholder="Password" Text="{Binding Password}" Keyboard="Numeric" TextColor="#7C97F8" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
+                                        </StackLayout>
+                                    </Frame>
+
+                                <Button Text="Enter" Command="{Binding}"  BorderRadius="6" Margin="20,10" FontSize="17" FontAttributes="Bold" HeightRequest="40" WidthRequest="200" TextColor="White" BackgroundColor="#2FA999"></Button>
+                                <Button Text="To Sign Up" Command="{Binding}" BorderRadius="6" Margin="20,0" FontSize="17" FontAttributes="Bold" HeightRequest="40" WidthRequest="200" TextColor="White" BackgroundColor="MediumPurple"></Button>
+
+                            </StackLayout>
+                            </StackLayout>
+                           
+                        </Frame>
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+       
+    </ContentPage.Content>
+</ContentPage>
