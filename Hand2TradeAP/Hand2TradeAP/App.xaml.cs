@@ -22,7 +22,7 @@ namespace Hand2TradeAP
         {
             InitializeComponent();
             CurrentUser = null;
-            MainPage = new CheckEmailPage();
+            MainPage = new RegisterPage();
         }
 
         protected override void OnStart()

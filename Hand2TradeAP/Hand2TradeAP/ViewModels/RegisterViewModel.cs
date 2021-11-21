@@ -461,7 +461,7 @@ namespace Hand2TradeAP.ViewModels
                     CardDate = CardDate,
                     CVV =CVV,
                     IsAdmin = false,
-                    IsBlocked = false,
+                    IsBlocked = true,
                     TotalRank = 0
 
                 };
@@ -487,7 +487,7 @@ namespace Hand2TradeAP.ViewModels
         void ToSignIn()
         {
 
-            Page p = new LogInPage();
+            Page p = new CheckEmailPage();
             App.Current.MainPage = p;
         }
     }

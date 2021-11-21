@@ -40,7 +40,22 @@ namespace Hand2TradeAP.ViewModels
         public ICommand SubmitCommand { protected set; get; }
         public async void OnSubmit()
         {
-           
+            Hand2TradeAPIProxy proxy = Hand2TradeAPIProxy.CreateProxy();
+            bool isValid = await proxy.CheckEmailAsync(Password);
+            if (isValid == false)
+            {
+                await App.Current.MainPage.DisplayAlert("Error", "Wrong password, please check your email and try again", "OK");
+            }
+            else
+            {
+
+                App theApp = (App)Application.Current;
+                Page p = new LogInPage();
+                App.Current.MainPage = p;
+
+
+
+            }
         }
 
 
