@@ -29,7 +29,7 @@
                                         </StackLayout>
                                     </Frame>
 
-                                <Button Text="Enter" Command="{Binding}"  BorderRadius="6" Margin="20,10" FontSize="17" FontAttributes="Bold" HeightRequest="40" WidthRequest="200" TextColor="White" BackgroundColor="#2FA999"></Button>
+                                <Button Text="Enter" Command="{Binding SubmitCommand}"  BorderRadius="6" Margin="20,10" FontSize="17" FontAttributes="Bold" HeightRequest="40" WidthRequest="200" TextColor="White" BackgroundColor="#2FA999"></Button>
                                 <Button Text="To Sign Up" Command="{Binding}" BorderRadius="6" Margin="20,0" FontSize="17" FontAttributes="Bold" HeightRequest="40" WidthRequest="200" TextColor="White" BackgroundColor="MediumPurple"></Button>
 
                             </StackLayout>

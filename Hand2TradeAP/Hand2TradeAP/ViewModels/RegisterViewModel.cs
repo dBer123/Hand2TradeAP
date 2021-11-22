@@ -476,7 +476,7 @@ namespace Hand2TradeAP.ViewModels
                 else
                 {
                     App theApp = (App)Application.Current;
-                    Page p = new LogInPage();
+                    Page p = new CheckEmailPage();
                     App.Current.MainPage = p;
                 }
             }
@@ -487,7 +487,7 @@ namespace Hand2TradeAP.ViewModels
         void ToSignIn()
         {
 
-            Page p = new CheckEmailPage();
+            Page p = new LogInPage();
             App.Current.MainPage = p;
         }
     }
