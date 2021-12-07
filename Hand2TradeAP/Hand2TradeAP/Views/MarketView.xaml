@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Hand2TradeAP.Views.MarketView">
+  <ContentView.Content>
+        <ScrollView>
+            <Grid RowDefinitions="Auto,Auto,Auto,*,Auto,Auto" 
+          ColumnDefinitions="*,Auto" VerticalOptions="StartAndExpand" Padding="30,60,30,15">
+
+                <SearchBar Grid.Column="0" Grid.Row="1" Margin="-5,10,0,10" BackgroundColor="Transparent"/>
+
+
+
+            </Grid>
+
+
+            <!-- Here add the code that is being explained in the next block-->
+
+
+        </ScrollView>
+  </ContentView.Content>
+</ContentView>

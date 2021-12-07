@@ -10,17 +10,11 @@ using Xamarin.Forms.Xaml;
 namespace Hand2TradeAP.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ProfilePage : ContentPage
+    public partial class MarketView : ContentView
     {
-        public ProfilePage()
+        public MarketView()
         {
-           
             InitializeComponent();
-        }
-        void OnItemClicked(object sender, EventArgs e)
-        {
-            ToolbarItem item = (ToolbarItem)sender;
-            messageLabel.Text = $"You clicked the \"{item.Text}\" toolbar item.";
         }
     }
 }

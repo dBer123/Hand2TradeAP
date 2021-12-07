@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Hand2TradeAP.Views.Tabs"
+            xmlns:localfont="clr-namespace:Hand2TradeAP.AppFonts"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit" 
+             xmlns:myviews="clr-namespace:Hand2TradeAP.Views">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ControlTemplate
+		        x:Key="TabItemTemplate">
+                <Grid
+			        RowSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Image
+				        Grid.Row="0"
+				        VerticalOptions="Center"
+				        HorizontalOptions="Center"
+				        WidthRequest="36"
+				        HeightRequest="36"
+                        Margin="0"
+				        Source="{TemplateBinding CurrentIcon}" />
+                    <Label
+				        Grid.Row="1"
+				        HorizontalOptions="Center"
+				        FontSize="{TemplateBinding FontSize}"
+				        Text="{TemplateBinding Text}"
+				        TextColor="{TemplateBinding CurrentTextColor}" />
+                </Grid>
+            </ControlTemplate>
+
+            <ControlTemplate
+                x:Key="FabTabItemTemplate">
+                <Grid>
+                    <ImageButton
+                        InputTransparent="True"
+                        Source="{TemplateBinding CurrentIcon}"
+                        Padding="10"
+                        HorizontalOptions="Center"
+                        BackgroundColor="#00b34d"
+                        BorderColor="LightGray"
+                        BorderWidth="2"
+                        HeightRequest="60"
+                        WidthRequest="60"
+                        Margin="0,0,0,0"
+                        xct:ShadowEffect.Color="Black">
+                        <ImageButton.CornerRadius>
+                            <OnPlatform x:TypeArguments="x:Int32">
+                                <On Platform="iOS" Value="30"/>
+                                <On Platform="Android" Value="60"/>
+                                <On Platform="UWP" Value="36"/>
+                            </OnPlatform>
+                        </ImageButton.CornerRadius>
+                        <ImageButton.IsVisible>
+                            <OnPlatform x:TypeArguments="x:Boolean">
+                                <On Platform="Android, iOS, UWP">True</On>
+                                <On Platform="macOS">False</On>
+                            </OnPlatform>
+                        </ImageButton.IsVisible>
+                    </ImageButton>
+                    <BoxView  
+                        InputTransparent="True"
+                        HorizontalOptions="Center"
+                        CornerRadius="30"
+                        BackgroundColor="#FF0000"
+                        HeightRequest="60"
+                        WidthRequest="60"
+                        Margin="6">
+                        <BoxView.IsVisible>
+                            <OnPlatform x:TypeArguments="x:Boolean">
+                                <On Platform="Android, iOS, UWP">False</On>
+                                <On Platform="macOS">True</On>
+                            </OnPlatform>
+                        </BoxView.IsVisible>
+                    </BoxView>
+                </Grid>
+            </ControlTemplate>
+
+            <Style
+		        x:Key="CustomTabStyle"
+		        TargetType="xct:TabView">
+                <Setter
+			        Property="IsTabTransitionEnabled"
+			        Value="True" />
+                <Setter
+			        Property="TabStripHeight"
+			        Value="48" />
+                <Setter
+			        Property="TabContentBackgroundColor"
+			        Value="#C2C3C3" />
+                <Setter
+			        Property="TabStripPlacement"
+			        Value="Bottom" />
+            </Style>
+
+
+        </ResourceDictionary>
+
+
+
+
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid>
+            <xct:TabView Style="{StaticResource CustomTabStyle}">
+                <xct:TabView.TabStripBackgroundView>
+                    <BoxView BackgroundColor="White" WidthRequest="30" xct:ShadowEffect.Color="Black"/>
+                </xct:TabView.TabStripBackgroundView>
+
+
+               
+
+                <xct:TabViewItem 
+                    TabTapped="MyTab1_TabTapped"  
+                    Text="Shop" 
+                    TextColor="#979797"
+                    TextColorSelected="#00b34d"
+                    ControlTemplate="{StaticResource TabItemTemplate}">
+                    <xct:TabViewItem.Icon>
+                        <FontImageSource Color="#979797"  FontFamily="MyIcon" Glyph="{x:Static  localfont:FontIconClass.Cart}"/>
+                    </xct:TabViewItem.Icon>
+
+                    <xct:TabViewItem.IconSelected>
+                        <FontImageSource Color="#00b34d"  FontFamily="MyIcon" Glyph="{x:Static localfont:FontIconClass.Cart}"/>
+                    </xct:TabViewItem.IconSelected>
+                    <myviews:MarketView></myviews:MarketView>
+                </xct:TabViewItem>
+
+
+             
+                <xct:TabViewItem   
+                    TabTapped="MyTab1_TabTapped"  
+                    FontFamily="MyIcon"  
+                    Text="Loan" 
+                    TextColor="#979797"
+                    TextColorSelected="#00b34d"
+                    ControlTemplate="{StaticResource TabItemTemplate}">
+                    <xct:TabViewItem.Icon>
+                        <FontImageSource Color="#979797"   FontFamily="MyIcon" Glyph="{x:Static localfont:FontIconClass.CashPlus}"/>
+                    </xct:TabViewItem.Icon>
+                    <xct:TabViewItem.IconSelected>
+                        <FontImageSource Color="#00b34d"  FontFamily="MyIcon" Glyph="{x:Static  localfont:FontIconClass.CashPlus}"/>
+                    </xct:TabViewItem.IconSelected>
+                    <myviews:LoanView></myviews:LoanView>
+                </xct:TabViewItem>
+           
+
+                <xct:TabViewItem x:Name="MyTab1"   
+                    TabTapped="MyTab1_TabTapped"  
+                    FontFamily="MyIcon"  
+                    Text="Chats"
+                    TextColor="#979797"
+                    TextColorSelected="#00b34d"
+                    ControlTemplate="{StaticResource TabItemTemplate}">
+                    <xct:TabViewItem.Icon>
+                        <FontImageSource Color="#979797"   FontFamily="MyIcon" Glyph="{x:Static localfont:FontIconClass.Chat}"/>
+                    </xct:TabViewItem.Icon>
+                    <xct:TabViewItem.IconSelected>
+                        <FontImageSource Color="#00b34d"  FontFamily="MyIcon" Glyph="{x:Static  localfont:FontIconClass.Chat}"/>
+                    </xct:TabViewItem.IconSelected>
+                    <myviews:ChatView></myviews:ChatView>
+                </xct:TabViewItem>
+
+                <xct:TabViewItem   
+                    TabTapped="MyTab1_TabTapped"  
+                    FontFamily="MyIcon"  
+                    Text="Profile" 
+                    TextColor="#979797"
+                    TextColorSelected="#00b34d"
+                    ControlTemplate="{StaticResource TabItemTemplate}">
+                    <xct:TabViewItem.Icon>
+                        <FontImageSource Color="#979797"   FontFamily="MyIcon" Glyph="{x:Static localfont:FontIconClass.Account}"/>
+                    </xct:TabViewItem.Icon>
+                    <xct:TabViewItem.IconSelected>
+                        <FontImageSource Color="#00b34d"  FontFamily="MyIcon" Glyph="{x:Static  localfont:FontIconClass.Account}"/>
+                    </xct:TabViewItem.IconSelected>
+                    <myviews:ProfileView></myviews:ProfileView>
+                </xct:TabViewItem>
+            </xct:TabView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
