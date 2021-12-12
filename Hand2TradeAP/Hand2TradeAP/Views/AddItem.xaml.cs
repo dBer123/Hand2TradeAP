@@ -10,11 +10,11 @@ using Xamarin.Forms.Xaml;
 namespace Hand2TradeAP.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class EditProfile : ContentPage
+    public partial class AddItem : ContentPage
     {
-        public EditProfile()
+        public AddItem()
         {
-            EditProfileViewModel context = new EditProfileViewModel();
+            AddItemViewModel context = new AddItemViewModel();
             this.BindingContext = context;
             InitializeComponent();
         }

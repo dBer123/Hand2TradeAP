@@ -462,7 +462,6 @@ namespace Hand2TradeAP.ViewModels
                     CVV =CVV,
                     IsAdmin = false,
                     IsBlocked = true,
-                    TotalRank = 0
 
                 };
 

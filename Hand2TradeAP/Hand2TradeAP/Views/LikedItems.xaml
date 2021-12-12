@@ -1,8 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Hand2TradeAP.Views.EditProfile"
-             xmlns:localfont="clr-namespace:Hand2TradeAP.AppFonts">
+             x:Class="Hand2TradeAP.Views.LikedItems">
     <ContentPage.Content>
         <StackLayout BackgroundColor="White">
             <Button Style="{StaticResource BackButtonStyle}"/>
