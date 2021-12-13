@@ -34,22 +34,22 @@
                 
             <Image Grid.Row="0" Source="profileBackground.jpg" VerticalOptions="Start" Aspect="Fill" />
 
-            <controls:CircleImage Grid.Row="0"  Margin="100,-280,100,0" Source="profile.png"></controls:CircleImage>
-            <Label  HorizontalTextAlignment="Center" VerticalTextAlignment="Center"  TextColor="#fdcc0d" HorizontalOptions="Center">
+            <controls:CircleImage Grid.Row="0"  Margin="150,-280,150,0" Source="profile.png"></controls:CircleImage>
+            <Label  HorizontalTextAlignment="Center" Margin="0,-90,0,0"  VerticalTextAlignment="Center"  TextColor="#fdcc0d" HorizontalOptions="Center">
                 <Label.FormattedText>
                     <FormattedString>
-                        <Span x:Name="MyStar1" FontSize="40" Text="{x:Static localfont:FontIconClass.Star}"  FontFamily="MyIcon" >
+                        <Span x:Name="MyStar1" FontSize="40" FontFamily="MyIcon" >
                         </Span>
-                        <Span x:Name="MyStar2" FontSize="40" Text="{x:Static localfont:FontIconClass.Star}"  FontFamily="MyIcon">
+                        <Span x:Name="MyStar2" FontSize="40" FontFamily="MyIcon">
 
                         </Span>
-                        <Span x:Name="MyStar3" FontSize="40" Text="{x:Static localfont:FontIconClass.Star}"  FontFamily="MyIcon">
+                        <Span x:Name="MyStar3" FontSize="40" FontFamily="MyIcon">
 
                         </Span>
-                        <Span x:Name="MyStar4" FontSize="40"  Text="{x:Static localfont:FontIconClass.Star}" FontFamily="MyIcon">
+                        <Span x:Name="MyStar4" FontSize="40" FontFamily="MyIcon">
 
                         </Span>
-                        <Span x:Name="MyStar5"  FontSize="40" Text="{x:Static localfont:FontIconClass.StarHalfFull}" FontFamily="MyIcon">
+                        <Span x:Name="MyStar5" FontSize="40" FontFamily="MyIcon">
 
                         </Span>
                     </FormattedString>

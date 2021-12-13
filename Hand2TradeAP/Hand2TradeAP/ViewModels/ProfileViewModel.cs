@@ -71,6 +71,7 @@ namespace Hand2TradeAP.ViewModels
             }
         }
 
+        public ObservableCollection<string> Stars { get; set; }
         public List<PageItem> MenuItems { get; set; }
 
         public ProfileViewModel()
@@ -81,12 +82,12 @@ namespace Hand2TradeAP.ViewModels
             Username = theApp.CurrentUser.UserName;
             int sum = theApp.CurrentUser.SumRanks;
             int count = theApp.CurrentUser.CountRanked;
+            Rating = sum / count;
+            double num = (double)sum / count - Rating;
+            if (num > 0.5) Rating += 1;
 
-            int num1 = sum / count;
 
-            double num2 = (double)(sum / count) - num1;
-            Math.Round(num2, );
-            
+
 
             string icon1 = AppFonts.FontIconClass.Pencil;
             string icon2 = AppFonts.FontIconClass.PlusThick;
@@ -95,12 +96,23 @@ namespace Hand2TradeAP.ViewModels
             string icon5 = AppFonts.FontIconClass.AccountCheck;
             string icon6 = AppFonts.FontIconClass.Logout;
 
+            double count2 = Rating;
+            for (int i = 0; i <= 5; i++)
+
+            {
+                if (count2 >= 1)
+                    Stars.Add(AppFonts.FontIconClass.Star);
+                else if(count2 > 0)
+                    Stars.Add(AppFonts.FontIconClass.StarHalfFull);
+                else Stars.Add(AppFonts.FontIconClass.StarOutline);
+            }
 
 
+            if (theApp.CurrentUser.IsAdmin)
+            {
 
-
-            MenuItems = new List<PageItem>(new[]
-               {
+                MenuItems = new List<PageItem>(new[]
+                   {
                     new PageItem { Id = 1, Title = "Edit Profile", Icon=icon1},
                     new PageItem { Id = 2, Title = "Add Item", Icon=icon2},
                     new PageItem { Id = 3, Title = "Liked Items", Icon=icon3},
@@ -109,7 +121,21 @@ namespace Hand2TradeAP.ViewModels
                     new PageItem { Id = 6, Title = "Log Out", Icon=icon6}
 
                 });
+            }
+            else
+            {
+
+                MenuItems = new List<PageItem>(new[]
+                   {
+                    new PageItem { Id = 1, Title = "Edit Profile", Icon=icon1},
+                    new PageItem { Id = 2, Title = "Add Item", Icon=icon2},
+                    new PageItem { Id = 3, Title = "Liked Items", Icon=icon3},
+                    new PageItem { Id = 6, Title = "Log Out", Icon=icon6}
+
+                });
         }
+
+    }
 
        
 
