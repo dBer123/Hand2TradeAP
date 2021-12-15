@@ -38,6 +38,16 @@ namespace Hand2TradeAP.ViewModels
             }
         }
 
+        private string coins;
+        public string Coins
+        {
+            get { return coins; }
+            set
+            {
+                coins = value;
+                OnPropertyChanged("Coins");
+            }
+        }
         private string username;
         public string Username
         {
@@ -78,13 +88,18 @@ namespace Hand2TradeAP.ViewModels
         {
             App theApp = (App)Application.Current;
             Email = theApp.CurrentUser.Email;
+            Coins = theApp.CurrentUser.Coins.ToString();
             Address = theApp.CurrentUser.Adress;
             Username = theApp.CurrentUser.UserName;
             int sum = theApp.CurrentUser.SumRanks;
-            int count = theApp.CurrentUser.CountRanked;
-            Rating = sum / count;
-            double num = (double)sum / count - Rating;
-            if (num > 0.5) Rating += 1;
+            int count = theApp.CurrentUser.CountRanked;            
+            if (sum != 0)
+            {
+                Rating = sum / count;
+                double num = (double)sum / count - Rating;
+                if (num > 0.5) Rating += 1;
+            }
+            
 
 
 
@@ -96,15 +111,17 @@ namespace Hand2TradeAP.ViewModels
             string icon5 = AppFonts.FontIconClass.AccountCheck;
             string icon6 = AppFonts.FontIconClass.Logout;
 
+            Stars = new ObservableCollection<string>();
             double count2 = Rating;
             for (int i = 0; i <= 5; i++)
 
             {
-                if (count2 >= 1)
+                if (count2 >= 0.75)
                     Stars.Add(AppFonts.FontIconClass.Star);
-                else if(count2 > 0)
+                else if(count2 > 0.25 && count2 < 0.75)
                     Stars.Add(AppFonts.FontIconClass.StarHalfFull);
                 else Stars.Add(AppFonts.FontIconClass.StarOutline);
+                count2--;
             }
 
 

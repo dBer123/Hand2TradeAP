@@ -71,13 +71,14 @@
                         <StackLayout>
 
                             <!-- 4. Contact information-->
-                            <Label  Text="Katty White" FontAttributes="Bold" FontSize="30"/>
-                            <Label Text="New York" TextColor="#a5a2a2" FontSize="16"/>
+                            <Label  Text="{Binding Username}" FontAttributes="Bold" FontSize="30"/>
+                            <Label Text="{Binding Address}" TextColor="#a5a2a2" FontSize="16"/>
+
                             <Label Padding="0,10,0,0" FontSize="16">
                                 <Label.FormattedText>
                                     <FormattedString>
                                         <Span Text="Email: " FontAttributes="Bold" />
-                                        <Span Text=" kattywhite@hotmail.com"  />
+                                        <Span Text="{Binding Email}"  />
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>
