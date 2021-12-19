@@ -15,8 +15,38 @@ using System.Collections.ObjectModel;
 
 namespace Hand2TradeAP.ViewModels
 {
-    class AddItemViewModel
+    class AddItemViewModel : INotifyPropertyChanged
     {
+        #region INotifyPropertyChanged
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        #endregion
+
+        private string description;
+        public string Description
+        {
+            get { return description; }
+            set
+            {
+                description = value;
+                OnPropertyChanged("Description");
+            }
+        }
+
+        private string price;
+        public string Price
+        {
+            get { return price; }
+            set
+            {
+                price = value;
+                OnPropertyChanged("Price");
+            }
+        }
+       
 
         public ICommand NevigateBack => new Command(Back);
         void Back()

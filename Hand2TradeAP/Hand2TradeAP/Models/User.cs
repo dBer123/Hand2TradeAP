@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Hand2TradeAP.Models
 {
@@ -19,6 +21,8 @@ namespace Hand2TradeAP.Models
         public DateTime CardDate { get; set; }
         public int SumRanks { get; set; }
         public int CountRanked { get; set; }
+        public virtual ICollection<Item> Items { get; set; }
+
 
 
 
