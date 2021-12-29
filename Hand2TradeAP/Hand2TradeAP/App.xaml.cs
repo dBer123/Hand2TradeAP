@@ -16,13 +16,16 @@ namespace Hand2TradeAP
             }
         }
 
+        public ImageSource ItemImage { get; set; }
+
         //The current logged in user
         public User CurrentUser { get; set; }
         public App()
         {
             InitializeComponent();
+            ItemImage = null;
             CurrentUser = null;
-            MainPage = new LogInPage();
+            MainPage = new AddItem();
         }
 
         protected override void OnStart()

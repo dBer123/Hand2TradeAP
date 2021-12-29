@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<xct:Popup xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Hand2TradeAP.Views.PopUpAddImage"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:localfont="clr-namespace:Hand2TradeAP.AppFonts"
+             VerticalOptions="End" Size="220,120">
+        <StackLayout Orientation="Horizontal">
+        <Button Grid.Row="2" Command="{Binding CameraImageCommand}"  Clicked="PickImage" BackgroundColor="#00b34d" CornerRadius="33" HeightRequest="66" WidthRequest="66" Text="{x:Static localfont:FontIconClass.Camera}"
+         xct:ShadowEffect.Color="#00b34d" xct:TouchEffect.AnimationDuration="50" xct:TouchEffect.PressedScale="1.1" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"  FontFamily="MyIcon" FontSize="35" TextColor="White" />
+        <Button Grid.Row="2" Command="{Binding PickImageCommand}" Clicked="PickImage" BackgroundColor="#00b34d" CornerRadius="33" HeightRequest="66" WidthRequest="66" Text="{x:Static localfont:FontIconClass.Image}"
+         xct:ShadowEffect.Color="#00b34d" xct:TouchEffect.AnimationDuration="50" xct:TouchEffect.PressedScale="1.1" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" FontFamily="MyIcon" FontSize="35" TextColor="White"/>
+    </StackLayout>
+</xct:Popup>
