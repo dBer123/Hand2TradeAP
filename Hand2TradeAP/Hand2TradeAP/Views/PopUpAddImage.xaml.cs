@@ -20,7 +20,7 @@ namespace Hand2TradeAP.Views
            
         }
 
-        private async void PickImage(object sender, EventArgs e)
+        private void PickImage(object sender, EventArgs e)
         {
             Dismiss("");
             

@@ -147,7 +147,7 @@
     <AndroidResource Include="Resources\drawable\coin.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\itemDefault.png" />
+    <AndroidResource Include="Resources\drawable\defaultItemImage.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>

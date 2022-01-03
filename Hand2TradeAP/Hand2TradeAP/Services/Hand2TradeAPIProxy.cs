@@ -171,6 +171,59 @@ namespace Hand2TradeAP.Services
             }
         }
 
+        public async Task<Item> AddItem(Item item)
+        {
+            try
+            {
+                JsonSerializerOptions options = new JsonSerializerOptions
+                {
+                    ReferenceHandler = ReferenceHandler.Preserve,
+                    PropertyNameCaseInsensitive = true
+                };
+                string jsonObject = JsonSerializer.Serialize<Item>(item, options);
+                StringContent content = new StringContent(jsonObject, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = await this.client.PostAsync($"{this.baseUri}/AddItem", content);
+                if (response.IsSuccessStatusCode)
+                {
+                    string jsonContent = await response.Content.ReadAsStringAsync();
+                    Item ret = JsonSerializer.Deserialize<Item>(jsonContent, options);
+
+                    return ret;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ee)
+            {
+                Console.WriteLine(ee.Message);
+                return null;
+            }
+        }
+
+         public async Task<bool> UploadImage(Models.FileInfo fileInfo, string targetFileName)
+        {
+            try
+            {
+                var multipartFormDataContent = new MultipartFormDataContent();
+                var fileContent = new ByteArrayContent(File.ReadAllBytes(fileInfo.Name));
+                multipartFormDataContent.Add(fileContent, "file", targetFileName);
+                HttpResponseMessage response = await client.PostAsync($"{this.baseUri}/UploadImage", multipartFormDataContent);
+                if (response.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+                else
+                    return false;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+        }
 
     }
     

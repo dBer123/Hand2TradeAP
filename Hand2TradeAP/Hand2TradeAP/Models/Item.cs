@@ -4,8 +4,9 @@ using System.Text;
 
 namespace Hand2TradeAP.Models
 {
-    class Item
+    public partial class Item
     {
+        public int ItemId { get; set; }
         public string ItemName { get; set; }
         public int Price { get; set; }
         public string Desrciption { get; set; }

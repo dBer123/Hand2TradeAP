@@ -2,10 +2,56 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Hand2TradeAP.Views.EditProfile"
-             xmlns:localfont="clr-namespace:Hand2TradeAP.AppFonts">
+             xmlns:localfont="clr-namespace:Hand2TradeAP.AppFonts"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms">
     <ContentPage.Content>
+        <ScrollView>
         <StackLayout BackgroundColor="White">
-            <Button Style="{StaticResource BackButtonStyle}"/>
+            <Button Style="{StaticResource BackButtonStyle}" Command="{Binding NevigateBack}"/>
+            <controls:CircleImage x:Name="itemImage" WidthRequest="200" HeightRequest="200" Aspect="Fill" BorderColor="Black" BorderThickness="2"/>
+            <Button Grid.Row="2" Clicked="ToPopUp" BackgroundColor="#00b34d" CornerRadius="5" HeightRequest="40" WidthRequest="40" Text="{x:Static localfont:FontIconClass.FileImage}"
+         xct:ShadowEffect.Color="#00b34d" xct:TouchEffect.AnimationDuration="50" xct:TouchEffect.PressedScale="1.1" HorizontalOptions="Center" VerticalOptions="Center" Margin="-18" FontFamily="MyIcon" FontSize="20" TextColor="White"/>
+            <inputLayout:SfTextInputLayout  Hint="User name:"  ContainerType="Outlined" ErrorText="{Binding UserNameError}" ErrorColor="Red" HasError="{Binding ShowUserNameError}" FocusedStrokeWidth="4" FocusedColor="#00b34d" UnfocusedStrokeWidth="2"  Margin="20,30">
+
+                <Entry x:Name="entry1" Focused="Label1_Focused" Unfocused="entry1_Unfocused" Text="{Binding UserName}" xct:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference entry2}"></Entry>
+                <inputLayout:SfTextInputLayout.LeadingView>
+                    <Label  Text="{x:Static localfont:FontIconClass.Pencil}" FontFamily="MyIcon" FontSize="25" />
+                </inputLayout:SfTextInputLayout.LeadingView>
+                <inputLayout:SfTextInputLayout.TrailingView>
+                    <Label x:Name="icon1"
+                        Text="{x:Static localfont:FontIconClass.Account}" FontFamily="MyIcon" FontSize="25" >
+                    </Label>
+                </inputLayout:SfTextInputLayout.TrailingView>
+            </inputLayout:SfTextInputLayout>
+
+                <inputLayout:SfTextInputLayout  Hint="Password:"  ContainerType="Outlined" ErrorText="{Binding PasswordError}" ErrorColor="Red" HasError="{Binding ShowPasswordError}" FocusedStrokeWidth="4" FocusedColor="#00b34d" UnfocusedStrokeWidth="2"  Margin="20,-30">
+
+                <Entry x:Name="entry2" Focused="Label2_Focused" Unfocused="entry2_Unfocused" Text="{Binding Password}" IsPassword="True" xct:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference entry3}"></Entry>
+                <inputLayout:SfTextInputLayout.LeadingView>
+                    <Label  Text="{x:Static localfont:FontIconClass.Pencil}" FontFamily="MyIcon" FontSize="25" />
+                </inputLayout:SfTextInputLayout.LeadingView>
+                <inputLayout:SfTextInputLayout.TrailingView>
+                    <Label x:Name="icon2"
+                        Text="{x:Static localfont:FontIconClass.Lock}" FontFamily="MyIcon" FontSize="25" >
+                    </Label>
+                </inputLayout:SfTextInputLayout.TrailingView>
+            </inputLayout:SfTextInputLayout>
+            <inputLayout:SfTextInputLayout  Hint="Adress:"  ContainerType="Outlined" ErrorText="{Binding AdressError}" ErrorColor="Red" HasError="{Binding ShowAdressError}" FocusedStrokeWidth="4" FocusedColor="#00b34d" UnfocusedStrokeWidth="2"  Margin="20">
+
+                <Entry x:Name="entry3" Focused="Label3_Focused" Text="{Binding Adress}"  Unfocused="entry3_Unfocused"></Entry>
+                <inputLayout:SfTextInputLayout.LeadingView>
+                    <Label  Text="{x:Static localfont:FontIconClass.Pencil}" FontFamily="MyIcon" FontSize="25" />
+                </inputLayout:SfTextInputLayout.LeadingView>
+                <inputLayout:SfTextInputLayout.TrailingView>
+                    <Label x:Name="icon3"
+                        Text="{x:Static localfont:FontIconClass.MapMarker}" FontFamily="MyIcon" FontSize="25" >
+                    </Label>
+                </inputLayout:SfTextInputLayout.TrailingView>
+            </inputLayout:SfTextInputLayout>
+            
         </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

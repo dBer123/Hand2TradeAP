@@ -25,7 +25,7 @@ namespace Hand2TradeAP
             InitializeComponent();
             ItemImage = null;
             CurrentUser = null;
-            MainPage = new AddItem();
+            MainPage = new LogInPage();
         }
 
         protected override void OnStart()

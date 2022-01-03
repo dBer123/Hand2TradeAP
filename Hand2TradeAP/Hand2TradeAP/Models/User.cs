@@ -21,9 +21,12 @@ namespace Hand2TradeAP.Models
         public DateTime CardDate { get; set; }
         public int SumRanks { get; set; }
         public int CountRanked { get; set; }
-        //public ICollection<Item> Items { get; set; }
+        public List<Item> Items { get; set; }
 
-
+        public User()
+        {
+            Items = new List<Item>();
+        }
 
 
     }

@@ -69,9 +69,15 @@
                     <!-- Blocks: 3 and 4 -->
                     <ScrollView VerticalScrollBarVisibility="Never">
                         <StackLayout>
-
+                            <Label Padding="0,10,0,0" >
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{Binding IsAdmin}"  FontFamily="MyIcon" TextColor="DodgerBlue" FontSize="25"/>
+                                        <Span Text="{Binding Username}" FontSize="30"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
                             <!-- 4. Contact information-->
-                            <Label  Text="{Binding Username}" FontAttributes="Bold" FontSize="30"/>
                             <Label Text="{Binding Address}" TextColor="#a5a2a2" FontSize="16"/>
 
                             <Label Padding="0,10,0,0" FontSize="16">

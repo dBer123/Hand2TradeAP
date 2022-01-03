@@ -24,7 +24,7 @@ namespace Hand2TradeAP.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
-
+        #region Description
         private string description;
         public string Description
         {
@@ -32,10 +32,44 @@ namespace Hand2TradeAP.ViewModels
             set
             {
                 description = value;
+                ValidateDescription();
                 OnPropertyChanged("Description");
             }
         }
 
+        private string descriptionError;
+        public string DescriptionError
+        {
+            get { return descriptionError; }
+            set
+            {
+                descriptionError = value;
+                OnPropertyChanged("DescriptionError");
+            }
+        }
+        private bool showDescriptionError;
+
+        public bool ShowDescriptionError
+        {
+            get { return showDescriptionError; }
+            set
+            {
+                showDescriptionError = value;
+                OnPropertyChanged("ShowDescriptionError");
+            }
+        }
+        void ValidateDescription()
+        {
+            ShowDescriptionError = true;
+            if (Description == null || Description == "")
+                PriceError = "Input can not be empty";
+            else if (Description.Length > 220)
+                DescriptionError = "Description must be under 220 notes";
+            else
+                ShowDescriptionError = false;
+        }
+        #endregion
+        #region Price
         private string price;
         public string Price
         {
@@ -43,26 +77,93 @@ namespace Hand2TradeAP.ViewModels
             set
             {
                 price = value;
+                ValidatePrice();
                 OnPropertyChanged("Price");
             }
         }
 
-        private string contactImgSrc;
-        public string ContactImgSrc
+        private string priceError;
+        public string PriceError
         {
-            get => contactImgSrc;
+            get { return priceError; }
             set
             {
-                contactImgSrc = value;
-                OnPropertyChanged("ContactImgSrc");
+                priceError = value;
+                OnPropertyChanged("PriceError");
             }
         }
-        private const string DEFAULT_PHOTO_SRC = "profile.png";
+        private bool showPriceError;
+
+        public bool ShowPriceError
+        {
+            get { return showPriceError; }
+            set
+            {
+                showPriceError = value;
+                OnPropertyChanged("ShowPriceError");
+            }
+        }
+        void ValidatePrice()
+        {
+            ShowPriceError = true;
+            if (Price == null || Price == "")
+                PriceError = "Input can not be empty";
+            else if (!Price.All(char.IsDigit))
+                PriceError = "Enter only digits";
+            else
+                ShowPriceError = false;
+        }
+        #endregion
+        #region ItemName
+        private string itemName;
+        public string ItemName
+        {
+            get { return itemName; }
+            set
+            {
+                itemName = value;
+                ValidateItemName();
+                OnPropertyChanged("ItemName");
+            }
+        }
+
+        private string itemNameError;
+        public string ItemNameError
+        {
+            get { return itemNameError; }
+            set
+            {
+                itemNameError = value;
+                OnPropertyChanged("ItemNameError");
+            }
+        }
+        private bool showItemNameError;
+
+        public bool ShowItemNameError
+        {
+            get { return showItemNameError; }
+            set
+            {
+                showItemNameError = value;
+                OnPropertyChanged("ShowItemNameError");
+            }
+        }
+        void ValidateItemName()
+        {
+            ShowItemNameError = true;
+            if (ItemName == null || ItemName == "")
+                ItemNameError = "Input can not be empty";
+            else if (ItemName.Length > 20)
+                ItemNameError = "Description must be under 20 notes";
+            else
+                ShowItemNameError = false;
+        }
+        #endregion
+
         public ICommand NevigateBack => new Command(Back);
         void Back()
         {
-            Page p = new Tabs();
-            App.Current.MainPage = p;
+            App.Current.MainPage = new Tabs(); 
         }
 
         FileResult imageFileResult;
@@ -107,6 +208,57 @@ namespace Hand2TradeAP.ViewModels
             }
             catch{}
             
+        }
+        private bool ValidateForm()
+        {
+            //Validate all fields first
+            ValidateItemName();
+            ValidatePrice();
+            ValidateDescription();
+
+            //check if any validation failed
+            if (ShowDescriptionError ||
+                ShowItemNameError || ShowPriceError)
+                return false;
+            return true;
+        }
+
+        public ICommand AddNewItem => new Command(SaveData);
+        public async void SaveData()
+        {
+            if (ValidateForm())
+            {
+                Item item = new Item
+                {
+                    Desrciption = Description,
+                    Price = int.Parse(Price),
+                    ItemName=ItemName
+                };
+                             
+                Hand2TradeAPIProxy proxy = Hand2TradeAPIProxy.CreateProxy();
+                Item itemAdded = await proxy.AddItem(item);
+                if (itemAdded == null)
+                {
+                    await App.Current.MainPage.DisplayAlert("Error", "Can not add item", "OK");
+                }
+                else
+                {
+                    if (this.imageFileResult != null)
+                    {
+                       
+
+                        bool success = await proxy.UploadImage(new FileInfo()
+                        {
+                            Name = this.imageFileResult.FullPath
+                        }, $"{itemAdded.ItemId}.jpg");
+                    }
+                    
+                    App theApp = (App)Application.Current;
+                    theApp.CurrentUser.Items.Add(itemAdded);
+                    App.Current.MainPage = new Tabs();
+                }
+            }
+          
         }
         public AddItemViewModel()
         {

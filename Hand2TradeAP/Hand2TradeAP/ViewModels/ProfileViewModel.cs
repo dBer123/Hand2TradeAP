@@ -81,6 +81,16 @@ namespace Hand2TradeAP.ViewModels
             }
         }
 
+        private string isAdmin;
+        public string IsAdmin
+        {
+            get { return isAdmin; }
+            set
+            {
+                isAdmin = value;
+                OnPropertyChanged("IsAdmin");
+            }
+        }
         public ObservableCollection<string> Stars { get; set; }
         public List<PageItem> MenuItems { get; set; }
 
@@ -138,6 +148,7 @@ namespace Hand2TradeAP.ViewModels
                     new PageItem { Id = 6, Title = "Log Out", Icon=icon6}
 
                 });
+                IsAdmin = AppFonts.FontIconClass.CheckCircle;
             }
             else
             {
@@ -150,6 +161,7 @@ namespace Hand2TradeAP.ViewModels
                     new PageItem { Id = 6, Title = "Log Out", Icon=icon6}
 
                 });
+                IsAdmin = " ";
         }
 
     }

@@ -24,7 +24,7 @@ namespace Hand2TradeAP.Views
             this.BindingContext = context;
             context.SetImageSourceEvent += OnSetImageSource;
             InitializeComponent();
-            itemImage.Source = "itemDefault.png";
+            itemImage.Source = "defaultItemImage.jpg";
         }
 
         private void ToPopUp(object sender, EventArgs e)
@@ -33,37 +33,45 @@ namespace Hand2TradeAP.Views
            
 
         }
-        //private async void PickImage(object sender, EventArgs e)
-        //{
-        //    var pickImage = await FilePicker.PickAsync(new PickOptions()
-        //    {
-        //       FileTypes=FilePickerFileType.Images
-        //    });
-
-        //    if (pickImage != null)
-        //    {
-        //        var stream = await pickImage.OpenReadAsync();
-        //        itemImage.Source = ImageSource.FromStream(() => stream);
-
-        //    }
-        //}
-
+  
         public void OnSetImageSource(ImageSource imgSource)
         {
-            itemImage = imgSource;
+            itemImage.Source = imgSource;
         }
 
-        private void Label_Focused(object sender, FocusEventArgs e)
+        private void Label1_Focused(object sender, FocusEventArgs e)
         {
             Color color = Color.FromRgb(0, 179, 77);
             entry1.TextColor = color;
             icon1.TextColor = color;
+        }
+        private void Label2_Focused(object sender, FocusEventArgs e)
+        {
+            Color color = Color.FromRgb(0, 179, 77);
+            entry2.TextColor = color;
+            icon2.TextColor = color;
+        }
+        private void Label3_Focused(object sender, FocusEventArgs e)
+        {
+            Color color = Color.FromRgb(0, 179, 77);
+            entry3.TextColor = color;
+            icon3.TextColor = color;
         }
 
         private void entry1_Unfocused(object sender, FocusEventArgs e)
         {
             entry1.TextColor = default;
             icon1.TextColor = default;
+        }
+        private void entry2_Unfocused(object sender, FocusEventArgs e)
+        {
+            entry2.TextColor = default;
+            icon2.TextColor = default;
+        }
+        private void entry3_Unfocused(object sender, FocusEventArgs e)
+        {
+            entry3.TextColor = default;
+            icon3.TextColor = default;
         }
     }
 }
