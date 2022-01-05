@@ -31,6 +31,7 @@ namespace Hand2TradeAP.Views
         public void OnSetImageSource(ImageSource imgSource)
         {
             itemImage.Source = imgSource;
+            
         }
 
         private void Label1_Focused(object sender, FocusEventArgs e)

@@ -22,6 +22,7 @@ namespace Hand2TradeAP.Views
 
         private void PickImage(object sender, EventArgs e)
         {
+
             Dismiss("");
             
         }

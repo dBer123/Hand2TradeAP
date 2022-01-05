@@ -13,6 +13,7 @@ using System.Linq;
 using Hand2TradeAP.AppFonts;
 using System.Collections.ObjectModel;
 
+
 namespace Hand2TradeAP.ViewModels
 {
     class EditProfileViewModel : INotifyPropertyChanged
@@ -187,8 +188,9 @@ namespace Hand2TradeAP.ViewModels
 
                 if (result != null)
                 {
-                    var stream = await result.OpenReadAsync();
+                    var stream = await result.OpenReadAsync();                    
                     ImageSource imgSource = ImageSource.FromStream(() => stream);
+                   
                     if (SetImageSourceEvent != null)
                         SetImageSourceEvent(imgSource);
                 }
