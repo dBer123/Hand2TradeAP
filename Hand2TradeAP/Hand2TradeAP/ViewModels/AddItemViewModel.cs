@@ -116,14 +116,14 @@ namespace Hand2TradeAP.ViewModels
         #endregion
         #region ItemName
         private string itemName;
-        public string ItemName
+        public string Itemname
         {
             get { return itemName; }
             set
             {
                 itemName = value;
                 ValidateItemName();
-                OnPropertyChanged("ItemName");
+                OnPropertyChanged("Itemname");
             }
         }
 
@@ -151,9 +151,9 @@ namespace Hand2TradeAP.ViewModels
         void ValidateItemName()
         {
             ShowItemNameError = true;
-            if (ItemName == null || ItemName == "")
+            if (Itemname == null || Itemname == "")
                 ItemNameError = "Input can not be empty";
-            else if (ItemName.Length > 20)
+            else if (Itemname.Length > 20)
                 ItemNameError = "Description must be under 20 notes";
             else
                 ShowItemNameError = false;
@@ -180,6 +180,7 @@ namespace Hand2TradeAP.ViewModels
 
                 if (result != null)
                 {
+                    this.imageFileResult = result;
                     var stream = await result.OpenReadAsync();
                     ImageSource imgSource = ImageSource.FromStream(() => stream);
                     if (SetImageSourceEvent != null)
@@ -200,6 +201,7 @@ namespace Hand2TradeAP.ViewModels
                 var result = await MediaPicker.CapturePhotoAsync();
                 if (result != null)
                 {
+                    this.imageFileResult = result;
                     var stream = await result.OpenReadAsync();
                     ImageSource imgSource = ImageSource.FromStream(() => stream);
                     if (SetImageSourceEvent != null)
@@ -232,7 +234,7 @@ namespace Hand2TradeAP.ViewModels
                 {
                     Desrciption = Description,
                     Price = int.Parse(Price),
-                    ItemName=ItemName
+                    ItemName = Itemname
                 };
                              
                 Hand2TradeAPIProxy proxy = Hand2TradeAPIProxy.CreateProxy();

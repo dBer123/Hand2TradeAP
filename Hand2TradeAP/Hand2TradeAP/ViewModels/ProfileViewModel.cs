@@ -91,7 +91,8 @@ namespace Hand2TradeAP.ViewModels
                 OnPropertyChanged("IsAdmin");
             }
         }
-        public ObservableCollection<string> Stars { get; set; }
+        public ObservableCollection <string> Stars { get; set; }
+        public ObservableCollection <Item> MyItems { get; set; }
         public List<PageItem> MenuItems { get; set; }
 
         public ProfileViewModel()
@@ -101,6 +102,7 @@ namespace Hand2TradeAP.ViewModels
             Coins = theApp.CurrentUser.Coins.ToString();
             Address = theApp.CurrentUser.Adress;
             Username = theApp.CurrentUser.UserName;
+            MyItems = new ObservableCollection<Item>();
             int sum = theApp.CurrentUser.SumRanks;
             int count = theApp.CurrentUser.CountRanked;            
             if (sum != 0)
@@ -109,9 +111,12 @@ namespace Hand2TradeAP.ViewModels
                 double num = (double)sum / count - Rating;
                 if (num > 0.5) Rating += 1;
             }
-            
 
 
+            foreach (var item in theApp.CurrentUser.Items)
+            {
+                MyItems.Add(item);
+            }
 
 
             string icon1 = AppFonts.FontIconClass.Pencil;

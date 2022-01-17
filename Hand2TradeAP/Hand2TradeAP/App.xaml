@@ -64,7 +64,6 @@
 
             <Style x:Key="stlMainFrame" TargetType="Frame">
                 <Setter Property="TranslationY"    Value="{OnPlatform iOS='-150', Android='-33'}"/>
-                <Setter Property="HeightRequest"   Value="{OnPlatform iOS='120', Android='228'}"/>
                 <Setter Property="HasShadow"       Value="False" />
             </Style>
 

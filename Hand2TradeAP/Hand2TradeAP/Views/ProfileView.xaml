@@ -4,7 +4,10 @@
              x:Class="Hand2TradeAP.Views.ProfileView"
              xmlns:localfont="clr-namespace:Hand2TradeAP.AppFonts"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin">
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Expander;assembly=Syncfusion.Expander.XForms"
+             xmlns:cards="clr-namespace:Syncfusion.XForms.Cards;assembly=Syncfusion.Cards.XForms"
+             xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms">
     <ContentView.Resources>
         <Style x:Key="BaseMenuButtonStyle" TargetType="Button">
             <Setter Property="HeightRequest" Value="50" />
@@ -14,47 +17,48 @@
             <Setter Property="CornerRadius"  Value="9" />
             <Setter Property="BackgroundColor"  Value="#00b34d" />
             <Setter Property="Margin"  Value="10" />
-
-
-
-
-
         </Style>
     </ContentView.Resources>
+    <ScrollView VerticalScrollBarVisibility="Never">
     <xct:SideMenuView x:Name="SideMenuView">
-
-        <!-- MainView -->
+        
+            <!-- MainView -->
        
             <Grid BackgroundColor="White">
             <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
+                <RowDefinition Height="300" />
+                <RowDefinition Height="550" />
+
+                </Grid.RowDefinitions>
            
             <!-- 1. Profile picture-->
                 
             <Image Grid.Row="0" Source="profileBackground.jpg" VerticalOptions="Start" Aspect="Fill" />
+                <StackLayout>
+                    <controls:CircleImage Grid.Row="0"  Margin="80" Source="profile.png"></controls:CircleImage>
 
-            <controls:CircleImage Grid.Row="0"  Margin="150,-280,150,0" Source="profile.png"></controls:CircleImage>
-            <Label  HorizontalTextAlignment="Center" Margin="0,-90,0,0"  VerticalTextAlignment="Center"  TextColor="#fdcc0d" HorizontalOptions="Center">
-                <Label.FormattedText>
-                    <FormattedString>
-                        <Span x:Name="MyStar1" FontSize="40" FontFamily="MyIcon" >
-                        </Span>
-                        <Span x:Name="MyStar2" FontSize="40" FontFamily="MyIcon">
+                    <Label Grid.Row="0" HorizontalTextAlignment="Center" Margin="0,-60" VerticalTextAlignment="Center" TextColor="#fdcc0d" HorizontalOptions="Center">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span x:Name="MyStar1" FontSize="40" FontFamily="MyIcon" >
+                                </Span>
+                                <Span x:Name="MyStar2" FontSize="40" FontFamily="MyIcon">
 
-                        </Span>
-                        <Span x:Name="MyStar3" FontSize="40" FontFamily="MyIcon">
+                                </Span>
+                                <Span x:Name="MyStar3" FontSize="40" FontFamily="MyIcon">
 
-                        </Span>
-                        <Span x:Name="MyStar4" FontSize="40" FontFamily="MyIcon">
+                                </Span>
+                                <Span x:Name="MyStar4" FontSize="40" FontFamily="MyIcon">
 
-                        </Span>
-                        <Span x:Name="MyStar5" FontSize="40" FontFamily="MyIcon">
+                                </Span>
+                                <Span x:Name="MyStar5" FontSize="40" FontFamily="MyIcon">
 
-                        </Span>
-                    </FormattedString>
-                </Label.FormattedText>
-            </Label>
+                                </Span>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </StackLayout>
+                
 
 
 
@@ -64,41 +68,119 @@
                         Clicked="OnRightButtonClicked"  FontFamily="MyIcon"  />
 
             <!-- 2. Contact informaqtion frame-->
-            <StackLayout Grid.Row="0" BackgroundColor="White" VerticalOptions="End">
-                <Frame HasShadow="True" CornerRadius="40" Style="{StaticResource stlMainFrame}" >
-                    <!-- Blocks: 3 and 4 -->
-                    <ScrollView VerticalScrollBarVisibility="Never">
-                        <StackLayout>
-                            <Label Padding="0,10,0,0" >
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <Span Text="{Binding IsAdmin}"  FontFamily="MyIcon" TextColor="DodgerBlue" FontSize="25"/>
-                                        <Span Text="{Binding Username}" FontSize="30"/>
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                            <!-- 4. Contact information-->
-                            <Label Text="{Binding Address}" TextColor="#a5a2a2" FontSize="16"/>
+            <StackLayout BackgroundColor="White" VerticalOptions="Center" Grid.Row="1" Margin="15">
 
-                            <Label Padding="0,10,0,0" FontSize="16">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <Span Text="Email: " FontAttributes="Bold" />
-                                        <Span Text="{Binding Email}"  />
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                        </StackLayout>
-                    </ScrollView>
-                    
-                </Frame>
-            </StackLayout>
+                    <Label Padding="0,10,0,0" >
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding IsAdmin}"  FontFamily="MyIcon" TextColor="DodgerBlue" FontSize="25"/>
+                                <Span Text="{Binding Username}" FontSize="30"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <!-- 4. Contact information-->
+                    <Label Text="{Binding Address}" TextColor="#a5a2a2" FontSize="16"/>
+
+                    <Label Padding="0,10,0,0" FontSize="16">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Email: " FontAttributes="Bold" />
+                                <Span Text="{Binding Email}"  />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label Text="My Items:" TextColor="Black" FontSize="20"/>
+
+                    <cards:SfCardLayout SwipeDirection="Left" HeightRequest="350" BindableLayout.ItemsSource="{Binding MyItems}">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <cards:SfCardView Margin="10">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="40" />
+                                            <RowDefinition Height="70" />
+                                            <RowDefinition Height="150" />
+                                            <RowDefinition Height="40" />
+                                        </Grid.RowDefinitions>
+
+                                        <Grid Margin="6,10,6,0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <Label
+                Grid.Column="1"
+                TextColor="Black"
+                Text="{Binding ItemName}"
+                FontSize="20"
+                VerticalOptions="Start" />
+                                        </Grid>
+
+                                        <StackLayout Grid.Row="1" Padding="7,0,7,7" >
+                                            <Label  LineBreakMode="TailTruncation" MaxLines="3"
+                Margin="9,0,0,0"
+                
+                Text="{Binding Desrciption}"
+                />
+
+                                            <StackLayout Margin="9,0,0,0" Orientation="Horizontal">
+                                                <Label
+                    FontSize="13"
+                    HeightRequest="20"
+                    Text="{Binding Price}"
+                    TextColor="#689517"
+                    VerticalOptions="Center"
+                    WidthRequest="30" />
+
+
+                                            </StackLayout>
+                                        </StackLayout>
+
+                                        <Image
+            Grid.Row="2"
+            Aspect="Fill"
+            HeightRequest="200"
+            Source="{Binding ImgSource}" />
+
+                                        <StackLayout Grid.Row="3" Orientation="Horizontal">
+                                            <button:SfButton
+                Margin="5,0,0,5"
+                BackgroundColor="Transparent"
+                FontAttributes="Bold"
+                Text="Edit"
+                TextColor="#4496EC"
+                WidthRequest="80" />
+                                            <button:SfButton
+                Margin="0,0,10,5"
+                BackgroundColor="Transparent"
+                FontAttributes="Bold"
+                HorizontalOptions="EndAndExpand"
+                FontSize="20"                   
+                FontFamily="MyIcon"
+                Text="{x:Static localfont:FontIconClass.TrashCan}"
+                TextColor="Red" />
+                                        </StackLayout>
+
+                                    </Grid>
+
+
+                                </cards:SfCardView>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </cards:SfCardLayout>
+
+
+
+
+                </StackLayout>
 
         </Grid>
 
-     
-       
-      
+        
+
+
+
 
         <!-- RightMenu -->
         <StackLayout
@@ -140,6 +222,7 @@
 
         </StackLayout>
     </xct:SideMenuView>
+    </ScrollView>
 
 
 

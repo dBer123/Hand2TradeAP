@@ -26,7 +26,7 @@ namespace Hand2TradeAP
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NTU5NDE1QDMxMzkyZTM0MmUzMGIvSWRjT2RaMWNDdnZ5QzJvbzI1SlIySmNSQjFPbDdSRlhTRFN5NWRJSTA9");
             ItemImage = null;
             CurrentUser = null;
-            MainPage = new AddItem();
+            MainPage = new LogInPage();
         }
 
         protected override void OnStart()
