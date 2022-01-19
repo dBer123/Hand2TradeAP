@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Hand2TradeAP.Views.EditItem"
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             xmlns:ffTransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:localfont="clr-namespace:Hand2TradeAP.AppFonts"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout BackgroundColor="White"  >
+                <Button Style="{StaticResource BackButtonStyle}" Command="{Binding NevigateBack}"/>
+                <ff:CachedImage x:Name="itemImage"  HeightRequest="150" WidthRequest="150">
+                    <ff:CachedImage.Transformations>
+                        <ffTransformations:RoundedTransformation Radius="300" BorderHexColor="#000000"  BorderSize="3"/>
+                    </ff:CachedImage.Transformations>
+                </ff:CachedImage>
+                <Button Grid.Row="2" Clicked="ToPopUp" BackgroundColor="#00b34d" CornerRadius="5" HeightRequest="40" WidthRequest="40" Text="{x:Static localfont:FontIconClass.FileImage}"
+         xct:ShadowEffect.Color="#00b34d" xct:TouchEffect.AnimationDuration="50" xct:TouchEffect.PressedScale="1.1" HorizontalOptions="Center" VerticalOptions="Center" Margin="-18" FontFamily="MyIcon" FontSize="20" TextColor="White"/>
+                <inputLayout:SfTextInputLayout  Hint="Item name:"  ContainerType="Outlined" ErrorText="{Binding ItemNameError}" ErrorColor="Red" HasError="{Binding ShowItemNameError}" FocusedStrokeWidth="4" FocusedColor="#00b34d" UnfocusedStrokeWidth="2"  Margin="20,30">
+
+                    <Entry x:Name="entry1" Focused="Label1_Focused" Unfocused="entry1_Unfocused" Text="{Binding Itemname}" xct:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference entry2}"></Entry>
+
+                    <inputLayout:SfTextInputLayout.TrailingView>
+                        <Label x:Name="icon1"
+                        Text="{x:Static localfont:FontIconClass.Note}" FontFamily="MyIcon" FontSize="25" >
+                        </Label>
+                    </inputLayout:SfTextInputLayout.TrailingView>
+                </inputLayout:SfTextInputLayout>
+
+                <inputLayout:SfTextInputLayout  Hint="Price:"  ContainerType="Outlined" ErrorText="{Binding PriceError}" ErrorColor="Red" HasError="{Binding ShowPriceError}" FocusedStrokeWidth="4" FocusedColor="#00b34d" UnfocusedStrokeWidth="2"  Margin="20,-30">
+
+                    <Entry x:Name="entry2" Focused="Label2_Focused" Unfocused="entry2_Unfocused" Text="{Binding Price}"  Keyboard="Numeric" xct:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference entry3}"></Entry>
+
+                    <inputLayout:SfTextInputLayout.TrailingView>
+                        <Label x:Name="icon2"
+                        Text="{x:Static localfont:FontIconClass.Tag}" FontFamily="MyIcon" FontSize="25" >
+                        </Label>
+                    </inputLayout:SfTextInputLayout.TrailingView>
+                </inputLayout:SfTextInputLayout>
+                <inputLayout:SfTextInputLayout  Hint="Description:"  ContainerType="Outlined" ErrorText="{Binding DescriptionError}" ErrorColor="Red" HasError="{Binding ShowDescriptionError}" FocusedStrokeWidth="4" FocusedColor="#00b34d" UnfocusedStrokeWidth="2"  Margin="20,30">
+
+                    <Editor x:Name="entry3" Focused="Label3_Focused" Text="{Binding Description}" HeightRequest="130" Unfocused="entry3_Unfocused"></Editor>
+
+                    <inputLayout:SfTextInputLayout.TrailingView>
+                        <Label x:Name="icon3"
+                        Text="{x:Static localfont:FontIconClass.Notebook}" FontFamily="MyIcon" FontSize="25" >
+                        </Label>
+                    </inputLayout:SfTextInputLayout.TrailingView>
+                </inputLayout:SfTextInputLayout>
+
+
+
+
+                <Button BackgroundColor="#00b34d" Command="{Binding AddNewItem}" CornerRadius="33" HeightRequest="66" WidthRequest="66" Text="{x:Static localfont:FontIconClass.ContentSave}"
+         xct:ShadowEffect.Color="#00b34d" xct:TouchEffect.AnimationDuration="50" xct:TouchEffect.PressedScale="1.1" HorizontalOptions="Center" VerticalOptions="Center" Margin="0,0,0,15" FontFamily="MyIcon" FontSize="35" TextColor="White"/>
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

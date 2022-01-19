@@ -16,7 +16,6 @@ namespace Hand2TradeAP
             }
         }
 
-        public ImageSource ItemImage { get; set; }
 
         //The current logged in user
         public User CurrentUser { get; set; }
@@ -24,9 +23,8 @@ namespace Hand2TradeAP
         {
             InitializeComponent();
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NTU5NDE1QDMxMzkyZTM0MmUzMGIvSWRjT2RaMWNDdnZ5QzJvbzI1SlIySmNSQjFPbDdSRlhTRFN5NWRJSTA9");
-            ItemImage = null;
             CurrentUser = null;
-            MainPage = new LogInPage();
+            MainPage = new Delete();
         }
 
         protected override void OnStart()
