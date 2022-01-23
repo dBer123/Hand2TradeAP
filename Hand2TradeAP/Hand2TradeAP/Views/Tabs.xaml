@@ -106,7 +106,7 @@
 
     <ContentPage.Content>
         <Grid>
-            <xct:TabView Style="{StaticResource CustomTabStyle}">
+            <xct:TabView Style="{StaticResource CustomTabStyle}" IsSwipeEnabled="False">
                 <xct:TabView.TabStripBackgroundView>
                     <BoxView BackgroundColor="White" WidthRequest="30" xct:ShadowEffect.Color="Black"/>
                 </xct:TabView.TabStripBackgroundView>

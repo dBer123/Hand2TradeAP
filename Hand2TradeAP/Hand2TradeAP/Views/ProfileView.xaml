@@ -58,12 +58,12 @@
                         </Label.FormattedText>
                     </Label>
                 </StackLayout>
-                
 
 
+           
 
 
-            <Button Style="{StaticResource BaseMenuButtonStyle}"
+                <Button Style="{StaticResource BaseMenuButtonStyle}"
                         HorizontalOptions="EndAndExpand"
                         Clicked="OnRightButtonClicked"  FontFamily="MyIcon"  />
 
@@ -91,7 +91,7 @@
                     </Label>
                     <Label Text="My Items:" TextColor="Black" FontSize="20"/>
 
-                    <cards:SfCardLayout SwipeDirection="Left" HeightRequest="350" BindableLayout.ItemsSource="{Binding MyItems}">
+                    <cards:SfCardLayout SwipeDirection="Left" HeightRequest="370" BindableLayout.ItemsSource="{Binding MyItems}">
                         <BindableLayout.ItemTemplate>
                             <DataTemplate>
                                 <cards:SfCardView Margin="10">
@@ -99,7 +99,7 @@
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="40" />
                                             <RowDefinition Height="70" />
-                                            <RowDefinition Height="150" />
+                                            <RowDefinition Height="170" />
                                             <RowDefinition Height="40" />
                                         </Grid.RowDefinitions>
 
@@ -149,6 +149,8 @@
                 BackgroundColor="Transparent"
                 FontAttributes="Bold"
                 Text="Edit"
+                Command="{Binding EditItem}"         
+                CommandParameter="{Binding}" 
                 TextColor="#4496EC"
                 WidthRequest="80" />
                                             <button:SfButton
@@ -158,6 +160,8 @@
                 HorizontalOptions="EndAndExpand"
                 FontSize="20"                   
                 FontFamily="MyIcon"
+                Command="{Binding Delete}"         
+                CommandParameter="{Binding}"                                
                 Text="{x:Static localfont:FontIconClass.TrashCan}"
                 TextColor="Red" />
                                         </StackLayout>

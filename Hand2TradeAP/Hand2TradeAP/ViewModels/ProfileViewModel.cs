@@ -171,7 +171,27 @@ namespace Hand2TradeAP.ViewModels
 
     }
 
-       
+        public ICommand Delete => new Command<Object>(DeleteItem);
+        public async void DeleteItem(Object obj)
+        {
+            if(obj is Item)
+            {
+                bool f = await App.Current.MainPage.DisplayAlert("Be Careful!", "Are you sure you want to delete this item?", "DELETE", "CANCEL");
+                if (f == true)
+                {
+
+                }
+            }
+        }
+        public ICommand EditItem => new Command<Object>(GoEditItem);
+        public void GoEditItem(Object obj)
+        {
+            if (obj is Item)
+            {
+                Page p = new EditItem();
+                App.Current.MainPage = p;
+            }
+        }
 
         public ICommand SelctionChanged => new Command<Object>(OnSelectionChanged);
         public void OnSelectionChanged(Object obj)
