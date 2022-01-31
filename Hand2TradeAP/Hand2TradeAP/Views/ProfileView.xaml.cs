@@ -11,6 +11,8 @@ using Hand2TradeAP.ViewModels;
 
 
 
+
+
 namespace Hand2TradeAP.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -30,6 +32,7 @@ namespace Hand2TradeAP.Views
             MyStar3.Text = context.Stars[2];
             MyStar4.Text = context.Stars[3];
             MyStar5.Text = context.Stars[4];
+
 
 
         }

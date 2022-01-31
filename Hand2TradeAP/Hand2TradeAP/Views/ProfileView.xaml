@@ -91,7 +91,7 @@
                     </Label>
                     <Label Text="My Items:" TextColor="Black" FontSize="20"/>
 
-                    <cards:SfCardLayout x:Name="Cards" CardTappedCommandParameter="{Binding Source={x:Reference Cards}}" CardTappedCommand="{Binding Choose}" SwipeDirection="Left" HeightRequest="370" BindableLayout.ItemsSource="{Binding MyItems}" >
+                    <cards:SfCardLayout x:Name="CardsList"  CardTappedCommandParameter="{Binding Source={x:Reference CardsList}}" CardTappedCommand="{Binding Choose}" SwipeDirection="Left" HeightRequest="370" BindableLayout.ItemsSource="{Binding MyItems}" >
                         <BindableLayout.ItemTemplate>
                             <DataTemplate>
                                 <cards:SfCardView Margin="10">

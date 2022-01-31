@@ -12,6 +12,8 @@ using Xamarin.Essentials;
 using System.Linq;
 using Hand2TradeAP.AppFonts;
 using System.Collections.ObjectModel;
+using Syncfusion.XForms.Cards;
+
 
 namespace Hand2TradeAP.ViewModels
 {
@@ -183,19 +185,21 @@ namespace Hand2TradeAP.ViewModels
         {
             bool f = await App.Current.MainPage.DisplayAlert("Be Careful!", "Are you sure you want to delete this item?", "DELETE", "CANCEL");
 
-            if (obj is Item)
+            if (obj is SfCardLayout)
             {
                 if (f == true)
                 {
-
+                    Item item = MyItems[((SfCardLayout)obj).TabIndex];
                 }
             }
         }
        
         public void GoEditItem(Object obj)
         {
-            if (obj is Item)
+            if (obj is SfCardLayout)
             {
+
+                Item item = MyItems[((SfCardLayout)obj).TabIndex];
                 Page p = new EditItem();
                 App.Current.MainPage = p;
             }
