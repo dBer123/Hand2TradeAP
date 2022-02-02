@@ -179,7 +179,7 @@ namespace Hand2TradeAP.ViewModels
             string s = await App.Current.MainPage.DisplayActionSheet("Item Actions:",null,"CANCEL", "Edit Item", "Delete Item");
             if (s == "Edit Item")
                 GoEditItem(obj);
-            else DeleteItem(obj);
+            else if (s == "Delete Item") DeleteItem(obj);
         }
         public async void DeleteItem(Object obj)
         {

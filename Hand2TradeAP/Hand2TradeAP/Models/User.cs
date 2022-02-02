@@ -8,6 +8,7 @@ namespace Hand2TradeAP.Models
 {
     public partial class User
     {
+        public int UserId { get; set; }
         public string Email { get; set; }
         public string Passwrd { get; set; }
         public string UserName { get; set; }

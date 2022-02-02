@@ -50,8 +50,10 @@
                     </Label>
                 </inputLayout:SfTextInputLayout.TrailingView>
             </inputLayout:SfTextInputLayout>
-            
-        </StackLayout>
+
+                <Button BackgroundColor="#00b34d" Command="{Binding Update}" CornerRadius="33" HeightRequest="66" WidthRequest="66" Text="{x:Static localfont:FontIconClass.ContentSaveEdit}"
+         xct:ShadowEffect.Color="#00b34d" xct:TouchEffect.AnimationDuration="50" xct:TouchEffect.PressedScale="1.1" HorizontalOptions="Center" VerticalOptions="Center" Margin="0,0,0,15" FontFamily="MyIcon" FontSize="35" TextColor="White"/>
+            </StackLayout>
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>

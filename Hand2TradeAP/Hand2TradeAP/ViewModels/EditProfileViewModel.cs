@@ -218,5 +218,49 @@ namespace Hand2TradeAP.ViewModels
             catch { }
 
         }
+
+        private bool ValidateForm()
+        {
+            //Validate all fields first
+            ValidateAdress();
+            ValidatePassword();
+            ValidateUsername();
+
+            //check if any validation failed
+            if (ShowAdressError ||
+                ShowPasswordError || ShowUserNameError)
+                return false;
+            return true;
+        }
+
+        public ICommand Update => new Command(SaveData);
+        public async void SaveData()
+        {
+            if (ValidateForm())
+            {
+                App theApp = (App)Application.Current;
+                User u = new User
+                {
+                    UserId = theApp.CurrentUser.UserId,
+                    Passwrd = Password,
+                    Adress = adress,
+                    UserName = UserName
+                };
+                Hand2TradeAPIProxy proxy = Hand2TradeAPIProxy.CreateProxy();
+                User user = await proxy.UpdateUser(u);
+                if (user == null)
+                {
+                    await App.Current.MainPage.DisplayAlert("Error", "Can not Update your user", "OK");
+                }
+                else
+                {             
+                    theApp.CurrentUser = user;
+                    App.Current.MainPage = new Tabs();
+                }
+            }
+        }
+
     }
+
+
 }
