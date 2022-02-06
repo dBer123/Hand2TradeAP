@@ -11,6 +11,7 @@ using Xamarin.CommunityToolkit.Extensions;
 using Hand2TradeAP.AppFonts;
 using Syncfusion.XForms.TextInputLayout;
 using Hand2TradeAP.Views;
+using Hand2TradeAP.Models;
 
 
 namespace Hand2TradeAP.Views
@@ -18,13 +19,17 @@ namespace Hand2TradeAP.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class EditItem : ContentPage
     {
-        public EditItem()
+        public EditItem(object item)
         {
             AddItemViewModel context = new AddItemViewModel();
             this.BindingContext = context;
             context.SetImageSourceEvent += OnSetImageSource;
             InitializeComponent();
-            itemImage.Source = "defaultItemImage.jpg";
+            itemImage.Source = ((Item)item).ImgSource;
+            entry1.Text = ((Item)item).ItemName;
+            entry2.Text = ((Item)item).Price.ToString();
+            entry3.Text = ((Item)item).Desrciption;
+
         }
 
         private void ToPopUp(object sender, EventArgs e)

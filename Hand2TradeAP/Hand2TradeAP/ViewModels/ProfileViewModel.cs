@@ -200,7 +200,7 @@ namespace Hand2TradeAP.ViewModels
             {
 
                 Item item = MyItems[((SfCardLayout)obj).TabIndex];
-                Page p = new EditItem();
+                Page p = new EditItem(item);
                 App.Current.MainPage = p;
             }
         }
