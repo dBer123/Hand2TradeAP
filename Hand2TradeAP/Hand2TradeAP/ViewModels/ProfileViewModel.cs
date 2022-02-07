@@ -39,7 +39,16 @@ namespace Hand2TradeAP.ViewModels
                 OnPropertyChanged("Email");
             }
         }
-
+        private ImageSource imageU;
+        public ImageSource ImageU
+        {
+            get { return imageU; }
+            set
+            {
+                imageU = value;
+                OnPropertyChanged("ImageU");
+            }
+        }
         private string coins;
         public string Coins
         {
@@ -114,7 +123,10 @@ namespace Hand2TradeAP.ViewModels
                 if (num > 0.5) Rating += 1;
             }
 
-
+            if (theApp.CurrentUser.ImgSource == null)
+                ImageU = "profile.png";
+            else
+                ImageU = theApp.CurrentUser.ImgSource;
             foreach (var item in theApp.CurrentUser.Items)
             {
                 MyItems.Add(item);

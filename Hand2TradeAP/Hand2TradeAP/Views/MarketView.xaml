@@ -17,10 +17,10 @@
                 <!-- Subtitle with number of talents-->
                 <Label Grid.Row="1" Grid.Column="0" Text="12 420 available" FontSize="15" TextColor="#90999f"/>
                 <!-- Talent search bar-->
-                <SearchBar Grid.Row="2" Grid.Column="0" Placeholder="Search items ..." BackgroundColor="Transparent" Margin="0,10,0,0"/>
+                <SearchBar Grid.Row="2" Grid.Column="0" CancelButtonColor="Red" SearchCommand="{Binding Search}" Placeholder="Search items ..." BackgroundColor="Transparent" Margin="0,10,0,0"/>
                 <!-- Settings Icon -->
 
-                <Button Grid.Row="2" Grid.Column="1" FontFamily="MyIcon" BackgroundColor="#00b34d" TextColor="White" Text="{x:Static  localfont:FontIconClass.Filter}" FontSize="20" CornerRadius="20" Margin="20,20,20,0"/>
+                <Button Grid.Row="2" Grid.Column="1" FontFamily="MyIcon" BackgroundColor="#00b34d" Command="{Binding Sort}" TextColor="White" Text="{x:Static  localfont:FontIconClass.Filter}" FontSize="20" CornerRadius="20" Margin="20,20,20,0"/>
 
 
 

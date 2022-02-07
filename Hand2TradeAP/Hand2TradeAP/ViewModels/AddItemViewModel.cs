@@ -252,7 +252,7 @@ namespace Hand2TradeAP.ViewModels
                         bool success = await proxy.UploadImage(new FileInfo()
                         {
                             Name = this.imageFileResult.FullPath
-                        }, $"{itemAdded.ItemId}.jpg");
+                        }, $"I{itemAdded.ItemId}.jpg");
                     }
                     
                     App theApp = (App)Application.Current;

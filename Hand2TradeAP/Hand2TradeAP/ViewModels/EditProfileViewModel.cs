@@ -188,6 +188,7 @@ namespace Hand2TradeAP.ViewModels
 
                 if (result != null)
                 {
+                    this.imageFileResult = result;
                     var stream = await result.OpenReadAsync();                    
                     ImageSource imgSource = ImageSource.FromStream(() => stream);
                    
@@ -209,6 +210,7 @@ namespace Hand2TradeAP.ViewModels
                 var result = await MediaPicker.CapturePhotoAsync();
                 if (result != null)
                 {
+                    this.imageFileResult = result;
                     var stream = await result.OpenReadAsync();
                     ImageSource imgSource = ImageSource.FromStream(() => stream);
                     if (SetImageSourceEvent != null)
@@ -253,7 +255,17 @@ namespace Hand2TradeAP.ViewModels
                     await App.Current.MainPage.DisplayAlert("Error", "Can not Update your user", "OK");
                 }
                 else
-                {             
+                {
+
+                    if (this.imageFileResult != null)
+                    {
+
+
+                        bool success = await proxy.UploadImage(new FileInfo()
+                        {
+                            Name = this.imageFileResult.FullPath
+                        }, $"U{user.UserId}.jpg");
+                    }
                     theApp.CurrentUser = user;
                     App.Current.MainPage = new Tabs();
                 }

@@ -9,10 +9,6 @@ using Xamarin.Forms.Xaml;
 using Hand2TradeAP.ViewModels;
 
 
-
-
-
-
 namespace Hand2TradeAP.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
