@@ -161,6 +161,18 @@ namespace Hand2TradeAP.ViewModels
                 ShowItemNameError = false;
         }
         #endregion
+        #region ID
+        private int id;
+        public int Id
+        {
+            get { return id; }
+            set
+            {
+                id = value;
+                OnPropertyChanged("Id");
+            }
+        }
+        #endregion
 
         public ICommand NevigateBack => new Command(Back);
         void Back()
@@ -235,7 +247,7 @@ namespace Hand2TradeAP.ViewModels
                 App theApp = (App)Application.Current;
                 Item item = new Item
                 {
-
+                    ItemId = Id,
                     Desrciption = Description,
                     Price = int.Parse(Price),
                     ItemName = Itemname
@@ -249,14 +261,15 @@ namespace Hand2TradeAP.ViewModels
                 else
                 {
 
-                    //int index;
-                    //foreach(Item theItem in theApp.CurrentUser.Items)
-                    //{
-                    //    if (theItem.ItemId == i.ItemId)
-                    //        theApp.CurrentUser.Items.ElementAt(1).
 
-
-                    //}
+                    foreach (Item theItem in theApp.CurrentUser.Items)
+                    {
+                        if (theItem.ItemId == i.ItemId)
+                        {
+                            theApp.CurrentUser.Items.Remove(theItem);
+                            theApp.CurrentUser.Items.Add(i);
+                        }
+                    }
                     if (this.imageFileResult != null)
                     {
 
@@ -271,9 +284,9 @@ namespace Hand2TradeAP.ViewModels
             }
 
         }
-        public EditItemViewModel()
+        public EditItemViewModel(object item)
         {
-
+            Id = ((Item)item).ItemId;
         }
 
 

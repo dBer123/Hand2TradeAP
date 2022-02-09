@@ -21,7 +21,7 @@ namespace Hand2TradeAP.Views
     {
         public EditItem(object item)
         {
-            AddItemViewModel context = new AddItemViewModel();
+            EditItemViewModel context = new EditItemViewModel(item);
             this.BindingContext = context;
             context.SetImageSourceEvent += OnSetImageSource;
             InitializeComponent();
