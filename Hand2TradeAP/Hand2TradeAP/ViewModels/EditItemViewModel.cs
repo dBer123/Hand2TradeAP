@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,8 @@ using Xamarin.Essentials;
 using System.Linq;
 using Hand2TradeAP.AppFonts;
 using System.Collections.ObjectModel;
+
+
 namespace Hand2TradeAP.ViewModels
 {
     class EditItemViewModel : INotifyPropertyChanged
@@ -229,7 +232,42 @@ namespace Hand2TradeAP.ViewModels
         {
             if (ValidateForm())
             {
-                
+                App theApp = (App)Application.Current;
+                Item item = new Item
+                {
+
+                    Desrciption = Description,
+                    Price = int.Parse(Price),
+                    ItemName = Itemname
+                };
+                Hand2TradeAPIProxy proxy = Hand2TradeAPIProxy.CreateProxy();
+                Item i = await proxy.UpdateItem(item);
+                if (i == null)
+                {
+                    await App.Current.MainPage.DisplayAlert("Error", "Can not Update your item", "OK");
+                }
+                else
+                {
+
+                    //int index;
+                    //foreach(Item theItem in theApp.CurrentUser.Items)
+                    //{
+                    //    if (theItem.ItemId == i.ItemId)
+                    //        theApp.CurrentUser.Items.ElementAt(1).
+
+
+                    //}
+                    if (this.imageFileResult != null)
+                    {
+
+
+                        bool success = await proxy.UploadImage(new FileInfo()
+                        {
+                            Name = this.imageFileResult.FullPath
+                        }, $"U{i.ItemId}.jpg");
+                    }
+                    App.Current.MainPage = new Tabs();
+                }
             }
 
         }

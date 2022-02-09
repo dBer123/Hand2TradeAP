@@ -272,6 +272,14 @@ namespace Hand2TradeAP.ViewModels
             }
         }
 
+        public EditProfileViewModel()
+        {
+            App theApp = (App)Application.Current;
+            Adress = theApp.CurrentUser.Adress;
+            UserName = theApp.CurrentUser.UserName;
+            Password = theApp.CurrentUser.Passwrd;
+        }
+
     }
 
 

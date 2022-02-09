@@ -123,10 +123,11 @@ namespace Hand2TradeAP.ViewModels
                 if (num > 0.5) Rating += 1;
             }
 
-            if (theApp.CurrentUser.ImgSource == null)
-                ImageU = "profile.png";
-            else
-                ImageU = theApp.CurrentUser.ImgSource;
+            ImageU = theApp.CurrentUser.ImgSource == null ? "profile.png" : theApp.CurrentUser.ImgSource;
+            //if (theApp.CurrentUser.ImgSource == null)
+            //    ImageU = "profile.png";
+            //else
+            //    ImageU = theApp.CurrentUser.ImgSource;
             foreach (var item in theApp.CurrentUser.Items)
             {
                 MyItems.Add(item);
