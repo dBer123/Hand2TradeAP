@@ -203,6 +203,19 @@ namespace Hand2TradeAP.ViewModels
                 if (f == true)
                 {
                     Item item = MyItems[((SfCardLayout)obj).TabIndex];
+                    App theApp = (App)Application.Current;
+                    Hand2TradeAPIProxy proxy = Hand2TradeAPIProxy.CreateProxy();
+                    bool isDeleted = await proxy.DeleteItem(item.ItemId);
+                    if (isDeleted == true)
+                    {
+                        theApp.CurrentUser.Items.Remove(item);
+                        App.Current.MainPage = new Tabs();
+                    }
+                    else
+                    {
+                        await App.Current.MainPage.DisplayAlert("Error", "Can not delete this item", "OK");
+
+                    }
                 }
             }
         }

@@ -239,7 +239,7 @@ namespace Hand2TradeAP.ViewModels
             return true;
         }
 
-        public ICommand AddNewItem => new Command(SaveData);
+        public ICommand EditItem => new Command(SaveData);
         public async void SaveData()
         {
             if (ValidateForm())
@@ -261,23 +261,30 @@ namespace Hand2TradeAP.ViewModels
                 else
                 {
 
-
-                    foreach (Item theItem in theApp.CurrentUser.Items)
+                    List<Item> ezer = new List<Item>();
+                    foreach (Item theItem in theApp.CurrentUser.Items.ToList())
                     {
                         if (theItem.ItemId == i.ItemId)
                         {
-                            theApp.CurrentUser.Items.Remove(theItem);
-                            theApp.CurrentUser.Items.Add(i);
+                            ezer.Add(i);
+
                         }
+                        else
+                            ezer.Add(theItem);
+                        theApp.CurrentUser.Items.Remove(theItem);
                     }
+
+                    foreach (Item theItem2 in ezer)
+                    {
+                        theApp.CurrentUser.Items.Add(theItem2);
+                    }
+
                     if (this.imageFileResult != null)
                     {
-
-
                         bool success = await proxy.UploadImage(new FileInfo()
                         {
                             Name = this.imageFileResult.FullPath
-                        }, $"U{i.ItemId}.jpg");
+                        }, $"I{i.ItemId}.jpg");
                     }
                     App.Current.MainPage = new Tabs();
                 }
