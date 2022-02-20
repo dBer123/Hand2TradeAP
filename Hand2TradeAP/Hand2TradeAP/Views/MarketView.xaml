@@ -4,7 +4,8 @@
              x:Class="Hand2TradeAP.Views.MarketView"
              xmlns:PanCake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:localfont="clr-namespace:Hand2TradeAP.AppFonts"
-             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin">
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             xmlns:syncfusion="clr-namespace:Syncfusion.SfPicker.XForms;assembly=Syncfusion.SfPicker.XForms" >
   <ContentView.Content>
         <ScrollView BackgroundColor="White">
             <Grid RowSpacing="0" RowDefinitions="Auto,Auto,Auto,*" ColumnDefinitions="*,Auto" Padding="25,60,25,0">
@@ -17,10 +18,12 @@
                 <!-- Subtitle with number of talents-->
                 <Label Grid.Row="1" Grid.Column="0" Text="12 420 available" FontSize="15" TextColor="#90999f"/>
                 <!-- Talent search bar-->
-                <SearchBar Grid.Row="2" Grid.Column="0" CancelButtonColor="Red" SearchCommand="{Binding Search}" Placeholder="Search items ..." BackgroundColor="Transparent" Margin="0,10,0,0"/>
+                <SearchBar Grid.Row="2" Grid.Column="0" CancelButtonColor="Red" Placeholder="Search items ..." BackgroundColor="Transparent" Margin="0,10,0,0"/>
                 <!-- Settings Icon -->
+                <syncfusion:SfPicker x:Name="picker" HeightRequest="100" HeaderText="Sort By" ItemsSource="{Binding SortByList}" />
 
-                <Button Grid.Row="2" Grid.Column="1" FontFamily="MyIcon" BackgroundColor="#00b34d" Command="{Binding Sort}" TextColor="White" Text="{x:Static  localfont:FontIconClass.Filter}" FontSize="20" CornerRadius="20" Margin="20,20,20,0"/>
+
+             
 
 
 

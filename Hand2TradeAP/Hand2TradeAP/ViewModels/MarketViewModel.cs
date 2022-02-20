@@ -67,16 +67,25 @@ namespace Hand2TradeAP.ViewModels
         }
         #endregion
         public ObservableCollection<Item> SearchedItems { get; set; }
-
+        public ObservableCollection<string> SortByList { get; set; }
         public ICommand Sort => new Command(SortBy);
         public async void SortBy()
         {
             string s = await App.Current.MainPage.DisplayActionSheet("Sort by:", null, "CANCEL", "Price", "Name","Owner's rating");
             
         }
-        public ICommand Search => new Command(SearchItem);
-        public async void SearchItem()
+        //public ICommand Search => new Command(SearchItem);
+        //public async void SearchItem()
+        //{
+
+        //}
+        public MarketViewModel()
         {
+            SortByList = new ObservableCollection<string>();
+            SortByList.Add("Name");
+            SortByList.Add("Price"); 
+            SortByList.Add("Owner's Rating");
+
 
         }
     }
