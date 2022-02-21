@@ -49,7 +49,7 @@ namespace Hand2TradeAP.ViewModels
         public LoginViewModel()
         {
             SubmitCommand = new Command(OnSubmit);
-            Email = "berdaniel04@gmail.com";
+            Email = "danielbe4@ramon.edum.org.il";
             Password = "daniel6839";
             OnSubmit();
         }

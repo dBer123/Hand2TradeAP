@@ -18,9 +18,8 @@
                 <!-- Subtitle with number of talents-->
                 <Label Grid.Row="1" Grid.Column="0" Text="12 420 available" FontSize="15" TextColor="#90999f"/>
                 <!-- Talent search bar-->
-                <SearchBar Grid.Row="2" Grid.Column="0" CancelButtonColor="Red" Placeholder="Search items ..." BackgroundColor="Transparent" Margin="0,10,0,0"/>
+                <SearchBar Grid.Row="2" Grid.Column="0" CancelButtonColor="Red" SearchCommand="{Binding Search}" Text="{Binding SearchText}" Placeholder="Search items ..." BackgroundColor="Transparent" Margin="0,10,0,0"/>
                 <!-- Settings Icon -->
-                <syncfusion:SfPicker x:Name="picker" HeightRequest="100" HeaderText="Sort By" ItemsSource="{Binding SortByList}" />
 
 
              

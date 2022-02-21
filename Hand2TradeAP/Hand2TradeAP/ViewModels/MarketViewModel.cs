@@ -74,18 +74,35 @@ namespace Hand2TradeAP.ViewModels
             string s = await App.Current.MainPage.DisplayActionSheet("Sort by:", null, "CANCEL", "Price", "Name","Owner's rating");
             
         }
-        //public ICommand Search => new Command(SearchItem);
-        //public async void SearchItem()
-        //{
-
-        //}
+        public ICommand Search => new Command(SearchItem);
+        public async void SearchItem()
+        {
+            Hand2TradeAPIProxy proxy = Hand2TradeAPIProxy.CreateProxy();
+            if (SearchText != null || SearchText != "")
+            {
+                IEnumerable<Item> itemsSearched = await proxy.Search(SearchText);
+                if (itemsSearched == null)
+                {
+                    await App.Current.MainPage.DisplayAlert("Error", "Login failed, please check username and password and try again", "OK");
+                }
+                else
+                {
+                    SearchedItems.Clear();
+                    foreach (Item item in itemsSearched)
+                    {
+                        SearchedItems.Add(item);
+                    }
+                }
+            }
+           
+        }
         public MarketViewModel()
         {
             SortByList = new ObservableCollection<string>();
             SortByList.Add("Name");
             SortByList.Add("Price"); 
             SortByList.Add("Owner's Rating");
-
+            SearchedItems = new ObservableCollection<Item>();
 
         }
     }

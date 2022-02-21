@@ -314,6 +314,34 @@ namespace Hand2TradeAP.Services
             }
         }
 
+        public async Task<IEnumerable<Item>> Search(string itemName)
+        {
+            try
+            {
+                HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/Search?ItemName={itemName}");
+                if (response.IsSuccessStatusCode)
+                {
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        ReferenceHandler = ReferenceHandler.Preserve, //avoid reference loops!
+                        PropertyNameCaseInsensitive = true
+                    };
+                    string content = await response.Content.ReadAsStringAsync();
+                    IEnumerable<Item> itemsSearched = JsonSerializer.Deserialize<IEnumerable<Item>>(content, options);
+                    return itemsSearched;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+        }
+
 
     }
 
