@@ -8,30 +8,71 @@
              xmlns:syncfusion="clr-namespace:Syncfusion.SfPicker.XForms;assembly=Syncfusion.SfPicker.XForms" >
   <ContentView.Content>
         <ScrollView BackgroundColor="White">
-            <Grid RowSpacing="0" RowDefinitions="Auto,Auto,Auto,*" ColumnDefinitions="*,Auto" Padding="25,60,25,0">
+            <StackLayout>
+                <Grid RowSpacing="0" RowDefinitions="Auto,Auto,Auto,*" ColumnDefinitions="*,Auto" Padding="25,60,25,0">
 
-                <Label Grid.Row="0" Grid.Column="0" Text="Items" FontAttributes="Bold" FontSize="30"/>
-                <!-- Profile imagen with rounded corners-->
-                <PanCake:PancakeView Grid.Row="0" Grid.Column="1" HeightRequest="100" Grid.RowSpan="2"  CornerRadius="15">
-                    <Image Source="profile.png"/>
-                </PanCake:PancakeView>
-                <!-- Subtitle with number of talents-->
-                <Label Grid.Row="1" Grid.Column="0" Text="12 420 available" FontSize="15" TextColor="#90999f"/>
-                <!-- Talent search bar-->
-                <SearchBar Grid.Row="2" Grid.Column="0" CancelButtonColor="Red" SearchCommand="{Binding Search}" Text="{Binding SearchText}" Placeholder="Search items ..." BackgroundColor="Transparent" Margin="0,10,0,0"/>
-                <!-- Settings Icon -->
+                    <Label Grid.Row="0" Grid.Column="0" Text="Items" FontAttributes="Bold" FontSize="30"/>
+                    <!-- Profile imagen with rounded corners-->
+                    <PanCake:PancakeView Grid.Row="0" Grid.Column="1" HeightRequest="100" Grid.RowSpan="2"  CornerRadius="15">
+                        <Image Source="profile.png"/>
+                    </PanCake:PancakeView>
+                    <!-- Subtitle with number of talents-->
+                    <Label Grid.Row="1" Grid.Column="0" Text="12 420 available" FontSize="15" TextColor="#90999f"/>
+                    <!-- Talent search bar-->
+                    <SearchBar Grid.Row="2" Grid.Column="0" CancelButtonColor="Red" SearchCommand="{Binding Search}" Text="{Binding SearchText}" Placeholder="Search items ..." BackgroundColor="Transparent" Margin="0,10,0,0"/>
+                    <!-- Settings Icon -->
+                </Grid>
+
+                <CollectionView x:Name="searchedItems"                 
+                  BackgroundColor="White"
+                  ItemsSource="{Binding SearchedItems}" SelectionMode="Single"
+                  SelectionChangedCommand="{Binding SelctionChanged}"
+                  SelectionChangedCommandParameter="{Binding Source={x:Reference searchedItems}, Path=SelectedItem}">
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+
+                            <Grid VerticalOptions="FillAndExpand" BackgroundColor="White" HorizontalOptions="FillAndExpand">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid x:Name="grid" >
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="100" />
+                                    </Grid.RowDefinitions>
+                                    <Grid RowSpacing="0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="60" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="50" />
+                                        </Grid.ColumnDefinitions>
+                                        
+                                        <Image Grid.Row="0" Grid.Column="0" Source="{Binding ImgSource}" VerticalOptions="Center"/>
+                                        <Grid Grid.Row="0" Grid.Column="1" VerticalOptions="CenterAndExpand">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*" />
+                                                <RowDefinition Height="*" />
+                                            </Grid.RowDefinitions>
+                                            <Label Grid.Row="0" LineBreakMode="NoWrap" FontSize="30" TextColor="#474747" Text="{Binding ItemName}" />
+                                            <Label Grid.Row="1" TextColor="#474747" LineBreakMode="NoWrap" Text="{Binding Price}"  />
+                                        </Grid>
+                                        <Grid Grid.Row="0" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center">
+                                            <Label  FontSize="25" HorizontalOptions="Center" VerticalOptions="Center" Text="{x:Static localfont:FontIconClass.HeartOutline}" FontFamily="MyIcon">
+                                                <Label.GestureRecognizers>
+                                                    <TapGestureRecognizer/>
+                                                </Label.GestureRecognizers>
+                                            </Label>
+                                        </Grid>
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
 
 
-             
-
-
-
-            </Grid>
-
-
-            <!-- Here add the code that is being explained in the next block-->
-
-
+            </StackLayout>
         </ScrollView>
   </ContentView.Content>
 </ContentView>
