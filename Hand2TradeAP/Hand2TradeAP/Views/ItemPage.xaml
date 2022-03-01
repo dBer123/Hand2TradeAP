@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Hand2TradeAP.Views.ItemPage"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms">
+    <ContentPage.Content>
+        <StackLayout>
+            <Image Source="loginback.jpg" Aspect="AspectFill"/>
+            
+            <Frame Margin="0,-95" BackgroundColor="Black" Opacity="0.85" HeightRequest="50">
+               
+                <StackLayout>
+                    <Label Text="Owner:" TextColor="White" FontSize="15" Margin="0,-10,0,0" HorizontalTextAlignment="Start" VerticalTextAlignment="Start"/>
+                    <StackLayout Orientation="Horizontal">
+                        <controls:CircleImage Source="profile.png" HeightRequest="40"/>
+                        <Label Text="danielhhhhh" Margin="20,0" TextColor="White" FontSize="25" FontAttributes="Bold">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
+                    <rating:SfRating ItemSize="20" Value="4.5" Margin="0,-25" Precision="Half" ReadOnly="true" HorizontalOptions="End">
+                        <rating:SfRating.RatingSettings>
+                            <rating:SfRatingSettings RatedFill="Gold" UnRatedFill="White"/>
+                        </rating:SfRating.RatingSettings>
+                    </rating:SfRating>
+                </StackLayout>
+            </Frame>
+
+            <StackLayout Margin="40,120">
+                <Label Text="Thjas" FontSize="40" TextColor="Black"/>
+                <StackLayout Orientation="Horizontal">
+                    <Image Source="coin.jpg" Aspect="AspectFit" HeightRequest="20"/>
+                    <Label Text="200" FontSize="20" TextColor="CadetBlue"/>
+                </StackLayout>
+                <StackLayout Margin="30">
+                    <Label TextColor="Black" FontSize="18" Text="dzfzsdfzsdfszdfzsfsdfzsfzsdfsdzfzsdfsdzfzsffsfsdfsdfzdfsdfsdfsdfsdfsdfzszsdf"/>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+       
+    </ContentPage.Content>
+</ContentPage>

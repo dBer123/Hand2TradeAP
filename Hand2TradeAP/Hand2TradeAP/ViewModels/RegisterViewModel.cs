@@ -237,6 +237,11 @@ namespace Hand2TradeAP.ViewModels
                 UsernameError = "Username cannot be blank";
                 ShowUsernameError = true;
             }
+            else if (Username.Length > 10)
+            {
+                UsernameError = "Username is too long";
+                ShowUsernameError = true;
+            }
         }
 
         private bool showAddressError;

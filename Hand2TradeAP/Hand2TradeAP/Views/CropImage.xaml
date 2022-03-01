@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:imageeditor="clr-namespace:Syncfusion.SfImageEditor.XForms;assembly=Syncfusion.SfImageEditor.XForms"
+             x:Class="Hand2TradeAP.Views.CropImage">
+    <ContentPage.Content>
+        <imageeditor:SfImageEditor x:Name="editor" Source="loginback.jpg" ImageEdited="editor_ImageEdited" EndReset="editor_EndReset">
+           
+        </imageeditor:SfImageEditor>
+    </ContentPage.Content>
+</ContentPage>

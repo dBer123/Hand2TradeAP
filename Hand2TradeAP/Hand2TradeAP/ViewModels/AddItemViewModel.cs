@@ -12,6 +12,9 @@ using Xamarin.Essentials;
 using System.Linq;
 using Hand2TradeAP.AppFonts;
 using System.Collections.ObjectModel;
+using Syncfusion.SfImageEditor.XForms;
+using Syncfusion.SfImageEditor;
+
 
 namespace Hand2TradeAP.ViewModels
 {
@@ -204,12 +207,23 @@ namespace Hand2TradeAP.ViewModels
                     this.imageFileResult = result;
                     var stream = await result.OpenReadAsync();
                     ImageSource imgSource = ImageSource.FromStream(() => stream);
-                    if (SetImageSourceEvent != null)
-                        SetImageSourceEvent(imgSource);
+                    Crop(imgSource);
                 }
             }
             catch{}
             
+        }
+
+        public void Crop(ImageSource imgSource)
+        {
+            SfImageEditor editor = new SfImageEditor();
+            editor.Source = imgSource;
+            Rectangle rect = new Rectangle(50, 50, 50, 50);
+
+            editor.ToggleCropping(rect);
+            editor.Crop();
+            if (SetImageSourceEvent != null)
+                SetImageSourceEvent(imgSource);
         }
         private bool ValidateForm()
         {

@@ -1,4 +1,12 @@
-﻿using System;
+using Syncfusion.XForms.iOS.ComboBox;
+using Syncfusion.XForms.iOS.TextInputLayout;
+using Syncfusion.XForms.iOS.Core;
+using Syncfusion.ListView.XForms.iOS;
+using Syncfusion.SfRating.XForms.iOS;
+using Syncfusion.XForms.iOS.Buttons;
+using Syncfusion.XForms.iOS.Border;
+using Syncfusion.XForms.iOS.Graphics;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -23,6 +31,16 @@ namespace Hand2TradeAP.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+            SfComboBoxRenderer.Init();
+            SfTextInputLayoutRenderer.Init();
+            SfAvatarViewRenderer.Init();
+            SfSegmentedControlRenderer.Init();
+            SfRadioButtonRenderer.Init();
+            SfListViewRenderer.Init();
+            SfRatingRenderer.Init();
+            SfGradientViewRenderer.Init();
+            SfButtonRenderer.Init();
+            SfBorderRenderer.Init();
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);
