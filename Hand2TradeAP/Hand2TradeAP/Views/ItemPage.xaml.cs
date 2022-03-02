@@ -6,15 +6,16 @@ using System.Threading.Tasks;
 using Hand2TradeAP.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Hand2TradeAP.Models;
 
 namespace Hand2TradeAP.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ItemPage : ContentPage
     {
-        public ItemPage()
+        public ItemPage(Item item)
         {
-            ItemPageViewModel context = new ItemPageViewModel();           
+            ItemPageViewModel context = new ItemPageViewModel(item);           
             this.BindingContext = context;
             InitializeComponent();
         }

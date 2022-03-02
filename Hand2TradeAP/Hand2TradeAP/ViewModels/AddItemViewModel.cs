@@ -169,7 +169,7 @@ namespace Hand2TradeAP.ViewModels
             App.Current.MainPage = new Tabs(); 
         }
 
-        FileResult imageFileResult;
+        public FileResult imageFileResult;
         public event Action<ImageSource> SetImageSourceEvent;
         public ICommand PickImageCommand => new Command(OnPickImage);
         public async void OnPickImage()
@@ -186,8 +186,9 @@ namespace Hand2TradeAP.ViewModels
                     this.imageFileResult = result;
                     var stream = await result.OpenReadAsync();
                     ImageSource imgSource = ImageSource.FromStream(() => stream);
-                    if (SetImageSourceEvent != null)
-                        SetImageSourceEvent(imgSource);
+                    App.Current.MainPage =  new CropImage(this);
+                    //if (SetImageSourceEvent != null)
+                    //    SetImageSourceEvent(imgSource);
                 }
 
             }
@@ -207,24 +208,16 @@ namespace Hand2TradeAP.ViewModels
                     this.imageFileResult = result;
                     var stream = await result.OpenReadAsync();
                     ImageSource imgSource = ImageSource.FromStream(() => stream);
-                    Crop(imgSource);
+                    App.Current.MainPage = new CropImage(this);
+                    //if (SetImageSourceEvent != null)
+                    //    SetImageSourceEvent(imgSource);
                 }
             }
             catch{}
             
         }
 
-        public void Crop(ImageSource imgSource)
-        {
-            SfImageEditor editor = new SfImageEditor();
-            editor.Source = imgSource;
-            Rectangle rect = new Rectangle(50, 50, 50, 50);
-
-            editor.ToggleCropping(rect);
-            editor.Crop();
-            if (SetImageSourceEvent != null)
-                SetImageSourceEvent(imgSource);
-        }
+        
         private bool ValidateForm()
         {
             //Validate all fields first

@@ -12,8 +12,11 @@
 
   <ItemGroup>
     <Compile Remove="picks\**" />
+    <Compile Remove="Resources\**" />
     <EmbeddedResource Remove="picks\**" />
+    <EmbeddedResource Remove="Resources\**" />
     <None Remove="picks\**" />
+    <None Remove="Resources\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -104,9 +107,5 @@
     <EmbeddedResource Update="Views\WebData.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Resources\" />
   </ItemGroup>
 </Project>

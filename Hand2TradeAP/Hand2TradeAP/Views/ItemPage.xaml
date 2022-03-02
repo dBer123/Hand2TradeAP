@@ -6,21 +6,21 @@
              xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms">
     <ContentPage.Content>
         <StackLayout>
-            <Image Source="loginback.jpg" Aspect="AspectFill"/>
+            <Image Source="{Binding ItemImage}" Aspect="AspectFill"/>
             
             <Frame Margin="0,-95" BackgroundColor="Black" Opacity="0.85" HeightRequest="50">
                
                 <StackLayout>
                     <Label Text="Owner:" TextColor="White" FontSize="15" Margin="0,-10,0,0" HorizontalTextAlignment="Start" VerticalTextAlignment="Start"/>
                     <StackLayout Orientation="Horizontal">
-                        <controls:CircleImage Source="profile.png" HeightRequest="40"/>
-                        <Label Text="danielhhhhh" Margin="20,0" TextColor="White" FontSize="25" FontAttributes="Bold">
+                        <controls:CircleImage Source="{Binding ItemUser.ImgSource}" HeightRequest="40"/>
+                        <Label Text="{Binding ItemUser.UserName}" Margin="20,0" TextColor="White" FontSize="25" FontAttributes="Bold">
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer/>
                             </Label.GestureRecognizers>
                         </Label>
                     </StackLayout>
-                    <rating:SfRating ItemSize="20" Value="4.5" Margin="0,-25" Precision="Half" ReadOnly="true" HorizontalOptions="End">
+                    <rating:SfRating ItemSize="20" Value="{Binding Rate}" Margin="0,-25" Precision="Half" ReadOnly="true" HorizontalOptions="End">
                         <rating:SfRating.RatingSettings>
                             <rating:SfRatingSettings RatedFill="Gold" UnRatedFill="White"/>
                         </rating:SfRating.RatingSettings>
@@ -29,13 +29,13 @@
             </Frame>
 
             <StackLayout Margin="40,120">
-                <Label Text="Thjas" FontSize="40" TextColor="Black"/>
+                <Label Text="{Binding Itemname}" FontSize="40" TextColor="Black"/>
                 <StackLayout Orientation="Horizontal">
-                    <Image Source="coin.jpg" Aspect="AspectFit" HeightRequest="20"/>
-                    <Label Text="200" FontSize="20" TextColor="CadetBlue"/>
+                    <Image Source="{Binding ItemImage}" Aspect="AspectFit" HeightRequest="20"/>
+                    <Label Text="{Binding Price}" FontSize="20" TextColor="CadetBlue"/>
                 </StackLayout>
                 <StackLayout Margin="30">
-                    <Label TextColor="Black" FontSize="18" Text="dzfzsdfzsdfszdfzsfsdfzsfzsdfsdzfzsdfsdzfzsffsfsdfsdfzdfsdfsdfsdfsdfsdfzszsdf"/>
+                    <Label TextColor="Black" FontSize="18" Text="{Binding Description}"/>
                 </StackLayout>
             </StackLayout>
         </StackLayout>

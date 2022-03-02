@@ -55,8 +55,8 @@ namespace Hand2TradeAP.ViewModels
                 OnPropertyChanged("Itemname");
             }
         }
-        private string itemUser;
-        public string ItemUser
+        private User itemUser;
+        public User ItemUser
         {
             get { return itemUser; }
             set
@@ -64,6 +64,39 @@ namespace Hand2TradeAP.ViewModels
                 itemUser = value;
                 OnPropertyChanged("ItemUser");
             }
+        }
+
+        private ImageSource itemImage;
+        public ImageSource ItemImage
+        {
+            get { return itemImage; }
+            set
+            {
+                itemImage = value;
+                OnPropertyChanged("ItemImage");
+            }
+        }
+        private int rate;
+        public int Rate
+        {
+            get { return rate; }
+            set
+            {
+                rate = value;
+                OnPropertyChanged("Rate");
+            }
+        }
+
+        public ItemPageViewModel(Item item)
+        {
+            Price = item.Price.ToString();
+            Description = item.Desrciption;
+            Itemname = item.ItemName;
+            ItemImage = item.ImgSource;
+            ItemUser = item.User;
+            Rate = item.User.SumRanks / item.User.CountRanked;
+
+
         }
     }
 }
