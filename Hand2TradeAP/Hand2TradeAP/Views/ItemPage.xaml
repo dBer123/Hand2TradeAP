@@ -6,14 +6,14 @@
              xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms">
     <ContentPage.Content>
         <StackLayout>
-            <Image Source="{Binding ItemImage}" Aspect="AspectFill"/>
+            <Image Source="{Binding ItemImage}" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand"/>
             
-            <Frame Margin="0,-95" BackgroundColor="Black" Opacity="0.85" HeightRequest="50">
+            <Frame Margin="0,-95" BackgroundColor="Black" Opacity="0.85"  HeightRequest="50" >
                
                 <StackLayout>
                     <Label Text="Owner:" TextColor="White" FontSize="15" Margin="0,-10,0,0" HorizontalTextAlignment="Start" VerticalTextAlignment="Start"/>
                     <StackLayout Orientation="Horizontal">
-                        <controls:CircleImage Source="{Binding ItemUser.ImgSource}" HeightRequest="40"/>
+                        <controls:CircleImage Source="{Binding ItemUser.ImgSource}"  HeightRequest="40"/>
                         <Label Text="{Binding ItemUser.UserName}" Margin="20,0" TextColor="White" FontSize="25" FontAttributes="Bold">
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer/>
@@ -31,7 +31,7 @@
             <StackLayout Margin="40,120">
                 <Label Text="{Binding Itemname}" FontSize="40" TextColor="Black"/>
                 <StackLayout Orientation="Horizontal">
-                    <Image Source="{Binding ItemImage}" Aspect="AspectFit" HeightRequest="20"/>
+                    <Image Source="coin.jpg" Aspect="AspectFit" HeightRequest="20"/>
                     <Label Text="{Binding Price}" FontSize="20" TextColor="CadetBlue"/>
                 </StackLayout>
                 <StackLayout Margin="30">

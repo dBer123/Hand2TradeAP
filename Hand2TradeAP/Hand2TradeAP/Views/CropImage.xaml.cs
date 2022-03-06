@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Syncfusion.SfImageEditor;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
+using Hand2TradeAP.ViewModels;
 namespace Hand2TradeAP.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -27,6 +27,15 @@ namespace Hand2TradeAP.Views
         private void editor_EndReset(object sender, Syncfusion.SfImageEditor.XForms.EndResetEventArgs args)
         {
             editor.SetToolbarItemVisibility("save,reset", false);
+        }
+
+        private async void editor_ImageSaved(object sender, Syncfusion.SfImageEditor.XForms.ImageSavedEventArgs args)
+        {
+            IImageSourceUpdatable vm = (IImageSourceUpdatable)this.BindingContext;
+
+            vm.UpdateImageSource(args.Location);
+            await App.Current.MainPage.Navigation.PopModalAsync();
+
         }
     }
 }

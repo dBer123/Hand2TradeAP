@@ -18,7 +18,7 @@ using Syncfusion.SfImageEditor;
 
 namespace Hand2TradeAP.ViewModels
 {
-    class AddItemViewModel : INotifyPropertyChanged
+    class AddItemViewModel : INotifyPropertyChanged, IImageSourceUpdatable
     {
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
@@ -163,6 +163,15 @@ namespace Hand2TradeAP.ViewModels
         }
         #endregion
 
+        public async void UpdateImageSource(string imgSource)
+        {
+            this.imageFileResult = new FileResult(imgSource);
+            var stream = await imageFileResult.OpenReadAsync();
+            ImageSource source = ImageSource.FromStream(() => stream);
+            if (this.SetImageSourceEvent != null)
+                this.SetImageSourceEvent(source);
+        }
+
         public ICommand NevigateBack => new Command(Back);
         void Back()
         {
@@ -195,7 +204,17 @@ namespace Hand2TradeAP.ViewModels
             catch { }
             
         }
-
+        public string ImgSource
+        {
+            get
+            {
+                if (this.imageFileResult != null)
+                    return this.imageFileResult.FullPath;
+                else
+                    return string.Empty;
+            }
+            
+        }
         ///The following command handle the take photo button
         public ICommand CameraImageCommand => new Command(OnCameraImage);
         public async void OnCameraImage()
@@ -206,11 +225,9 @@ namespace Hand2TradeAP.ViewModels
                 if (result != null)
                 {
                     this.imageFileResult = result;
-                    var stream = await result.OpenReadAsync();
-                    ImageSource imgSource = ImageSource.FromStream(() => stream);
-                    App.Current.MainPage = new CropImage(this);
+                    await App.Current.MainPage.Navigation.PushModalAsync(new CropImage(this));
                     //if (SetImageSourceEvent != null)
-                    //    SetImageSourceEvent(imgSource);
+                    //    SetImageSourceEvent(result.FullPath);
                 }
             }
             catch{}

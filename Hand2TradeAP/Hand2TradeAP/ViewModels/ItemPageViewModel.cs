@@ -76,8 +76,8 @@ namespace Hand2TradeAP.ViewModels
                 OnPropertyChanged("ItemImage");
             }
         }
-        private int rate;
-        public int Rate
+        private double rate;
+        public double Rate
         {
             get { return rate; }
             set
@@ -94,7 +94,10 @@ namespace Hand2TradeAP.ViewModels
             Itemname = item.ItemName;
             ItemImage = item.ImgSource;
             ItemUser = item.User;
-            Rate = item.User.SumRanks / item.User.CountRanked;
+            if (item.User.CountRanked != 0)
+                Rate = (item.User.SumRanks / item.User.CountRanked);
+            else
+                Rate = 0;
 
 
         }

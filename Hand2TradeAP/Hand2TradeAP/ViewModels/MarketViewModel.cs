@@ -75,7 +75,7 @@ namespace Hand2TradeAP.ViewModels
             
         }
         public ICommand Search => new Command(SearchItem);
-        public async void SearchItem()
+        async void SearchItem()
         {
             Hand2TradeAPIProxy proxy = Hand2TradeAPIProxy.CreateProxy();
             if (SearchText != null || SearchText != "")
@@ -93,8 +93,15 @@ namespace Hand2TradeAP.ViewModels
                         SearchedItems.Add(item);
                     }
                 }
+            }           
+        }
+        public ICommand SelctionChanged => new Command<Object>(ToItemPage);
+        async void ToItemPage(Object obj)
+        {
+            if (obj is Item)
+            {
+                await App.Current.MainPage.Navigation.PushModalAsync(new ItemPage((Item)obj));
             }
-           
         }
         public MarketViewModel()
         {

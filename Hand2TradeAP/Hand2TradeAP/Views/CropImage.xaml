@@ -4,7 +4,7 @@
               xmlns:imageeditor="clr-namespace:Syncfusion.SfImageEditor.XForms;assembly=Syncfusion.SfImageEditor.XForms"
              x:Class="Hand2TradeAP.Views.CropImage">
     <ContentPage.Content>
-        <imageeditor:SfImageEditor x:Name="editor" Source="{Binding imageFileResult}" ImageEdited="editor_ImageEdited" EndReset="editor_EndReset">
+        <imageeditor:SfImageEditor x:Name="editor" Source="{Binding ImgSource}" ImageEdited="editor_ImageEdited"  ImageSaved="editor_ImageSaved" EndReset="editor_EndReset">
            
         </imageeditor:SfImageEditor>
     </ContentPage.Content>
