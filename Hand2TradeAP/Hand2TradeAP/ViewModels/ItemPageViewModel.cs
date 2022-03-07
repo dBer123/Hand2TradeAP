@@ -87,6 +87,13 @@ namespace Hand2TradeAP.ViewModels
             }
         }
 
+        public ICommand ToOwner => new Command(ToOwnerPage);
+        async void ToOwnerPage()
+        {
+           
+            await App.Current.MainPage.Navigation.PushModalAsync(new OwnerPage(ItemUser));
+            
+        }
         public ItemPageViewModel(Item item)
         {
             Price = item.Price.ToString();

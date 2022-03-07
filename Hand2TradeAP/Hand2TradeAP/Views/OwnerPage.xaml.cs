@@ -3,23 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Hand2TradeAP.Models;
 using Hand2TradeAP.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Hand2TradeAP.Models;
 
 namespace Hand2TradeAP.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ItemPage : ContentPage
+    public partial class OwnerPage : ContentPage
     {
-        public ItemPage(Item item)
+        public OwnerPage(User owner)
         {
-            ItemPageViewModel context = new ItemPageViewModel(item);           
+            OwnerPageViewModel context = new OwnerPageViewModel(owner);
             this.BindingContext = context;
             InitializeComponent();
-            ItemImage.WidthRequest = Application.Current.MainPage.Width;
-            ItemImage.HeightRequest = Application.Current.MainPage.Width;
         }
     }
 }

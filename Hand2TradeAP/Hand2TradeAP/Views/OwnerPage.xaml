@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             xmlns:localfont="clr-namespace:Hand2TradeAP.AppFonts"
+             xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
+             x:Class="Hand2TradeAP.Views.OwnerPage">
+    <ContentPage.Content>
+        <ScrollView VerticalScrollBarVisibility="Never">
+
+            <!-- MainView -->
+
+            <Grid BackgroundColor="White">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="300" />
+                    <RowDefinition Height="550" />
+
+                </Grid.RowDefinitions>
+
+                <!-- 1. Profile picture-->
+
+                <Image Grid.Row="0" Source="profileBackground.jpg" VerticalOptions="Start" Aspect="Fill" />
+                
+                <StackLayout>
+                    <controls:CircleImage Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Start" WidthRequest="180"  Source="{Binding Owner.ImgSource}"></controls:CircleImage>
+                    <rating:SfRating ItemSize="50" Value="{Binding Rate}" Precision="Half" Margin="30,-20" ReadOnly="true" HorizontalOptions="Center">
+                        <rating:SfRating.RatingSettings>
+                            <rating:SfRatingSettings RatedFill="Gold" UnRatedFill="LightGray"/>
+                        </rating:SfRating.RatingSettings>
+                    </rating:SfRating>
+
+                </StackLayout>
+
+
+
+
+
+
+                <!-- 2. Contact informaqtion frame-->
+                <StackLayout BackgroundColor="White" VerticalOptions="Center" Grid.Row="1" Margin="15">
+
+                    <Label Padding="0,10,0,0" >
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding IsAdmin}"  FontFamily="MyIcon" TextColor="DodgerBlue" FontSize="25"/>
+                                <Span Text="{Binding Owner.UserName}" FontSize="30"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <!-- 4. Contact information-->
+                    <Label Text="{Binding Owner.Adress}" TextColor="#a5a2a2" FontSize="16"/>
+
+                    <Label Padding="0,10,0,0" FontSize="16">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Email: " FontAttributes="Bold" />
+                                <Span Text="{Binding Owner.Email}"  />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </StackLayout>
+
+            </Grid>
+
+        </ScrollView>
+
+
+
+
+
+
+    </ContentPage.Content>
+</ContentPage>
