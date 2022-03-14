@@ -10,10 +10,6 @@ using Hand2TradeAP.Views;
 using Hand2TradeAP.Models;
 using Xamarin.Essentials;
 using System.Linq;
-using Hand2TradeAP.AppFonts;
-using System.Collections.ObjectModel;
-using Syncfusion.SfImageEditor.XForms;
-using Syncfusion.SfImageEditor;
 
 
 namespace Hand2TradeAP.ViewModels
