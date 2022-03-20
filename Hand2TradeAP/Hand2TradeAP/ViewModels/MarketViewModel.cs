@@ -83,7 +83,7 @@ namespace Hand2TradeAP.ViewModels
                 IEnumerable<Item> itemsSearched = await proxy.Search(SearchText);
                 if (itemsSearched == null)
                 {
-                    await App.Current.MainPage.DisplayAlert("Error", "Login failed, please check username and password and try again", "OK");
+                    await App.Current.MainPage.DisplayAlert("There is no item that fit your search", "", "OK");
                 }
                 else
                 {

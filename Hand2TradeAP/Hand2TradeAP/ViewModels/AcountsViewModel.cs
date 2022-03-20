@@ -24,8 +24,6 @@ namespace Hand2TradeAP.ViewModels
         }
         #endregion
 
-
-
         #region SearchText
         private string searchText;
         public string SearchText
@@ -67,8 +65,31 @@ namespace Hand2TradeAP.ViewModels
                 ShowSearchTextError = false;
         }
         #endregion
-
         public ObservableCollection<User> SearchedAcounts { get; set; }
-
+        public ICommand Search => new Command(SearchUser);
+        async void SearchUser()
+        {
+            Hand2TradeAPIProxy proxy = Hand2TradeAPIProxy.CreateProxy();
+            if (SearchText != null || SearchText != "")
+            {
+                IEnumerable<User> usersSearched = await proxy.SearchAcount(SearchText);
+                if (usersSearched == null)
+                {
+                    await App.Current.MainPage.DisplayAlert("There is no user that fit your search", "", "OK");
+                }
+                else
+                {
+                    SearchedAcounts.Clear();
+                    foreach (User u in usersSearched)
+                    {
+                        SearchedAcounts.Add(u);
+                    }
+                }
+            }
+        }
+        public AcountsViewModel()
+        {
+            SearchedAcounts = new ObservableCollection<User>();
+        }
     }
 }

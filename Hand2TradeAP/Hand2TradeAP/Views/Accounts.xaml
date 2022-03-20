@@ -5,6 +5,8 @@
     <ContentPage.Content>
         <StackLayout BackgroundColor="White">
             <Button Style="{StaticResource BackButtonStyle}"/>
+            <SearchBar SearchCommand="{Binding Search}" Text="{Binding SearchText}" CancelButtonColor="Red" Placeholder="Search users"/>
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
