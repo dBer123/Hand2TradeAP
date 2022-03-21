@@ -87,6 +87,28 @@ namespace Hand2TradeAP.ViewModels
                 }
             }
         }
+
+        public ICommand Promote => new Command(PromoteUser);
+        public async void PromoteUser()
+        {
+            Hand2TradeAPIProxy proxy = Hand2TradeAPIProxy.CreateProxy();
+            if (SearchText != null || SearchText != "")
+            {
+                IEnumerable<User> usersSearched = await proxy.SearchAcount(SearchText);
+                if (usersSearched == null)
+                {
+                    await App.Current.MainPage.DisplayAlert("There is no user that fit your search", "", "OK");
+                }
+                else
+                {
+                    SearchedAcounts.Clear();
+                    foreach (User u in usersSearched)
+                    {
+                        SearchedAcounts.Add(u);
+                    }
+                }
+            }
+        }
         public AcountsViewModel()
         {
             SearchedAcounts = new ObservableCollection<User>();
