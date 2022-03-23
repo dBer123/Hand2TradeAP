@@ -15,8 +15,21 @@
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-
-                        <Grid VerticalOptions="FillAndExpand" BackgroundColor="White" HorizontalOptions="FillAndExpand">
+                        <SwipeView>
+                            <SwipeView.LeftItems>
+                                <SwipeItems>
+                                    <SwipeItem
+                                   BackgroundColor="DodgerBlue"
+                                     IconImageSource="Promote.png"/>
+                                    <SwipeItem
+                                   BackgroundColor="Red"
+                                    IconImageSource="Block.png"  
+                                       Command="{Binding Source={x:Reference searchedAcounts}, Path=BindingContext.Block}"
+                                   CommandParameter="{Binding}"
+                                  />
+                                </SwipeItems>
+                            </SwipeView.LeftItems>
+                            <Grid VerticalOptions="FillAndExpand" BackgroundColor="White" HorizontalOptions="FillAndExpand">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
@@ -53,7 +66,7 @@
                                 </Grid>
                             </Grid>
                         </Grid>
-
+                        </SwipeView>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>

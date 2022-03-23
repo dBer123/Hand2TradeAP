@@ -88,8 +88,8 @@ namespace Hand2TradeAP.ViewModels
             }
         }
 
-        public ICommand Promote => new Command(PromoteUser);
-        public async void PromoteUser()
+        public ICommand Promote => new Command<Object>(PromoteUser);
+        public async void PromoteUser(Object obj)
         {
             Hand2TradeAPIProxy proxy = Hand2TradeAPIProxy.CreateProxy();
             if (SearchText != null || SearchText != "")
@@ -105,6 +105,31 @@ namespace Hand2TradeAP.ViewModels
                     foreach (User u in usersSearched)
                     {
                         SearchedAcounts.Add(u);
+                    }
+                }
+            }
+        }
+        public ICommand Block => new Command<Object>(BlockUser);
+        public async void BlockUser(Object obj)
+        {
+            if (obj is User)
+            {
+                User user = (User)obj;
+                if (user.IsBlocked)
+                {
+                    await App.Current.MainPage.DisplayAlert("User is already blocked", "", "OK");
+                }
+                else if (user.IsAdmin)
+                {
+                    await App.Current.MainPage.DisplayAlert("You can not block an admin", "", "OK");
+                }
+                else
+                {
+                    Hand2TradeAPIProxy proxy = Hand2TradeAPIProxy.CreateProxy();
+                    bool succeeded = await proxy.Block(user.UserId);
+                    if (!succeeded)
+                    {
+                        await App.Current.MainPage.DisplayAlert("Error", "Could not block user", "OK");
                     }
                 }
             }

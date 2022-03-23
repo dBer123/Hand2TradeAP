@@ -232,7 +232,7 @@ namespace Hand2TradeAP.ViewModels
         }
 
         public ICommand SelctionChanged => new Command<Object>(OnSelectionChanged);
-        public void OnSelectionChanged(Object obj)
+        public async void OnSelectionChanged(Object obj)
         {
             if (obj is PageItem)
             {
@@ -242,23 +242,24 @@ namespace Hand2TradeAP.ViewModels
                 {
                     case 1:
                         Page p1 = new EditProfile();
-                        App.Current.MainPage = p1;
+                        await App.Current.MainPage.Navigation.PushModalAsync(p1);
+                        
                         break;
                     case 2:
                         Page p2 = new AddItem();
-                        App.Current.MainPage = p2;
+                        await App.Current.MainPage.Navigation.PushModalAsync(p2);
                         break;
                     case 3:
                         Page p3 = new LikedItems();
-                        App.Current.MainPage = p3;
+                        await App.Current.MainPage.Navigation.PushModalAsync(p3);
                         break;
                     case 4:
                         Page p4 = new WebData();
-                        App.Current.MainPage = p4;
+                        await App.Current.MainPage.Navigation.PushModalAsync(p4);
                         break;
                     case 5:
                         Page p5 = new Accounts();
-                        App.Current.MainPage = p5;
+                        await App.Current.MainPage.Navigation.PushModalAsync(p5);
                         break;
                     case 6:
                         App theApp = (App)Application.Current;

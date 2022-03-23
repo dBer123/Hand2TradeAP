@@ -21,8 +21,7 @@ namespace Hand2TradeAP.Views
 
         private void Button_Clicked(object sender, EventArgs e)
         {
-            AcountsViewModel vm = (AcountsViewModel)this.BindingContext;
-            vm.PromoteUser();
+           
         }
     }
 }
