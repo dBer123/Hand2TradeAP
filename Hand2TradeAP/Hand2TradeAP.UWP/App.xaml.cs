@@ -1,26 +1,15 @@
 using System.Reflection;
-using Syncfusion.XForms.UWP.ComboBox;
 using Syncfusion.XForms.UWP.TextInputLayout;
 using Syncfusion.SfRating.XForms.UWP;
-using Syncfusion.ListView.XForms.UWP;
 using Syncfusion.XForms.UWP.Graphics;
 using Syncfusion.XForms.UWP.Border;
 using Syncfusion.XForms.UWP.Buttons;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 namespace Hand2TradeAP.UWP

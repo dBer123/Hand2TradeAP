@@ -55,14 +55,7 @@
                                         
                                         <Label Grid.Row="1" TextColor="#474747" LineBreakMode="NoWrap" Text="{Binding Coins}"  />
                                     </Grid>
-                                    <Grid Grid.Row="0" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center">
-                                        <Button  FontSize="30" Text="{x:Static localfont:FontIconClass.BlockHelper}" BackgroundColor="White" TextColor="Red" FontFamily="MyIcon"
-                                                 Command="{Binding Source={x:Reference searchedAcounts}, Path=Promote}"
-                                                 CommandParameter="{Binding .}" Clicked="Button_Clicked"/>
-                                    </Grid>
-                                    <Grid Grid.Row="0" Grid.Column="3" HorizontalOptions="Center" VerticalOptions="Center">
-                                        <Button  FontSize="30" Text="{x:Static localfont:FontIconClass.ArrowUpBold}" BackgroundColor="White" TextColor="DodgerBlue" FontFamily="MyIcon"/>
-                                    </Grid>
+                                  
                                 </Grid>
                             </Grid>
                         </Grid>

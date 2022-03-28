@@ -39,10 +39,10 @@ namespace Hand2TradeAP.Views
 
         void OnRightButtonClicked(object sender, EventArgs e)
             => SideMenuView.State = SideMenuState.RightMenuShown;
-
-        private void navigationDrawerList_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+       
+        private void navigationDrawerList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            navigationDrawerList.SelectedItem = null;
         }
     }
 }

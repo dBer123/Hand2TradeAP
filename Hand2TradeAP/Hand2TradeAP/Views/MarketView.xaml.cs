@@ -19,5 +19,10 @@ namespace Hand2TradeAP.Views
             this.BindingContext = context;
             InitializeComponent();
         }
+
+        private void searchedItems_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            searchedItems.SelectedItem = null;
+        }
     }
 }

@@ -169,10 +169,9 @@ namespace Hand2TradeAP.ViewModels
         }
 
         public ICommand NevigateBack => new Command(Back);
-        void Back()
+        async void  Back()
         {
-            Page p = new Tabs();
-            App.Current.MainPage = p;
+            await App.Current.MainPage.Navigation.PopModalAsync();
         }
         FileResult imageFileResult;
         public event Action<ImageSource> SetImageSourceEvent;
@@ -267,7 +266,7 @@ namespace Hand2TradeAP.ViewModels
                         }, $"U{user.UserId}.jpg");
                     }
                     theApp.CurrentUser = user;
-                    App.Current.MainPage = new Tabs();
+                    await App.Current.MainPage.Navigation.PopModalAsync();
                 }
             }
         }

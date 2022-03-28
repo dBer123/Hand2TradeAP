@@ -25,6 +25,7 @@
 
                 <CollectionView x:Name="searchedItems"                 
                   BackgroundColor="White"
+                     SelectionChanged="searchedItems_SelectionChanged"           
                   ItemsSource="{Binding SearchedItems}" SelectionMode="Single"                
                   SelectionChangedCommand="{Binding SelctionChanged}"
                   SelectionChangedCommandParameter="{Binding Source={x:Reference searchedItems}, Path=SelectedItem}">

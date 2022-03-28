@@ -91,20 +91,24 @@ namespace Hand2TradeAP.ViewModels
         public ICommand Promote => new Command<Object>(PromoteUser);
         public async void PromoteUser(Object obj)
         {
-            Hand2TradeAPIProxy proxy = Hand2TradeAPIProxy.CreateProxy();
-            if (SearchText != null || SearchText != "")
+            if (obj is User)
             {
-                IEnumerable<User> usersSearched = await proxy.SearchAcount(SearchText);
-                if (usersSearched == null)
+                User user = (User)obj;
+                if (user.IsAdmin)
                 {
-                    await App.Current.MainPage.DisplayAlert("There is no user that fit your search", "", "OK");
+                    await App.Current.MainPage.DisplayAlert("User is already an admin", "", "OK");
+                }
+                else if (user.IsBlocked)
+                {
+                    await App.Current.MainPage.DisplayAlert("You can not promote a blocked user", "", "OK");
                 }
                 else
                 {
-                    SearchedAcounts.Clear();
-                    foreach (User u in usersSearched)
+                    Hand2TradeAPIProxy proxy = Hand2TradeAPIProxy.CreateProxy();
+                    bool succeeded = await proxy.Promote(user.UserId);
+                    if (!succeeded)
                     {
-                        SearchedAcounts.Add(u);
+                        await App.Current.MainPage.DisplayAlert("Error", "Could not block user", "OK");
                     }
                 }
             }

@@ -1,14 +1,9 @@
-using Syncfusion.XForms.iOS.ComboBox;
 using Syncfusion.XForms.iOS.TextInputLayout;
 using Syncfusion.XForms.iOS.Core;
-using Syncfusion.ListView.XForms.iOS;
 using Syncfusion.SfRating.XForms.iOS;
 using Syncfusion.XForms.iOS.Buttons;
 using Syncfusion.XForms.iOS.Border;
 using Syncfusion.XForms.iOS.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 using Foundation;
 using UIKit;

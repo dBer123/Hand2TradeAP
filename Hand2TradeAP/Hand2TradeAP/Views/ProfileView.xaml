@@ -171,6 +171,7 @@
             <CollectionView x:Name="navigationDrawerList"                 
                   BackgroundColor="White"
                   ItemsSource="{Binding MenuItems}" SelectionMode="Single"
+                  SelectionChanged="navigationDrawerList_SelectionChanged"      
                   SelectionChangedCommand="{Binding SelctionChanged}"
                   SelectionChangedCommandParameter="{Binding Source={x:Reference navigationDrawerList}, Path=SelectedItem}">
 
