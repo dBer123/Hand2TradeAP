@@ -16,7 +16,7 @@ using System.Collections.ObjectModel;
 
 namespace Hand2TradeAP.ViewModels
 {
-    class OwnerPageViewModel:INotifyPropertyChanged
+    class OwnerPageViewModel : INotifyPropertyChanged
     {
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
@@ -46,25 +46,47 @@ namespace Hand2TradeAP.ViewModels
                 OnPropertyChanged("Owner");
             }
         }
-        private double rate;
-        public double Rate
+        private double userRate;
+        public double UserRate
         {
-            get { return rate; }
+            get { return userRate; }
             set
             {
-                rate = value;
-                OnPropertyChanged("Rate");
+                userRate = value;
+                OnPropertyChanged("UserRate");
+            }
+        }
+        private double rated;
+        public double Rated
+        {
+            get { return rated; }
+            set
+            {
+                rated = value;
+                OnPropertyChanged("Rated");
             }
         }
         public OwnerPageViewModel(User user)
         {
             Owner = user;
-            if (user.IsAdmin)                         
+            if (user.IsAdmin)
                 IsAdmin = AppFonts.FontIconClass.CheckCircle;
             if (user.CountRanked != 0)
-                Rate = user.SumRanks / user.CountRanked;
+                UserRate = user.SumRanks / user.CountRanked;
             else
-                Rate = 0;
+                UserRate = 0;
+        }
+        public ICommand Rate => new Command<int>(RateUser);
+        public async void RateUser(int rate)
+        {
+            App theApp = (App)Application.Current;
+            Rating rating = new Rating
+            {
+                Rate = rate,
+                RatedUserId = Owner.UserId,
+                SenderId = theApp.CurrentUser.UserId
+            };
+
         }
     }
 }

@@ -467,7 +467,7 @@ namespace Hand2TradeAP.ViewModels
                     CVV =CVV,
                     IsAdmin = false,
                     IsBlocked = true,
-
+                    JoinedDate= DateTime.Today
                 };
 
                 bool isReturned = await proxy.RegisterUser(u);
