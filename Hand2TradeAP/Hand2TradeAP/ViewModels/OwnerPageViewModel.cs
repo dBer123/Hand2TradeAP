@@ -75,6 +75,7 @@ namespace Hand2TradeAP.ViewModels
                 UserRate = user.SumRanks / user.CountRanked;
             else
                 UserRate = 0;
+            Rated = 0;
         }
         public ICommand Rate => new Command<int>(RateUser);
         public async void RateUser(int rate)
