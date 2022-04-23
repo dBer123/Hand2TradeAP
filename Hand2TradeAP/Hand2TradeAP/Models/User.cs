@@ -17,10 +17,7 @@ namespace Hand2TradeAP.Models
         public DateTime BirthDate { get; set; }
         public string Adress { get; set; }
         public bool IsBlocked { get; set; }
-        public string CreditNum { get; set; }
-        public string CVV { get; set; }
-        public DateTime CardDate { get; set; }
-        public int SumRanks { get; set; }
+        public double SumRanks { get; set; }
         public int CountRanked { get; set; }
         public DateTime JoinedDate { get; set; }
         public ICollection<Item> Items { get; set; }

@@ -72,30 +72,7 @@ namespace Hand2TradeAP.ViewModels
             }
         }
 
-        private string cvv;
-        public string CVV
-        {
-            get { return cvv; }
-            set
-            {
-                cvv = value;
-                ValidateCVV();
-                OnPropertyChanged("CVV");
-            }
-        }
-
-
-        private string creditNum;
-        public string CreditNum
-        {
-            get { return creditNum; }
-            set
-            {
-                creditNum = value;
-                ValidateCard();
-                OnPropertyChanged("CreditNum");
-            }
-        }
+      
         
         private DateTime birthDate;
         public DateTime BirthDate
@@ -109,18 +86,7 @@ namespace Hand2TradeAP.ViewModels
             }
         }
 
-        private DateTime cardDate;
-        public DateTime CardDate
-        {
-            get { return cardDate; }
-            set
-            {
-                cardDate = value;
-                ValidateCardDate();
-                OnPropertyChanged("CardDate");
-            }
-        }
-
+      
       
 
         private bool showPasswordError;
@@ -312,106 +278,6 @@ namespace Hand2TradeAP.ViewModels
                 ShowAgeError = false;
         }
 
-        private bool showCVVError;
-
-        public bool ShowCVVError
-        {
-            get => showCVVError;
-            set
-            {
-                showCVVError = value;
-                OnPropertyChanged("ShowCVVError");
-            }
-        }
-        private string cvvError;
-
-        public string CVVError
-        {
-            get => cvvError;
-            set
-            {
-                cvvError = value;
-                OnPropertyChanged("CVVError");
-            }
-        }
-        private void ValidateCVV()
-        {
-            ShowCVVError = true;
-
-            if (CVV == null || CVV.Length > 4 || CVV.Length < 3)
-                CVVError = "CVV must have 3-4 digits";
-            else if (!CVV.All(char.IsDigit))
-                CVVError = "Enter only digits";
-            else
-                ShowCVVError = false;
-        }
-        private bool showCardDateError;
-
-        public bool ShowCardDateError
-        {
-            get => showCardDateError;
-            set
-            {
-                showCardDateError = value;
-                OnPropertyChanged("ShowCardDateError");
-            }
-        }
-
-        private string cardDateError;
-
-        public string CardDateError
-        {
-            get => cardDateError;
-            set
-            {
-                cardDateError = value;
-                OnPropertyChanged("CardDateError");
-            }
-        }
-        private void ValidateCardDate()
-        {
-            ShowCardDateError = true;
-            if (DateTime.Now.Date > CardDate.Date)
-                CardDateError = "Card is expired";
-
-            else
-                ShowCardDateError = false;
-        }
-
-        private bool showCardError;
-
-        public bool ShowCardError
-        {
-            get => showCardError;
-            set
-            {
-                showCardError = value;
-                OnPropertyChanged("ShowCardError");
-            }
-        }
-
-        private string cardError;
-
-        public string CardError
-        {
-            get => cardError;
-            set
-            {
-                cardError = value;
-                OnPropertyChanged("CardError");
-            }
-        }
-        private void ValidateCard()
-        {
-            ShowCardError = true;
-
-            if (CreditNum == null || CreditNum.Length > 19 || CreditNum.Length < 13)
-                CardError = "Credit must have 13-19 digits";
-            else if (!CreditNum.All(char.IsDigit))
-                CardError = "Enter only digits";
-            else
-                ShowCardError = false;
-        }
 
         private bool showGeneralError;
 
@@ -433,12 +299,9 @@ namespace Hand2TradeAP.ViewModels
             ValidateUsername();
             ValidateAge();
             ValidateEmail();
-            ValidateCard();
-            ValidateCVV();
-            ValidateCardDate();
             ValidateAddress(); 
 
-            return !(ShowPasswordError || ShowUsernameError || ShowAgeError || ShowCardDateError || ShowEmailError || ShowCardError || ShowCVVError || ShowAddressError);
+            return !(ShowPasswordError || ShowUsernameError || ShowAgeError || ShowEmailError || ShowAddressError);
         }
         public ICommand SubmitCommand { protected set; get; }
 
@@ -462,9 +325,6 @@ namespace Hand2TradeAP.ViewModels
                     Adress = Address,
                     Coins = 0,
                     BirthDate = BirthDate,
-                    CreditNum = CreditNum,
-                    CardDate = CardDate,
-                    CVV =CVV,
                     IsAdmin = false,
                     IsBlocked = true,
                     JoinedDate= DateTime.Today

@@ -64,6 +64,7 @@ namespace Hand2TradeAP.ViewModels
             {
                 rated = value;
                 OnPropertyChanged("Rated");
+                RateUser(Rated);
             }
         }
         public OwnerPageViewModel(User user)
@@ -77,17 +78,32 @@ namespace Hand2TradeAP.ViewModels
                 UserRate = 0;
             Rated = 0;
         }
-        public ICommand Rate => new Command<int>(RateUser);
-        public async void RateUser(int rate)
+        public async void RateUser(double rate)
         {
-            App theApp = (App)Application.Current;
-            Rating rating = new Rating
+            Hand2TradeAPIProxy proxy = Hand2TradeAPIProxy.CreateProxy();
+            bool found = await proxy.Rate(Owner.UserId, rate);
+            if (!found)
             {
-                Rate = rate,
-                RatedUserId = Owner.UserId,
-                SenderId = theApp.CurrentUser.UserId
-            };
-
+                await App.Current.MainPage.DisplayAlert("Error", "Something went wrong. Please try again later", "OK");
+            }
+            else
+            {
+                await App.Current.MainPage.DisplayAlert(null, "The report successfuly received", "OK");
+            }
+        }
+        public ICommand Report => new Command(ReportUser);
+        public async void ReportUser()
+        {
+            Hand2TradeAPIProxy proxy = Hand2TradeAPIProxy.CreateProxy();
+            bool found = await proxy.Report(Owner.UserId);
+            if (!found)
+            {
+                await App.Current.MainPage.DisplayAlert(null, "You have already reported this user", "OK");
+            }
+            else
+            {
+                await App.Current.MainPage.DisplayAlert(null, "The report successfuly received", "OK");
+            }
         }
     }
 }

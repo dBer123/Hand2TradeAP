@@ -73,33 +73,7 @@
                                     <Label Text="{Binding AgeError}" TextColor="Red" IsVisible="{Binding ShowAgeError}" />
                                     <DatePicker Date="{Binding BirthDate}"></DatePicker>
 
-                                    <Label Text="{Binding CardError}" TextColor="Red" IsVisible="{Binding ShowCardError}" />
-
-                                    <Frame BackgroundColor="Transparent" BorderColor="DarkGray" Margin="0,15,0,0" Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="30">
-                                        <StackLayout Orientation="Horizontal">
-                                            <Frame BackgroundColor="SkyBlue" HeightRequest="40" WidthRequest="40" CornerRadius="30" Padding="0" Margin="5">
-                                                <Image Source="creditCard.png" Aspect="AspectFill" Margin="0"/>
-                                            </Frame>
-
-                                            <Entry Placeholder="Credit-Number" Text="{Binding CreditNum}" Keyboard="Numeric"  TextColor="#7C97F8" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
-                                        </StackLayout>
-                                    </Frame>
-                                    
-                                    <Label Text="Card-Date" FontSize="Large"></Label>
-                                    <Label Text="{Binding CardDateError}" TextColor="Red" IsVisible="{Binding ShowCardDateError}" />
-
-                                    <DatePicker Date="{Binding CardDate}"></DatePicker>
-                                    <Label Text="{Binding CVVError}" TextColor="Red" IsVisible="{Binding ShowCVVError}" />
-                                    <Frame BackgroundColor="Transparent" BorderColor="DarkGray" Margin="0,15,0,0" Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="30">
-                                        <StackLayout Orientation="Horizontal">
-                                            <Frame BackgroundColor="SkyBlue" HeightRequest="40" WidthRequest="40" CornerRadius="30" Padding="0" Margin="5">
-                                                <Image Source="CVV.jpg" Aspect="AspectFill" Margin="0"/>
-                                            </Frame>
-
-                                            <Entry Placeholder="CVV" Text="{Binding CVV}" Keyboard="Numeric" TextColor="#7C97F8" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,20,0"/>
-                                        </StackLayout>
-                                    </Frame>
-
+                                   
                                     <controls:CircleImage  Source="fsaf.jpg" WidthRequest="160" HeightRequest="160"></controls:CircleImage>
 
                                     <Button Text="SIGN UP" Command="{Binding SubmitCommand}"  BorderRadius="6" Margin="15" FontSize="17" FontAttributes="Bold" HeightRequest="40" WidthRequest="200" TextColor="White" BackgroundColor="#2FA999"></Button>

@@ -14,7 +14,7 @@ namespace Hand2TradeAP.Droid
 {
 	
 	
-	[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Android.Build.Tasks", "1.0.0.0")]
+	[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Android.Build.Tasks", "12.2.0.155")]
 	public partial class Resource
 	{
 		
@@ -2008,8 +2008,8 @@ namespace Hand2TradeAP.Droid
 			global::Com.Syncfusion.SfPicker.Resource.Attribute.pickerIsOpen = global::Hand2TradeAP.Droid.Resource.Attribute.pickerIsOpen;
 			global::Com.Syncfusion.SfPicker.Resource.Attribute.pickerItemHeight = global::Hand2TradeAP.Droid.Resource.Attribute.pickerItemHeight;
 			global::Com.Syncfusion.SfPicker.Resource.Attribute.pickerMode = global::Hand2TradeAP.Droid.Resource.Attribute.pickerMode;
-			global::Com.Syncfusion.SfPicker.Resource.Attribute.pickerSelectedItemTextSize = global::Hand2TradeAP.Droid.Resource.Attribute.pickerSelectedItemTextSize;
 			global::Com.Syncfusion.SfPicker.Resource.Attribute.pickerSelectedItemTextcolor = global::Hand2TradeAP.Droid.Resource.Attribute.pickerSelectedItemTextcolor;
+			global::Com.Syncfusion.SfPicker.Resource.Attribute.pickerSelectedItemTextSize = global::Hand2TradeAP.Droid.Resource.Attribute.pickerSelectedItemTextSize;
 			global::Com.Syncfusion.SfPicker.Resource.Attribute.pickerSelectionBorderColor = global::Hand2TradeAP.Droid.Resource.Attribute.pickerSelectionBorderColor;
 			global::Com.Syncfusion.SfPicker.Resource.Attribute.pickerShowColumnHeader = global::Hand2TradeAP.Droid.Resource.Attribute.pickerShowColumnHeader;
 			global::Com.Syncfusion.SfPicker.Resource.Attribute.pickerShowFooter = global::Hand2TradeAP.Droid.Resource.Attribute.pickerShowFooter;
@@ -2037,8 +2037,8 @@ namespace Hand2TradeAP.Droid
 			global::Com.Syncfusion.SfPicker.Resource.Styleable.SfPicker_pickerIsOpen = global::Hand2TradeAP.Droid.Resource.Styleable.SfPicker_pickerIsOpen;
 			global::Com.Syncfusion.SfPicker.Resource.Styleable.SfPicker_pickerItemHeight = global::Hand2TradeAP.Droid.Resource.Styleable.SfPicker_pickerItemHeight;
 			global::Com.Syncfusion.SfPicker.Resource.Styleable.SfPicker_pickerMode = global::Hand2TradeAP.Droid.Resource.Styleable.SfPicker_pickerMode;
-			global::Com.Syncfusion.SfPicker.Resource.Styleable.SfPicker_pickerSelectedItemTextSize = global::Hand2TradeAP.Droid.Resource.Styleable.SfPicker_pickerSelectedItemTextSize;
 			global::Com.Syncfusion.SfPicker.Resource.Styleable.SfPicker_pickerSelectedItemTextcolor = global::Hand2TradeAP.Droid.Resource.Styleable.SfPicker_pickerSelectedItemTextcolor;
+			global::Com.Syncfusion.SfPicker.Resource.Styleable.SfPicker_pickerSelectedItemTextSize = global::Hand2TradeAP.Droid.Resource.Styleable.SfPicker_pickerSelectedItemTextSize;
 			global::Com.Syncfusion.SfPicker.Resource.Styleable.SfPicker_pickerSelectionBorderColor = global::Hand2TradeAP.Droid.Resource.Styleable.SfPicker_pickerSelectionBorderColor;
 			global::Com.Syncfusion.SfPicker.Resource.Styleable.SfPicker_pickerShowColumnHeader = global::Hand2TradeAP.Droid.Resource.Styleable.SfPicker_pickerShowColumnHeader;
 			global::Com.Syncfusion.SfPicker.Resource.Styleable.SfPicker_pickerShowFooter = global::Hand2TradeAP.Droid.Resource.Styleable.SfPicker_pickerShowFooter;

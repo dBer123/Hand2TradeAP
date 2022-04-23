@@ -1,10 +1,51 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              x:Class="Hand2TradeAP.Views.ChatView">
   <ContentView.Content>
-      <StackLayout>
-          <Label Text="Hello Xamarin.Forms!" />
-      </StackLayout>
-  </ContentView.Content>
+        <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}">
+            <ScrollView>
+                <StackLayout Margin="15,18,15,0">
+                    <StackLayout Margin="24,0,0,0" Orientation="Horizontal">
+                        <Label Text="My Chats"  FontSize="24" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" />
+                    </StackLayout>
+
+                    <CollectionView ItemsSource="{Binding Groups}" SelectionChangedCommand="{Binding GroupCommand}" SelectedItem="{Binding SelectedGroup}"
+                                Margin="10,15,10,0" SelectionMode="Single">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout Margin="0,15,0,0">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <!-- Visual State Manager changes the selected movie background color from orange to white -->
+                                        <VisualStateGroup Name="CommonStates">
+                                            <VisualState Name="Selected">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="Transparent" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                    <Frame CornerRadius="20" Padding="15" HasShadow="False">
+                                        <StackLayout Orientation="Horizontal" Spacing="15">
+                                            <controls:CircleImage BorderColor="#414141" BorderThickness="1" Source="{Binding Item.ImgSource}"
+                                                              HeightRequest="60"
+                                            />
+
+                                            <StackLayout>
+                                                <Label x:Name="NameView" Text="{Binding Item.ItemName}" FontSize="20" FontAttributes="Bold" LineBreakMode="TailTruncation" />
+                                                <Label x:Name="LastMessageView" Text="{Binding LastMessage.TexrMessage1}" TextColor="{DynamicResource tertiaryText}" FontSize="20" LineBreakMode="TailTruncation"/>
+                                            </StackLayout>
+
+                                        </StackLayout>
+                                    </Frame>
+                                </StackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout>
+
+            </ScrollView>
+        </RefreshView>
+    </ContentView.Content>
 </ContentView>

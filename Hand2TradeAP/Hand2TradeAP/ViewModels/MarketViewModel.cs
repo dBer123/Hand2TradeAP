@@ -103,6 +103,23 @@ namespace Hand2TradeAP.ViewModels
                 await App.Current.MainPage.Navigation.PushModalAsync(new ItemPage((Item)obj));
             }
         }
+        public ICommand Like => new Command<Object>(LikeItem);
+        public async void LikeItem(Object obj)
+        {
+            if (obj is Item)
+            {
+                Hand2TradeAPIProxy proxy = Hand2TradeAPIProxy.CreateProxy();
+                Item item = (Item)obj;
+                App theApp = (App)Application.Current;
+                int userId = theApp.CurrentUser.UserId;
+                bool found = await proxy.Like(item.ItemId);
+                if (!found)
+                {
+                    await App.Current.MainPage.DisplayAlert("Error", "Can not like Item", "OK");
+
+                }
+            }              
+        }
         public MarketViewModel()
         {
             SortByList = new ObservableCollection<string>();

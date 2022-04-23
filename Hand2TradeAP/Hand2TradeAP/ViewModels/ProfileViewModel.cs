@@ -114,12 +114,12 @@ namespace Hand2TradeAP.ViewModels
             Address = theApp.CurrentUser.Adress;
             Username = theApp.CurrentUser.UserName;
             MyItems = new ObservableCollection<Item>();
-            int sum = theApp.CurrentUser.SumRanks;
+            double sum = theApp.CurrentUser.SumRanks;
             int count = theApp.CurrentUser.CountRanked;            
             if (sum != 0)
             {
                 Rating = sum / count;
-                double num = (double)sum / count - Rating;
+                double num = sum / count - Rating;
                 if (num > 0.5) Rating += 1;
             }
 
