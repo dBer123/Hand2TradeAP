@@ -18,12 +18,12 @@ namespace Hand2TradeAP.Services
     {
         private const string CLOUD_URL = "TBD"; //API url when going on the cloud
         private const string CLOUD_PHOTOS_URL = "TBD";
-        private const string DEV_ANDROID_EMULATOR_URL = "http://10.0.2.2:5001/Hand2TradeAPI"; //API url when using emulator on android
-        private const string DEV_ANDROID_PHYSICAL_URL = "http://192.168.1.14:5001/Hand2TradeAPI"; //API url when using physucal device on android
-        private const string DEV_WINDOWS_URL = "http://localhost:5001/Hand2TradeAPI"; //API url when using windoes on development
-        private const string DEV_ANDROID_EMULATOR_PHOTOS_URL = "http://10.0.2.2:5001/Images/"; //API url when using emulator on android
-        private const string DEV_ANDROID_PHYSICAL_PHOTOS_URL = "http://192.168.1.14:5001/Images/"; //API url when using physucal device on android
-        private const string DEV_WINDOWS_PHOTOS_URL = "http://localhost:5001/Images/"; //API url when using windoes on development
+        private const string DEV_ANDROID_EMULATOR_URL = "http://10.0.2.2:22847/Hand2TradeAPI"; //API url when using emulator on android
+        private const string DEV_ANDROID_PHYSICAL_URL = "http://192.168.1.14:22847/Hand2TradeAPI"; //API url when using physucal device on android
+        private const string DEV_WINDOWS_URL = "http://localhost:22847/Hand2TradeAPI"; //API url when using windoes on development
+        private const string DEV_ANDROID_EMULATOR_PHOTOS_URL = "http://10.0.2.2:22847/Images/"; //API url when using emulator on android
+        private const string DEV_ANDROID_PHYSICAL_PHOTOS_URL = "http://192.168.1.14:22847/Images/"; //API url when using physucal device on android
+        private const string DEV_WINDOWS_PHOTOS_URL = "http://localhost:22847/Images/"; //API url when using windoes on development
 
         private HttpClient client;
         public string baseUri;
@@ -574,7 +574,7 @@ namespace Hand2TradeAP.Services
                 };
                 string jsonObject = JsonSerializer.Serialize<TradeChat>(chat, options);
                 StringContent content = new StringContent(jsonObject, Encoding.UTF8, "application/json");
-                HttpResponseMessage response = await this.client.PostAsync($"{this.baseUri}/api/create-group", content);
+                HttpResponseMessage response = await this.client.PostAsync($"{this.baseUri}/create-group", content);
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -587,8 +587,9 @@ namespace Hand2TradeAP.Services
                     return null;
                 }
             }
-            catch
+            catch (Exception e)
             {
+                Console.WriteLine(e);
                 return null;
             }
         }
@@ -597,7 +598,7 @@ namespace Hand2TradeAP.Services
         {
             try
             {
-                HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/api/get-group?chatId={chatId}");
+                HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/get-group?chatId={chatId}");
                 if (response.IsSuccessStatusCode)
                 {
                     string jsonContent = await response.Content.ReadAsStringAsync();
@@ -610,20 +611,26 @@ namespace Hand2TradeAP.Services
                     return null;
                 }
             }
-            catch
+            catch (Exception e)
             {
+                Console.WriteLine(e);
                 return null;
             }
         }
-        public async Task<List<TradeChat>> GetGroups()
+        public async Task<IEnumerable<TradeChat>> GetGroups()
         {
             try
             {
-                HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/api/get-groups");
+                JsonSerializerOptions options = new JsonSerializerOptions
+                {
+                    ReferenceHandler = ReferenceHandler.Preserve,
+                    PropertyNameCaseInsensitive = true
+                };
+                HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/get-groups");
                 if (response.IsSuccessStatusCode)
                 {
                     string jsonContent = await response.Content.ReadAsStringAsync();
-                    List<TradeChat> groups = JsonSerializer.Deserialize<List<TradeChat>>(jsonContent);
+                    IEnumerable<TradeChat> groups = JsonSerializer.Deserialize<IEnumerable<TradeChat>>(jsonContent, options);
 
                     return groups;
                 }
@@ -632,8 +639,9 @@ namespace Hand2TradeAP.Services
                     return null;
                 }
             }
-            catch
+            catch(Exception e)
             {
+                Console.WriteLine(e);
                 return null;
             }
         }

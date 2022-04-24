@@ -58,12 +58,10 @@ namespace Hand2TradeAP.UWP
                     typeof(SfButtonRenderer).GetTypeInfo().Assembly,
                     typeof(SfBorderRenderer).GetTypeInfo().Assembly,
                     typeof(SfGradientViewRenderer).GetTypeInfo().Assembly,
-                    typeof(SfListViewRenderer).GetTypeInfo().Assembly,
                     typeof(SfRatingRenderer).GetTypeInfo().Assembly,
                     typeof(SfRadioButtonRenderer).GetTypeInfo().Assembly,
                     typeof(SfSegmentedControlRenderer).GetTypeInfo().Assembly,
                     typeof(SfTextInputLayoutRenderer).GetTypeInfo().Assembly,
-                    typeof(SfComboBoxRenderer).GetTypeInfo().Assembly
                 };
                 Xamarin.Forms.Forms.Init(e, assembliesToInclude);
 

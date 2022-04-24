@@ -26,12 +26,10 @@ namespace Hand2TradeAP.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
-            SfComboBoxRenderer.Init();
             SfTextInputLayoutRenderer.Init();
             SfAvatarViewRenderer.Init();
             SfSegmentedControlRenderer.Init();
             SfRadioButtonRenderer.Init();
-            SfListViewRenderer.Init();
             SfRatingRenderer.Init();
             SfGradientViewRenderer.Init();
             SfButtonRenderer.Init();

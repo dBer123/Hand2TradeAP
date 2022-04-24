@@ -77,6 +77,7 @@ namespace Hand2TradeAP.ViewModels
             else
                 UserRate = 0;
             Rated = 0;
+    
         }
         public async void RateUser(double rate)
         {

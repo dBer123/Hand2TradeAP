@@ -37,7 +37,7 @@
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>
-                        <Button Text="Report" TextColor="Black" FontAttributes="Bold" BackgroundColor="Red" HeightRequest="30" CornerRadius="5" HorizontalOptions="End" Margin="80,0" />
+                    <Button Text="Report" TextColor="Black" FontAttributes="Bold" BackgroundColor="Red" Command="{Binding Report}" HeightRequest="30" CornerRadius="5" HorizontalOptions="End" Margin="80,0" />
 
                     </StackLayout>
 

@@ -101,7 +101,7 @@ namespace Hand2TradeAP.ViewModels
         private async void GetGroups()
         {
             Hand2TradeAPIProxy proxy = Hand2TradeAPIProxy.CreateProxy();
-            List<TradeChat> userGroups = await proxy.GetGroups();
+            IEnumerable<TradeChat> userGroups = await proxy.GetGroups();
             Groups.Clear();
             foreach (TradeChat chat in userGroups)
             {
