@@ -38,12 +38,12 @@ namespace Hand2TradeAP.ViewModels
         {
             try
             {
-                chatService.ReceiveMessage(GetMessage);
-                await chatService.Connect();
+                //chatService.ReceiveMessage(GetMessage);
+                //await chatService.Connect();
             }
             catch (Exception exp)
             {
-
+                Console.WriteLine(exp);
             }
         }
 
@@ -63,7 +63,7 @@ namespace Hand2TradeAP.ViewModels
                     Sender = CurrentAccount
                 };
 
-                chatService.SendMessage(new MsgDTO(message));
+                chatService.SendMessage(message.SenderId.ToString(), message.TextMessage1);
                 AddMessage(message);
             }
         }

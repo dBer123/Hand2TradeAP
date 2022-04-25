@@ -49,7 +49,7 @@ namespace Hand2TradeAP.ViewModels
         public LoginViewModel()
         {
             SubmitCommand = new Command(OnSubmit);
-            Email = "berdaniel04@gmail.com";
+            Email = "danielbe4@ramon.edum.org.il";
             Password = "daniel6839";
             OnSubmit();
         }
@@ -58,7 +58,6 @@ namespace Hand2TradeAP.ViewModels
 
         public async void OnSubmit()
         {
-            Email = "berdaniel04@gmail.com";
             Hand2TradeAPIProxy proxy = Hand2TradeAPIProxy.CreateProxy();
             User user = await proxy.LoginAsync(Email, Password);
             if (user == null)

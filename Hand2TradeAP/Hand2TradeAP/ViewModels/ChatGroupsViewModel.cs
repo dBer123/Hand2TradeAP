@@ -36,7 +36,7 @@ namespace Hand2TradeAP.ViewModels
             if (SelectedGroup != null)
             {
                 int chatId = SelectedGroup.ChatId;
-                await App.Current.MainPage.Navigation.PushAsync(new ChatPage(chatId, chatService));
+                await App.Current.MainPage.Navigation.PushModalAsync(new ChatPage(chatId, chatService));
                 SelectedGroup = null;
 
             }
@@ -54,7 +54,7 @@ namespace Hand2TradeAP.ViewModels
             }
         }
 
-        private ObservableCollection<TradeChat> Groups;
+        public ObservableCollection<TradeChat> Groups { get; set; }
   
 
         private TradeChat selectedGroup;
