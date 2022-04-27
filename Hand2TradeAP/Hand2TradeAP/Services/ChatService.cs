@@ -9,13 +9,13 @@ using Xamarin.Forms;
 
 namespace Hand2TradeAP.Services
 {
-    public class ChatService
+    public class ChatService : IChatService
     {
         private const string CLOUD_URL = "TBD"; //API url when going on the cloud
         private const string DEV_ANDROID_EMULATOR_URL = "http://10.0.2.2:22847/chat"; //chat url when using emulator on android
         private const string DEV_ANDROID_PHYSICAL_URL = "http://192.168.1.14:22847/chat"; //chat url when using physucal device on android
         private const string DEV_WINDOWS_URL = "http://localhost:22847/chat"; //API url when using windoes on development
-
+      
         private readonly HubConnection hubConnection;
         public ChatService()
         {
@@ -65,13 +65,7 @@ namespace Hand2TradeAP.Services
 
         }
 
-        //This message send message to all clients!
-        public async Task SendMessage(string userId, string message)
-        {
-
-            await hubConnection.InvokeAsync("SendMessage", userId, message);
-
-        }
+       
 
         //This methid send a message to specific group
         public async Task SendMessageToGroup(string userId, string message, string groupName)
