@@ -9,6 +9,7 @@ using Hand2TradeAP.Models;
 using System.Linq;
 using Hand2TradeAP.Views;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace Hand2TradeAP.ViewModels
 {
@@ -21,136 +22,9 @@ namespace Hand2TradeAP.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
-        private int chatId;
-        private ChatService chatService;
-        private Hand2TradeAPIProxy proxy;
-        public ChatViewModel(int chatId, ChatService chatService)
-        {
-            this.chatId = chatId;
-            this.chatService = chatService;
-            this.proxy = Hand2TradeAPIProxy.CreateProxy();
-
-            InitializeHub();
-            LoadGroup();
-        }
-
-        public async void InitializeHub()
-        {
-            try
-            {
-                //chatService.ReceiveMessage(GetMessage);
-                //await chatService.Connect();
-            }
-            catch (Exception exp)
-            {
-                Console.WriteLine(exp);
-            }
-        }
-
-        public Command SendMsgCommand => new Command(SendMsg);
-        private void SendMsg()
-        {
-            string text = Message;
-            if (text != null)
-            {
-                Message = "";
-                TextMessage message = new TextMessage()
-                {
-                    SenderId = CurrentAccount.UserId,
-                    ChatId = chatId,
-                    TextMessage1 = text,
-                    SentTime = DateTime.Now,
-                    Sender = CurrentAccount
-                };
-
-                chatService.SendMessage(message.SenderId.ToString(), message.TextMessage1);
-                AddMessage(message);
-            }
-        }
-
-        private void GetMessage(MsgDTO message)
-        {
-            if (message != null)
-            {
-                AddMessage(new TextMessage()
-                {
-                    SenderId = message.SenderId,
-                    SentTime = message.SentTime,
-                    TextMessage1 = message.TextMessage1,
-                    Sender = message.Sender,
-                    ChatId = message.ChatId,
-                    Chat = message.Chat
-                });
-            }
-        }
-
-        private void AddMessage(TextMessage message)
-        {
-            Messages.Insert(0, message);
-        }
-
-        private async void LoadGroup()
-        {
-            Group = await proxy.GetGroup(chatId);
-
-            Messages = new ObservableCollection<TextMessage>((from msg in Group.TextMessages orderby msg.SentTime descending select msg));
-           
-            CurrentAccount = ((App)App.Current).CurrentUser;
-            MessagesLoaded?.Invoke();
-        }
-        private async void GetGroups()
-        {
-            Hand2TradeAPIProxy proxy = Hand2TradeAPIProxy.CreateProxy();
-            IEnumerable<TradeChat> userGroups = await proxy.GetGroups();
-            Groups.Clear();
-            foreach (TradeChat chat in userGroups)
-            {
-                chat.LastMessage = chat.TextMessages.OrderByDescending(m => m.SentTime).FirstOrDefault();
-                Groups.Add(chat);
-            }
-        }
-
-
-
-        private TradeChat group;
-        public TradeChat Group
-        {
-            get => group;
-            set
-            {
-                group = value;
-                OnPropertyChanged("Group");
-            }
-           
-        }
-
-        private Item tradedItem;
-        public Item TradedItem
-        {
-            get => tradedItem;
-            set
-            {
-                tradedItem = value;
-                OnPropertyChanged("TradedItem");
-            }
-        }
-
-        private ObservableCollection<TextMessage> Messages;
-
-        private ObservableCollection<TradeChat> Groups;
-
-        private User currentAccount;
-        public User CurrentAccount
-        {
-            get => currentAccount;
-            set
-            {
-                currentAccount = value;
-                OnPropertyChanged("CurrentAccount");
-            }
-        }
 
         private string message;
+
         public string Message
         {
             get => message;
@@ -161,7 +35,90 @@ namespace Hand2TradeAP.ViewModels
             }
         }
 
-        public Action MessagesLoaded;
+        private string group;
+
+        public string Group
+        {
+            get => group;
+            set
+            {
+                group = value;
+                OnPropertyChanged("Group");
+            }
+        }
+
+        public ObservableCollection<TextMessage> Messages { get; set; }
+        //Declare the chat service to be allive as long as the chat view is on!
+        //In other cases the live connection should be alive while the app in on
+        //in such cases it will be declared in the App class
+        private IChatService chatService;
+        private User user;
+        public ObservableCollection<string> Groups { get; set; }
+        public ChatViewModel()
+        {
+            Messages = new ObservableCollection<TextMessage>();
+            Groups = new ObservableCollection<string>();
+
+            App app = (App)Application.Current;
+            user = app.CurrentUser;
+            chatService = new ChatService();
+            chatService.RegisterToReceiveMessage(ReceiveMessage);
+            chatService.RegisterToReceiveMessageFromGroup(ReceiveMessageFromGroup);
+            Message = String.Empty;
+            ConnectToChatService();
+        }
+
+        private async void ConnectToChatService()
+        {
+            //connect to server and register to all groups
+            await chatService.Connect(Groups.ToArray());
+        }
+        private void ReceiveMessage(string userId, string message)
+        {
+            TextMessage chatMessage = new TextMessage()
+            {
+                SenderId = int.Parse(userId),
+                TextMessage1 = message,
+                SentTime = DateTime.Now,
+            };
+            //if (chatMessage.UserId == user.Email)
+            //    chatMessage.Recieved = false;
+            Messages.Add(chatMessage);
+        }
+
+        private void ReceiveMessageFromGroup(string userId, string message, string groupName)
+        {
+            TextMessage chatMessage = new TextMessage()
+            {
+                SenderId = int.Parse(userId),
+                TextMessage1 = message,
+                SentTime = DateTime.Now,
+                ChatId = int.Parse(groupName)
+            };
+
+            //if (chatMessage.UserId == user.Email)
+            //    chatMessage.Recieved = false;
+            Messages.Add(chatMessage);
+        }
+
+        public ICommand SendMessage => new Command(OnSendMessage);
+        public async void OnSendMessage()
+        {
+            //ChatMessage message = new ChatMessage()
+            //{
+            //    UserId = this.user.Email,
+            //    Message = this.Message,
+            //    Recieved = false,
+            //    MessageDateTime = DateTime.Now,
+            //    GroupName = this.Group
+            //};
+            //Messages.Add(message);
+          
+           await chatService.SendMessageToGroup(user.Email, Message, Group);
+        }
     }
 }
+
+    
+
 
