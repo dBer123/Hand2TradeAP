@@ -34,7 +34,7 @@
 
                                             <StackLayout>
                                                 <Label x:Name="NameView" Text="{Binding Item.ItemName}" FontSize="20" FontAttributes="Bold" LineBreakMode="TailTruncation" />
-                                                <Label x:Name="LastMessageView" Text="{Binding LastMessage.TexrMessage1}" FontSize="20" LineBreakMode="TailTruncation"/>
+                                                <Label x:Name="LastMessageView" Text="{Binding LastMessage.TextMessage1}" FontSize="20" LineBreakMode="TailTruncation"/>
                                             </StackLayout>
 
                                         </StackLayout>

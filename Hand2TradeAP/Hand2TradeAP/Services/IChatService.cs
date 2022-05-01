@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Hand2TradeAP.Models;
 
 namespace Hand2TradeAP.Services
 {
@@ -9,7 +10,7 @@ namespace Hand2TradeAP.Services
     {
         Task Connect(string[] groupNames);
         Task Disconnect(string[] groupNames);
-        Task SendMessageToGroup(string userId, string message, string groupName);
+        Task SendMessageToGroup(string user, TextMessage textMessage);
         void RegisterToReceiveMessage(Action<string, string> GetMessageAndUser);
         void RegisterToReceiveMessageFromGroup(Action<string, string, string> GetMessageAndUserFromGroup);
     }

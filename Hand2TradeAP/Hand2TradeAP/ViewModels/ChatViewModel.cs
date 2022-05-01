@@ -35,9 +35,9 @@ namespace Hand2TradeAP.ViewModels
             }
         }
 
-        private string group;
+        private TradeChat group;
 
-        public string Group
+        public TradeChat Group
         {
             get => group;
             set
@@ -53,14 +53,27 @@ namespace Hand2TradeAP.ViewModels
         //in such cases it will be declared in the App class
         private IChatService chatService;
         private User user;
+        //private User chatMember;
         public ObservableCollection<string> Groups { get; set; }
-        public ChatViewModel()
+        public ChatViewModel(TradeChat chat)
         {
+            Group = chat;
             Messages = new ObservableCollection<TextMessage>();
+            foreach (TextMessage textMessage in chat.TextMessages)
+            {
+                Messages.Add(textMessage);
+            }
             Groups = new ObservableCollection<string>();
-
             App app = (App)Application.Current;
             user = app.CurrentUser;
+            //if(user == chat.Buyer)
+            //{
+            //    chatMember = chat.Seller;
+            //}
+            //else
+            //{
+            //    chatMember = chat.Buyer;
+            //}
             chatService = new ChatService();
             chatService.RegisterToReceiveMessage(ReceiveMessage);
             chatService.RegisterToReceiveMessageFromGroup(ReceiveMessageFromGroup);
@@ -91,7 +104,7 @@ namespace Hand2TradeAP.ViewModels
             TextMessage chatMessage = new TextMessage()
             {
                 SenderId = int.Parse(userId),
-                TextMessage1 = message,
+                TextMessage1 = Message,
                 SentTime = DateTime.Now,
                 ChatId = int.Parse(groupName)
             };
@@ -104,17 +117,18 @@ namespace Hand2TradeAP.ViewModels
         public ICommand SendMessage => new Command(OnSendMessage);
         public async void OnSendMessage()
         {
-            //ChatMessage message = new ChatMessage()
-            //{
-            //    UserId = this.user.Email,
-            //    Message = this.Message,
-            //    Recieved = false,
-            //    MessageDateTime = DateTime.Now,
-            //    GroupName = this.Group
-            //};
-            //Messages.Add(message);
-          
-           await chatService.SendMessageToGroup(user.Email, Message, Group);
+            TextMessage message = new TextMessage()
+            {
+                SenderId = this.user.UserId,
+                Sender=this.user,               
+                TextMessage1 = this.Message,
+                SentTime = DateTime.Now,
+                Chat = this.Group,
+                ChatId = this.Group.ChatId,
+            };
+            Messages.Add(message);
+
+            await chatService.SendMessageToGroup(user.UserId.ToString(), message);
         }
     }
 }

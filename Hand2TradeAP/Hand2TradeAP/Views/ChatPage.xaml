@@ -66,7 +66,7 @@
                         <Frame Style="{DynamicResource InputFieldStyle}" CornerRadius="20" VerticalOptions="CenterAndExpand" >
                             <Entry Text="{Binding Message}" FontSize="14" Margin="3,0,0,0" Placeholder="Type a message..." HorizontalOptions="FillAndExpand" />
                         </Frame>
-                        <ImageButton Source="icon_send.png" Command="{Binding SendMsgCommand}" VerticalOptions="CenterAndExpand" HeightRequest="28" WidthRequest="28"/>
+                        <ImageButton Source="icon_send.png" Command="{Binding SendMessage}" VerticalOptions="CenterAndExpand" HeightRequest="28" WidthRequest="28"/>
                     </StackLayout>
 
 

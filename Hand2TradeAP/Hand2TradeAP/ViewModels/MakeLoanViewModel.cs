@@ -45,7 +45,7 @@ namespace Hand2TradeAP.ViewModels
         }
         public MakeLoanViewModel()
         {
-
+            PaymentDate = DateTime.Today.AddMonths(2);
         }
     }
 }

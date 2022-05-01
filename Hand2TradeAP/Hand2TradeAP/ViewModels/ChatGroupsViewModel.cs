@@ -35,8 +35,8 @@ namespace Hand2TradeAP.ViewModels
         {
             if (SelectedGroup != null)
             {
-                int chatId = SelectedGroup.ChatId;
-                await App.Current.MainPage.Navigation.PushModalAsync(new ChatPage(chatId, chatService));
+                TradeChat chat = SelectedGroup;
+                await App.Current.MainPage.Navigation.PushModalAsync(new ChatPage(chat, chatService));
                 SelectedGroup = null;
 
             }

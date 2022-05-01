@@ -64,14 +64,12 @@ namespace Hand2TradeAP.Services
             await hubConnection.StopAsync();
 
         }
-
-       
-
+     
         //This methid send a message to specific group
-        public async Task SendMessageToGroup(string userId, string message, string groupName)
+        public async Task SendMessageToGroup(string user, TextMessage textMessage)
         {
 
-            await hubConnection.InvokeAsync("SendMessageToGroup", userId, message, groupName);
+            await hubConnection.InvokeAsync("SendMessageToGroup", user, textMessage);
 
         }
 
