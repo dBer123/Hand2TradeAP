@@ -46,6 +46,17 @@ namespace Hand2TradeAP.ViewModels
                 OnPropertyChanged("Group");
             }
         }
+        private Item item;
+
+        public Item Item
+        {
+            get => item;
+            set
+            {
+                item = value;
+                OnPropertyChanged("Item");
+            }
+        }
 
         public ObservableCollection<TextMessage> Messages { get; set; }
         //Declare the chat service to be allive as long as the chat view is on!
@@ -66,6 +77,7 @@ namespace Hand2TradeAP.ViewModels
             Groups = new ObservableCollection<string>();
             App app = (App)Application.Current;
             user = app.CurrentUser;
+            Item = chat.Item;
             //if(user == chat.Buyer)
             //{
             //    chatMember = chat.Seller;
@@ -76,7 +88,6 @@ namespace Hand2TradeAP.ViewModels
             //}
             chatService = new ChatService();
             chatService.RegisterToReceiveMessage(ReceiveMessage);
-            chatService.RegisterToReceiveMessageFromGroup(ReceiveMessageFromGroup);
             Message = String.Empty;
             ConnectToChatService();
         }
@@ -86,17 +97,19 @@ namespace Hand2TradeAP.ViewModels
             //connect to server and register to all groups
             await chatService.Connect(Groups.ToArray());
         }
-        private void ReceiveMessage(string userId, string message)
+        private void ReceiveMessage(string sender, string receiver, string chatId, string message)
         {
-            TextMessage chatMessage = new TextMessage()
+            if (user.UserId.ToString().Equals(receiver))
             {
-                SenderId = int.Parse(userId),
-                TextMessage1 = message,
-                SentTime = DateTime.Now,
-            };
-            //if (chatMessage.UserId == user.Email)
-            //    chatMessage.Recieved = false;
-            Messages.Add(chatMessage);
+                TextMessage chatMessage = new TextMessage()
+                {
+                    SenderId = int.Parse(sender),
+
+                    TextMessage1 = message,
+                    SentTime = DateTime.Now,
+                };
+                Messages.Add(chatMessage);
+            }
         }
 
         private void ReceiveMessageFromGroup(string userId, string message, string groupName)
@@ -112,6 +125,7 @@ namespace Hand2TradeAP.ViewModels
             //if (chatMessage.UserId == user.Email)
             //    chatMessage.Recieved = false;
             Messages.Add(chatMessage);
+
         }
 
         public ICommand SendMessage => new Command(OnSendMessage);
@@ -127,8 +141,13 @@ namespace Hand2TradeAP.ViewModels
                 ChatId = this.Group.ChatId,
             };
             Messages.Add(message);
-
-            await chatService.SendMessageToGroup(user.UserId.ToString(), message);
+            Message = String.Empty;
+            string receiver;
+            if (message.Chat.BuyerId == this.user.UserId)
+                receiver = message.Chat.SellerId.ToString();
+            else
+                receiver = message.Chat.BuyerId.ToString();
+            await chatService.SendMessage(user.UserId.ToString(), receiver,message.ChatId.ToString(), message.TextMessage1);
         }
     }
 }

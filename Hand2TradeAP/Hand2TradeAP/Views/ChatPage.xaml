@@ -14,7 +14,17 @@
                 </Grid.RowDefinitions>
 
                 <Frame Margin="25,10,25,10" Grid.Row="0" Grid.Column="0" CornerRadius="20" Padding="15" HasShadow="False" >
-                    
+                    <StackLayout Orientation="Horizontal" >
+                        <yummy:PancakeView CornerRadius="10">
+                            <Image Source="{Binding Item.ImgSource}" />
+                        </yummy:PancakeView>
+                        <Label Text="{Binding Item.ItemName}" TextColor="Black" FontSize="30" Margin="10"/>
+                        <StackLayout Orientation="Horizontal" Margin="8">
+                            <Image Source="coin.jpg" Aspect="AspectFit" HeightRequest="30"/>
+                            <Label Text="{Binding Item.Price}" FontSize="20" TextColor="CadetBlue"/>
+                        </StackLayout>
+                    </StackLayout>
+                   
                 </Frame>
 
 
@@ -51,7 +61,7 @@
                                                          Binding="{Binding SenderId}"
                                                          Value="{x:Static models:TextMessage.LoggedInAccountId}">
                                                     <Setter Property="CornerRadius" Value="15,15,15,0" />
-                                                    <Setter Property="BackgroundColor" Value="#FFDE9E" />
+                                                    <Setter Property="BackgroundColor" Value="#c8eac9" />
                                                 </DataTrigger>
                                             </yummy:PancakeView.Triggers>
                                             <Label Text="{Binding TextMessage1}" FontSize="16"  VerticalOptions="Center" />

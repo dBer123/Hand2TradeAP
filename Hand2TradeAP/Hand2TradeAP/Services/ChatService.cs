@@ -66,15 +66,15 @@ namespace Hand2TradeAP.Services
         }
      
         //This methid send a message to specific group
-        public async Task SendMessageToGroup(string user, TextMessage textMessage)
+        public async Task SendMessage(string sender, string receiver, string chatId, string message)
         {
 
-            await hubConnection.InvokeAsync("SendMessageToGroup", user, textMessage);
+            await hubConnection.InvokeAsync("SendMessage", sender, receiver, chatId, message);
 
         }
 
         //this method register a method to be called upon receiving a message
-        public void RegisterToReceiveMessage(Action<string, string> GetMessageAndUser)
+        public void RegisterToReceiveMessage(Action<string, string, string, string > GetMessageAndUser)
         {
             hubConnection.On("ReceiveMessage", GetMessageAndUser);
         }
