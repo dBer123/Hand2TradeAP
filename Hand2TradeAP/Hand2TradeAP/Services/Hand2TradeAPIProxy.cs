@@ -594,17 +594,44 @@ namespace Hand2TradeAP.Services
             }
         }
 
-        public async Task<TradeChat> GetGroup(int chatId)
+        //public async Task<TradeChat> GetGroup(int chatId)
+        //{
+        //    try
+        //    {
+        //        HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/get-group?chatId={chatId}");
+        //        if (response.IsSuccessStatusCode)
+        //        {
+        //            string jsonContent = await response.Content.ReadAsStringAsync();
+        //            TradeChat chat = JsonSerializer.Deserialize<TradeChat>(jsonContent);
+
+        //            return chat;
+        //        }
+        //        else
+        //        {
+        //            return null;
+        //        }
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Console.WriteLine(e);
+        //        return null;
+        //    }
+        //}
+        public async Task<List<TradeChat>> GetGroups()
         {
             try
             {
-                HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/get-group?chatId={chatId}");
+                HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/get-groups");
                 if (response.IsSuccessStatusCode)
                 {
-                    string jsonContent = await response.Content.ReadAsStringAsync();
-                    TradeChat chat = JsonSerializer.Deserialize<TradeChat>(jsonContent);
-
-                    return chat;
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        ReferenceHandler = ReferenceHandler.Preserve, 
+                        PropertyNameCaseInsensitive = true
+                    };
+                    string content = await response.Content.ReadAsStringAsync();
+                    List<TradeChat> chats = JsonSerializer.Deserialize<List<TradeChat>>(content, options);
+                    return chats;
                 }
                 else
                 {
@@ -613,37 +640,10 @@ namespace Hand2TradeAP.Services
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                Console.WriteLine(e.Message);
                 return null;
             }
-        }
-        public async Task<IEnumerable<TradeChat>> GetGroups()
-        {
-            try
-            {
-                JsonSerializerOptions options = new JsonSerializerOptions
-                {
-                    ReferenceHandler = ReferenceHandler.Preserve,
-                    PropertyNameCaseInsensitive = true
-                };
-                HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/get-groups");
-                if (response.IsSuccessStatusCode)
-                {
-                    string jsonContent = await response.Content.ReadAsStringAsync();
-                    IEnumerable<TradeChat> groups = JsonSerializer.Deserialize<IEnumerable<TradeChat>>(jsonContent, options);
-
-                    return groups;
-                }
-                else
-                {
-                    return null;
-                }
-            }
-            catch(Exception e)
-            {
-                Console.WriteLine(e);
-                return null;
-            }
+            
         }
     }
 

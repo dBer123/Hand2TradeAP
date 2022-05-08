@@ -57,6 +57,17 @@ namespace Hand2TradeAP.ViewModels
                 OnPropertyChanged("Item");
             }
         }
+        private bool isSeller;
+
+        public bool IsSeller
+        {
+            get => isSeller;
+            set
+            {
+                isSeller = value;
+                OnPropertyChanged("IsSeller");
+            }
+        }
 
         public ObservableCollection<TextMessage> Messages { get; set; }
         //Declare the chat service to be allive as long as the chat view is on!
@@ -78,14 +89,14 @@ namespace Hand2TradeAP.ViewModels
             App app = (App)Application.Current;
             user = app.CurrentUser;
             Item = chat.Item;
-            //if(user == chat.Buyer)
-            //{
-            //    chatMember = chat.Seller;
-            //}
-            //else
-            //{
-            //    chatMember = chat.Buyer;
-            //}
+            if (user == chat.Buyer)
+            {
+                IsSeller = false;
+            }
+            else
+            {
+                IsSeller = true;
+            }
             chatService = new ChatService();
             chatService.RegisterToReceiveMessage(ReceiveMessage);
             Message = String.Empty;

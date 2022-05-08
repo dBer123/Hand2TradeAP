@@ -89,7 +89,7 @@ namespace Hand2TradeAP.ViewModels
             }
             else
             {
-                await App.Current.MainPage.DisplayAlert(null, "The report successfuly received", "OK");
+                await App.Current.MainPage.DisplayAlert(null, "The Rating successfuly received", "OK");
             }
         }
         public ICommand Report => new Command(ReportUser);
