@@ -44,14 +44,14 @@ namespace Hand2TradeAP.ViewModels
 
         private async void GetGroups()
         {
-            //Hand2TradeAPIProxy proxy = Hand2TradeAPIProxy.CreateProxy();
-            //List<TradeChat> userGroups = await proxy.GetGroups();
-            //Groups.Clear();
-            //foreach (TradeChat chat in userGroups)
-            //{
-            //    chat.LastMessage = chat.TextMessages.OrderByDescending(m => m.SentTime).FirstOrDefault();
-            //    Groups.Add(chat);
-            //}
+            Hand2TradeAPIProxy proxy = Hand2TradeAPIProxy.CreateProxy();
+            List<TradeChat> userGroups = await proxy.GetGroups();
+            Groups.Clear();
+            foreach (TradeChat chat in userGroups)
+            {
+                chat.LastMessage = chat.TextMessages.OrderByDescending(m => m.SentTime).FirstOrDefault();
+                Groups.Add(chat);
+            }
         }
 
         public ObservableCollection<TradeChat> Groups { get; set; }

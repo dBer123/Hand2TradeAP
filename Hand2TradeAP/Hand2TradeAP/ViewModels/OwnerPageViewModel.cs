@@ -75,9 +75,7 @@ namespace Hand2TradeAP.ViewModels
             if (user.CountRanked != 0)
                 UserRate = user.SumRanks / user.CountRanked;
             else
-                UserRate = 0;
-            Rated = 0;
-    
+                UserRate = 0;    
         }
         public async void RateUser(double rate)
         {

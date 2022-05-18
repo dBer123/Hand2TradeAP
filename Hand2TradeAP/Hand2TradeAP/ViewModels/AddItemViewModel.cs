@@ -189,9 +189,7 @@ namespace Hand2TradeAP.ViewModels
                 if (result != null)
                 {
                     this.imageFileResult = result;
-                    var stream = await result.OpenReadAsync();
-                    ImageSource imgSource = ImageSource.FromStream(() => stream);
-                    App.Current.MainPage =  new CropImage(this);
+                    await App.Current.MainPage.Navigation.PushModalAsync(new CropImage(this));
                     //if (SetImageSourceEvent != null)
                     //    SetImageSourceEvent(imgSource);
                 }
