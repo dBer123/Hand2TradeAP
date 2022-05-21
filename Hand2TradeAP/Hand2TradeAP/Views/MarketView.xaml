@@ -32,8 +32,19 @@
 
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-
-                            <Grid VerticalOptions="FillAndExpand" BackgroundColor="White" HorizontalOptions="FillAndExpand">
+                            <SwipeView>
+                                <SwipeView.LeftItems>
+                                    <SwipeItems>
+                  
+                                        <SwipeItem
+                                   BackgroundColor="HotPink"
+                                    IconImageSource="heartIcon.png"  
+                                       Command="{Binding Source={x:Reference searchedAcounts}, Path=BindingContext.Like}"
+                                   CommandParameter="{Binding}"
+                                  />
+                                    </SwipeItems>
+                                </SwipeView.LeftItems>
+                                <Grid VerticalOptions="FillAndExpand" BackgroundColor="White" HorizontalOptions="FillAndExpand">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
@@ -67,7 +78,7 @@
                                     </Grid>
                                 </Grid>
                             </Grid>
-
+                            </SwipeView>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>

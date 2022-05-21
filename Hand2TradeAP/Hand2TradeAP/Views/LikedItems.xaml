@@ -1,10 +1,70 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Hand2TradeAP.Views.LikedItems">
+             x:Class="Hand2TradeAP.Views.LikedItems"
+             xmlns:cards="clr-namespace:Syncfusion.XForms.Cards;assembly=Syncfusion.Cards.XForms">
     <ContentPage.Content>
         <StackLayout BackgroundColor="White">
             <Button Style="{StaticResource BackButtonStyle}"/>
+            
+            <cards:SfCardLayout x:Name="CardsList"  CardTappedCommandParameter="{Binding Source={x:Reference CardsList}}" CardTappedCommand="{Binding Choose}" SwipeDirection="Left" HeightRequest="370" BindableLayout.ItemsSource="{Binding MyItems}" >
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <cards:SfCardView Margin="10">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="210" />
+                                    <RowDefinition Height="40" />
+                                </Grid.RowDefinitions>
+
+                                <Grid Margin="6,10,6,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+
+                                </Grid>
+
+                                <StackLayout Grid.Row="1" Padding="7,0,7,7" >
+                                    <Label
+                TextColor="Black"
+                Text="{Binding ItemName}"
+                FontSize="20"
+                VerticalOptions="Start" />
+                                    <Label  LineBreakMode="TailTruncation" MaxLines="3"
+                Margin="9,0,0,0"
+                
+                Text="{Binding Desrciption}"
+                />
+
+                                    <StackLayout Margin="9,0,0,0" Orientation="Horizontal">
+                                        <Label
+                    FontSize="13"
+                    HeightRequest="20"
+                    Text="{Binding Price}"
+                    TextColor="#689517"
+                    VerticalOptions="Center"
+                    WidthRequest="30" />
+
+
+                                    </StackLayout>
+                                </StackLayout>
+
+                                <Image
+            Grid.Row="0"
+            Aspect="Fill"
+            HeightRequest="210"
+            Source="{Binding ImgSource}" />
+
+
+                            </Grid>
+
+
+                        </cards:SfCardView>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </cards:SfCardLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
