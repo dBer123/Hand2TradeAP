@@ -17,6 +17,9 @@ namespace Hand2TradeAP.Views
             WebDataViewModel context = new WebDataViewModel();
             this.BindingContext = context;
             InitializeComponent();
+            
+            
+
         }
     }
 }

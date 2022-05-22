@@ -3,9 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Hand2TradeAP.Views.WebData"
              xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Example Item"              
+                 Order="Primary"
+                 Priority="0" />
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
 
-        <chart:SfChart x:Name="Chart" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="10,0,10,0" BackgroundColor="White">
+        <chart:SfChart x:Name="Chart" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="10,50,10,0" BackgroundColor="White">
             <chart:SfChart.PrimaryAxis>
                 <chart:CategoryAxis LabelPlacement="BetweenTicks"/>
             </chart:SfChart.PrimaryAxis>
@@ -14,7 +19,7 @@
 
             <chart:SfChart.Legend>
 
-                <chart:ChartLegend x:Name="chartLegend" Series="{Binding Source={ x:Reference Series}}" >
+                <chart:ChartLegend x:Name="chartLegend"  >
 
                 </chart:ChartLegend>
 
@@ -32,13 +37,13 @@
             </chart:SfChart.SecondaryAxis>
 
             <chart:SfChart.Series>
-                <chart:ColumnSeries x:Name="Series" ItemsSource ="{Binding Data }" XBindingPath="Name"
+                <chart:ColumnSeries x:Name="Ages" ItemsSource ="{Binding Data }" XBindingPath="Name" Label="Age"
                                     YBindingPath="Age" IsVisibleOnLegend="true"/>
 
-                <chart:ColumnSeries ItemsSource ="{Binding Data}" XBindingPath="Name"
+                <chart:ColumnSeries ItemsSource ="{Binding Data}" XBindingPath="Name" Label="Height"
 	 YBindingPath="Height" IsVisibleOnLegend="true"/>
 
-                <chart:ColumnSeries ItemsSource ="{Binding Data}" XBindingPath="Name"
+                <chart:ColumnSeries ItemsSource ="{Binding Data}" XBindingPath="Name" Label="Weight"
 	 YBindingPath="Weight" IsVisibleOnLegend="true"/>
             </chart:SfChart.Series>
         </chart:SfChart>
