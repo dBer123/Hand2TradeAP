@@ -323,7 +323,7 @@ namespace Hand2TradeAP.ViewModels
                     Passwrd = Password,
                     UserName = Username,
                     Adress = Address,
-                    Coins = 0,
+                    Coins = 500,
                     BirthDate = BirthDate,
                     IsAdmin = false,
                     IsBlocked = true,

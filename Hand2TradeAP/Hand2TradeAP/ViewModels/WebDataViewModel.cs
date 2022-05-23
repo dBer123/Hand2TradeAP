@@ -25,6 +25,8 @@ namespace Hand2TradeAP.ViewModels
         #endregion
     
         public List<Person> Data { get; set; }
+        public ICollection<HourlyReport> hourlyReports { get; set; }
+        public ICollection<MonthlyReport> monthlyReports { get; set; }
 
         public WebDataViewModel()
         {

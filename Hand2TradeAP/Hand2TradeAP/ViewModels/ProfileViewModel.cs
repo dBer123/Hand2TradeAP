@@ -254,7 +254,7 @@ namespace Hand2TradeAP.ViewModels
                         await App.Current.MainPage.Navigation.PushModalAsync(p3);
                         break;
                     case 4:
-                        Page p4 = new WebData();
+                        Page p4 = new WebDataTabs();
                         await App.Current.MainPage.Navigation.PushModalAsync(p4);
                         break;
                     case 5:

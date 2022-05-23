@@ -26,9 +26,21 @@ namespace Hand2TradeAP.ViewModels
         private readonly ChatService chatService;
         public ChatGroupsViewModel()
         {
+            App theApp = (App)Application.Current;
             Groups = new ObservableCollection<TradeChat>();
-            GetGroups();
-
+            foreach(TradeChat chat in theApp.CurrentUser.TradeChatBuyers)
+            {
+                Groups.Add(chat);
+            }
+            foreach (TradeChat chat in theApp.CurrentUser.TradeChatSellers)
+            {
+                Groups.Add(chat);
+            }
+            foreach (TradeChat chat in Groups)
+            {
+                chat.LastMessage = chat.TextMessages.OrderByDescending(m => m.SentTime).FirstOrDefault();
+            }
+            Groups.OrderByDescending(c => c.LastMessage.SentTime).FirstOrDefault();
             chatService = new ChatService();
         }
         public ICommand GroupCommand => new Command(async () =>

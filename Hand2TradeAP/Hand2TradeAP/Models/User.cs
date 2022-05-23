@@ -21,10 +21,14 @@ namespace Hand2TradeAP.Models
         public int CountRanked { get; set; }
         public DateTime JoinedDate { get; set; }
         public ICollection<Item> Items { get; set; }
+        public virtual ICollection<TradeChat> TradeChatBuyers { get; set; }
+        public virtual ICollection<TradeChat> TradeChatSellers { get; set; }
 
         public User()
         {
             Items = new List<Item>();
+            TradeChatBuyers = new List<TradeChat>();
+            TradeChatSellers = new List<TradeChat>();
         }
 
 

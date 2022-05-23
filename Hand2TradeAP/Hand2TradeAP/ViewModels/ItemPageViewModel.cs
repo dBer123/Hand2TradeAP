@@ -97,32 +97,34 @@ namespace Hand2TradeAP.ViewModels
         public Command CreateGroupCommand => new Command(CreateGroup);
         private async void CreateGroup()
         {
-          
-            Hand2TradeAPIProxy proxy = Hand2TradeAPIProxy.CreateProxy();
-            App theApp = (App)Application.Current;
-            User u = theApp.CurrentUser;
-            TradeChat c = new TradeChat()
+            bool found = false;
+            if (!found)
             {
-                Buyer = u,
-                BuyerId = u.UserId,
-                Seller = ItemUser,
-                SellerId = ItemUser.UserId,
-                Item = Item,
-                ItemId = Item.ItemId,
-                IsTradeAgreed = false,
-            };
-            TradeChat returnedGroup = await proxy.CreateGroup(c);
+                Hand2TradeAPIProxy proxy = Hand2TradeAPIProxy.CreateProxy();
+                App theApp = (App)Application.Current;
+                User u = theApp.CurrentUser;
+                TradeChat c = new TradeChat()
+                {
+                    Buyer = u,
+                    BuyerId = u.UserId,
+                    Seller = ItemUser,
+                    SellerId = ItemUser.UserId,
+                    Item = Item,
+                    ItemId = Item.ItemId,
+                    IsTradeAgreed = false,
+                };
+                TradeChat returnedGroup = await proxy.CreateGroup(c);
 
-  
-            if (returnedGroup != null)
-            {
-                //await App.Current.MainPage.Navigation.PushModalAsync(new ChatView());
-            }
-            else
-            {
-                await App.Current.MainPage.DisplayAlert("Error", "Something went wrong. Please try again later.", "OK");
-            }
-            
+
+                if (returnedGroup != null)
+                {
+                    //await App.Current.MainPage.Navigation.PushModalAsync(new ChatView());
+                }
+                else
+                {
+                    await App.Current.MainPage.DisplayAlert("Error", "Something went wrong. Please try again later.", "OK");
+                }
+            }                     
         }
         public ItemPageViewModel(Item item)
         {
