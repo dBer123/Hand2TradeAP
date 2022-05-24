@@ -34,8 +34,8 @@
                     <StackLayout Orientation="Horizontal">
                         <Image Source="coin.jpg" Aspect="AspectFit" HeightRequest="20"/>
                         <Label Text="{Binding Price}" FontSize="20" TextColor="CadetBlue"/>
-                        <Button Text="Chat To Trade Item" Command="{Binding CreateGroupCommand}"/>
                     </StackLayout>
+                    <Button Text="Create Chat for item" BackgroundColor="#00b34d" TextColor="White" FontSize="14" CornerRadius="8" Command="{Binding CreateGroupCommand}"/>
                     <StackLayout Margin="30">
                         <Label TextColor="Black" FontSize="18" Text="{Binding Description}"/>
                     </StackLayout>

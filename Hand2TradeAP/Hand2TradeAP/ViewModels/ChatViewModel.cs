@@ -145,7 +145,7 @@ namespace Hand2TradeAP.ViewModels
             TextMessage message = new TextMessage()
             {
                 SenderId = this.user.UserId,
-                Sender=this.user,               
+                Sender = this.user,
                 TextMessage1 = this.Message,
                 SentTime = DateTime.Now,
                 Chat = this.Group,
@@ -159,6 +159,24 @@ namespace Hand2TradeAP.ViewModels
             else
                 receiver = message.Chat.BuyerId.ToString();
             await chatService.SendMessage(user.UserId.ToString(), receiver,message.ChatId.ToString(), message.TextMessage1);
+        }
+        public ICommand ToItem => new Command<Object>(ToItemPage);
+        async void ToItemPage(Object obj)
+        {
+            if (obj is Item)
+            {
+                await App.Current.MainPage.Navigation.PushModalAsync(new ItemPage((Item)obj));
+            }
+        }
+        public ICommand Sell => new Command(SellItem);
+        private void SellItem()
+        {
+
+        }
+        public ICommand Regect => new Command(RegectTrade);
+        private void RegectTrade()
+        {
+
         }
     }
 }

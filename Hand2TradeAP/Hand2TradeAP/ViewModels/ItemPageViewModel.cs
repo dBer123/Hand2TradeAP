@@ -98,11 +98,28 @@ namespace Hand2TradeAP.ViewModels
         private async void CreateGroup()
         {
             bool found = false;
+            App theApp = (App)Application.Current;
+            User u = theApp.CurrentUser;
+            foreach (TradeChat chat in u.TradeChatBuyers)
+            {
+                if(chat.BuyerId== u.UserId)
+                {
+                    found= true;
+                }
+            }
             if (!found)
             {
-                Hand2TradeAPIProxy proxy = Hand2TradeAPIProxy.CreateProxy();
-                App theApp = (App)Application.Current;
-                User u = theApp.CurrentUser;
+                foreach (TradeChat chat in u.TradeChatSellers)
+                {
+                    if (chat.SellerId == u.UserId)
+                    {
+                        found = true;
+                    }
+                }
+            }               
+            if (!found)
+            {
+                Hand2TradeAPIProxy proxy = Hand2TradeAPIProxy.CreateProxy();               
                 TradeChat c = new TradeChat()
                 {
                     Buyer = u,

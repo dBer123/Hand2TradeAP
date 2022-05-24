@@ -19,7 +19,11 @@
                         <yummy:PancakeView CornerRadius="10">
                             <Image Source="{Binding Item.ImgSource}" />
                         </yummy:PancakeView>
-                        <Label Text="{Binding Item.ItemName}" TextColor="Black" FontSize="30" Margin="10"/>
+                        <Label Text="{Binding Item.ItemName}" TextColor="Black" FontSize="30" Margin="10">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ToItem}"/>
+                            </Label.GestureRecognizers>
+                        </Label>
                         <StackLayout Orientation="Horizontal" Margin="8">
                             <Image Source="coin.jpg" Aspect="AspectFit" HeightRequest="30"/>
                             <Label Text="{Binding Item.Price}" FontSize="20" TextColor="CadetBlue"/>
