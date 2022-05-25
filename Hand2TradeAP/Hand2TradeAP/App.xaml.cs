@@ -30,7 +30,7 @@ namespace Hand2TradeAP
             InitializeComponent();
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjQyNzQ1QDMyMzAyZTMxMmUzMFpFUThUN0laUzQzQ2VtcS9UTXF6Z3hQU3hwUXRDL29xOGxlTWlQZEtYTms9");
             CurrentUser = null;
-            MainPage = new WebDataTabs();
+            MainPage = new LogInPage();
         }
 
         protected override void OnStart()

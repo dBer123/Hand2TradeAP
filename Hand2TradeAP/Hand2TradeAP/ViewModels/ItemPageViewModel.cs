@@ -100,26 +100,21 @@ namespace Hand2TradeAP.ViewModels
             bool found = false;
             App theApp = (App)Application.Current;
             User u = theApp.CurrentUser;
-            foreach (TradeChat chat in u.TradeChatBuyers)
+            Hand2TradeAPIProxy proxy = Hand2TradeAPIProxy.CreateProxy();
+            List<TradeChat> userGroups = await proxy.GetGroups();
+            if (userGroups != null)
             {
-                if(chat.BuyerId== u.UserId)
+                foreach (TradeChat chat in userGroups)
                 {
-                    found= true;
-                }
-            }
-            if (!found)
-            {
-                foreach (TradeChat chat in u.TradeChatSellers)
-                {
-                    if (chat.SellerId == u.UserId)
+                    if(chat.SellerId == u.UserId|| chat.BuyerId == u.UserId)
                     {
                         found = true;
                     }
                 }
-            }               
+            }
+            
             if (!found)
             {
-                Hand2TradeAPIProxy proxy = Hand2TradeAPIProxy.CreateProxy();               
                 TradeChat c = new TradeChat()
                 {
                     Buyer = u,

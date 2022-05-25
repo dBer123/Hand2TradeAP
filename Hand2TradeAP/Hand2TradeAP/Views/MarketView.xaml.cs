@@ -22,7 +22,8 @@ namespace Hand2TradeAP.Views
 
         private void searchedItems_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            searchedItems.SelectedItem = null;
+            
+               searchedItems.SelectedItem = null;
         }
     }
 }
