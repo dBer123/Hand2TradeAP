@@ -31,6 +31,16 @@ namespace Hand2TradeAP.ViewModels
             GetGroups();
             chatService = new ChatService();
         }
+        //private async void ConnectToChatService()
+        //{
+        //    List<string> grs = new List<string>();
+        //    foreach (var chat in Groups)
+        //    {
+        //        grs.Add(chat.ChatId.ToString());
+        //    }
+        //    //connect to server and register to all groups
+        //    await chatService.Connect(grs.ToArray());
+        //}
         public ICommand GroupCommand => new Command(async () =>
         {
             if (SelectedGroup != null)
@@ -49,7 +59,7 @@ namespace Hand2TradeAP.ViewModels
             Groups.Clear();
             foreach (TradeChat chat in userGroups)
             {
-                chat.LastMessage = chat.TextMessages.OrderByDescending(m => m.SentTime).FirstOrDefault();
+                //chat.LastMessage = chat.TextMessages.OrderByDescending(m => m.SentTime).FirstOrDefault();
                 Groups.Add(chat);
             }
         }

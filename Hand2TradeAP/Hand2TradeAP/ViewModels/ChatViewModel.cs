@@ -100,7 +100,7 @@ namespace Hand2TradeAP.ViewModels
             chatService = new ChatService();
             chatService.RegisterToReceiveMessage(ReceiveMessage);
             Message = String.Empty;
-            ConnectToChatService();
+            //ConnectToChatService();
         }
 
         private async void ConnectToChatService()
@@ -145,16 +145,14 @@ namespace Hand2TradeAP.ViewModels
             TextMessage message = new TextMessage()
             {
                 SenderId = this.user.UserId,
-                Sender = this.user,
                 TextMessage1 = this.Message,
                 SentTime = DateTime.Now,
-                Chat = this.Group,
                 ChatId = this.Group.ChatId,
             };
             Messages.Add(message);
             Message = String.Empty;
             string receiver;
-            if (message.Chat.BuyerId == this.user.UserId)
+            if (Group.BuyerId == this.user.UserId)
                 receiver = message.Chat.SellerId.ToString();
             else
                 receiver = message.Chat.BuyerId.ToString();

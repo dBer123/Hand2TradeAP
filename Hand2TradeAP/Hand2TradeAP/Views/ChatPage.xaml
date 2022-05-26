@@ -58,7 +58,7 @@
                                         <StackLayout.Triggers>
                                             <DataTrigger TargetType="StackLayout"
                                                          Binding="{Binding SenderId}"
-                                                         Value="{x:Static models:TextMessage.LoggedInAccountId}">
+                                                         Value="">
                                                 <Setter Property="FlowDirection" Value="RightToLeft" />
                                             </DataTrigger>
                                         </StackLayout.Triggers>

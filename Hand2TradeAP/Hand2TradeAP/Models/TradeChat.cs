@@ -17,6 +17,6 @@ namespace Hand2TradeAP.Models
         public virtual ICollection<TextMessage> TextMessages { get; set; }
 
         // added
-        public TextMessage LastMessage { get; set; }
+        //public TextMessage LastMessage { get; set; }
     }
 }
