@@ -220,14 +220,14 @@ namespace Hand2TradeAP.ViewModels
             }
         }
        
-        public void GoEditItem(Object obj)
+        public async void GoEditItem(Object obj)
         {
             if (obj is SfCardLayout)
             {
 
                 Item item = MyItems[((SfCardLayout)obj).TabIndex];
                 Page p = new EditItem(item);
-                App.Current.MainPage = p;
+                await App.Current.MainPage.Navigation.PushModalAsync(p);      
             }
         }
 

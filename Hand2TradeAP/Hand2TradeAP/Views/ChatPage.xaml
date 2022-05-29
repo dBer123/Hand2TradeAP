@@ -58,12 +58,10 @@
                                         <StackLayout.Triggers>
                                             <DataTrigger TargetType="StackLayout"
                                                          Binding="{Binding SenderId}"
-                                                         Value="">
+                                                         Value="{x:Static models:TextMessage.LoggedInAccountId}">
                                                 <Setter Property="FlowDirection" Value="RightToLeft" />
                                             </DataTrigger>
                                         </StackLayout.Triggers>
-                                        <controls:CircleImage Source="{Binding Sender.ImgSource}" BorderColor="#414141" BorderThickness="0" 
-                                                              HeightRequest="40" />
 
                                         <yummy:PancakeView Padding="10" CornerRadius="15,15,0,15" BackgroundColor="#E9E9E9">
                                             <yummy:PancakeView.Triggers>

@@ -16,7 +16,7 @@ namespace Hand2TradeAP.Views
     {
         public ChatPage(TradeChat chat, ChatService chatService)
         {
-            ChatViewModel context = new ChatViewModel(chat);
+            ChatViewModel context = new ChatViewModel(chat, chatService);
             this.BindingContext = context;
             InitializeComponent();
         }

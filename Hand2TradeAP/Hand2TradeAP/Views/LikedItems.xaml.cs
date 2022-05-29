@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.CommunityToolkit.UI.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Hand2TradeAP.ViewModels;
 
 namespace Hand2TradeAP.Views
 {
@@ -14,6 +15,8 @@ namespace Hand2TradeAP.Views
     {
         public LikedItems()
         {
+            LikedItemsViewModel context = new LikedItemsViewModel();
+            this.BindingContext = context;
             InitializeComponent();
         }
     }

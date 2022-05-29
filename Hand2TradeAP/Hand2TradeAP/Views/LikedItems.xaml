@@ -6,8 +6,8 @@
     <ContentPage.Content>
         <StackLayout BackgroundColor="White">
             <Button Style="{StaticResource BackButtonStyle}"/>
-            
-            <cards:SfCardLayout x:Name="CardsList"  CardTappedCommandParameter="{Binding Source={x:Reference CardsList}}" CardTappedCommand="{Binding Choose}" SwipeDirection="Left" HeightRequest="370" BindableLayout.ItemsSource="{Binding MyItems}" >
+
+            <cards:SfCardLayout x:Name="CardsList"  CardTappedCommandParameter="{Binding Source={x:Reference CardsList}}" CardTappedCommand="{Binding Choose}" SwipeDirection="Left" HeightRequest="370" BindableLayout.ItemsSource="{Binding LikedItems}" >
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>
                         <cards:SfCardView Margin="10">

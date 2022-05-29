@@ -10,7 +10,7 @@ using System.Linq;
 using Hand2TradeAP.Views;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
-
+using System.Threading.Tasks;
 
 namespace Hand2TradeAP.ViewModels
 {
@@ -28,31 +28,33 @@ namespace Hand2TradeAP.ViewModels
         {
             App theApp = (App)Application.Current;
             Groups = new ObservableCollection<TradeChat>();
-            GetGroups();
             chatService = new ChatService();
+            ConnectToChatService();
         }
-        //private async void ConnectToChatService()
-        //{
-        //    List<string> grs = new List<string>();
-        //    foreach (var chat in Groups)
-        //    {
-        //        grs.Add(chat.ChatId.ToString());
-        //    }
-        //    //connect to server and register to all groups
-        //    await chatService.Connect(grs.ToArray());
-        //}
+        private async void ConnectToChatService()
+        {
+            await GetGroups();
+
+            List<string> grs = new List<string>();
+            foreach (var chat in Groups)
+            {
+                grs.Add(chat.ChatId.ToString());
+            }
+            //connect to server and register to all groups
+            await chatService.Connect(grs.ToArray());
+        }
         public ICommand GroupCommand => new Command(async () =>
         {
             if (SelectedGroup != null)
             {
                 TradeChat chat = SelectedGroup;
-                await App.Current.MainPage.Navigation.PushModalAsync(new ChatPage(chat, chatService));
+                await App.Current.MainPage.Navigation.PushModalAsync(new ChatPage(chat,chatService));
                 SelectedGroup = null;
 
             }
         });
 
-        private async void GetGroups()
+        private async Task<bool> GetGroups()
         {
             Hand2TradeAPIProxy proxy = Hand2TradeAPIProxy.CreateProxy();
             List<TradeChat> userGroups = await proxy.GetGroups();
@@ -62,6 +64,7 @@ namespace Hand2TradeAP.ViewModels
                 //chat.LastMessage = chat.TextMessages.OrderByDescending(m => m.SentTime).FirstOrDefault();
                 Groups.Add(chat);
             }
+            return true;
         }
 
         public ObservableCollection<TradeChat> Groups { get; set; }

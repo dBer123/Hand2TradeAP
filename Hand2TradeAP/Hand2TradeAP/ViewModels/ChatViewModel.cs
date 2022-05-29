@@ -77,7 +77,7 @@ namespace Hand2TradeAP.ViewModels
         private User user;
         //private User chatMember;
         public ObservableCollection<string> Groups { get; set; }
-        public ChatViewModel(TradeChat chat)
+        public ChatViewModel(TradeChat chat, ChatService chatService)
         {
             Group = chat;
             Messages = new ObservableCollection<TextMessage>();
@@ -97,7 +97,7 @@ namespace Hand2TradeAP.ViewModels
             {
                 IsSeller = true;
             }
-            chatService = new ChatService();
+            this.chatService = chatService;
             chatService.RegisterToReceiveMessage(ReceiveMessage);
             Message = String.Empty;
             //ConnectToChatService();
@@ -115,7 +115,7 @@ namespace Hand2TradeAP.ViewModels
                 TextMessage chatMessage = new TextMessage()
                 {
                     SenderId = int.Parse(sender),
-
+                    ChatId = int.Parse(chatId),
                     TextMessage1 = message,
                     SentTime = DateTime.Now,
                 };
@@ -153,9 +153,9 @@ namespace Hand2TradeAP.ViewModels
             Message = String.Empty;
             string receiver;
             if (Group.BuyerId == this.user.UserId)
-                receiver = message.Chat.SellerId.ToString();
+                receiver = Group.SellerId.ToString();
             else
-                receiver = message.Chat.BuyerId.ToString();
+                receiver = Group.BuyerId.ToString();
             await chatService.SendMessage(user.UserId.ToString(), receiver,message.ChatId.ToString(), message.TextMessage1);
         }
         public ICommand ToItem => new Command<Object>(ToItemPage);

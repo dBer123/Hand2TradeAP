@@ -39,7 +39,8 @@
                                         <SwipeItem
                                    BackgroundColor="HotPink"
                                     IconImageSource="heartIcon.png"  
-                                     
+                                                Command="{Binding Source={x:Reference searchedItems}, Path=BindingContext.Like}"
+                                   CommandParameter="{Binding}"
                                   />
                                     </SwipeItems>
                                 </SwipeView.LeftItems>

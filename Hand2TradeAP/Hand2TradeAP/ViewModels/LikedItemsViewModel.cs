@@ -11,6 +11,8 @@ using Hand2TradeAP.Models;
 using Xamarin.Essentials;
 using System.Linq;
 using System.Collections.ObjectModel;
+using Syncfusion.XForms.Cards;
+
 
 namespace Hand2TradeAP.ViewModels
 {
@@ -23,8 +25,24 @@ namespace Hand2TradeAP.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
-        public ObservableCollection<Item> SearchedItems { get; set; }
-       
+        public ObservableCollection<Item> LikedItems { get; set; }
+        public LikedItemsViewModel()
+        {
+            LikedItems = new ObservableCollection<Item>();
+            GetLikedItems();
+        }
+        public async void GetLikedItems()
+        {
+            Hand2TradeAPIProxy proxy = Hand2TradeAPIProxy.CreateProxy();
+            List<Item> items = await proxy.GetLikedItems();
+            LikedItems.Clear();
+            foreach (var Item in items)
+            {
+                LikedItems.Add(Item);
+            }
+        }
+
+
         public ICommand Choose => new Command<Object>(ChooseAction);
         public async void ChooseAction(Object obj)
         {
@@ -35,10 +53,10 @@ namespace Hand2TradeAP.ViewModels
         }
         public async void UnLikeItem(Object obj)
         {
-            if (obj is Item)
+            if (obj is SfCardLayout)
             {
                 Hand2TradeAPIProxy proxy = Hand2TradeAPIProxy.CreateProxy();
-                Item item = (Item)obj;
+                Item item = LikedItems[((SfCardLayout)obj).TabIndex];
                 bool found = await proxy.UnLike(item.ItemId);
                 if (!found)
                 {
@@ -48,9 +66,10 @@ namespace Hand2TradeAP.ViewModels
         }
         public async void ExploreItem(Object obj)
         {
-            if (obj is Item)
+            if (obj is SfCardLayout)
             {
-                await App.Current.MainPage.Navigation.PushModalAsync(new ItemPage((Item)obj));
+                Item item = LikedItems[((SfCardLayout)obj).TabIndex];
+                await App.Current.MainPage.Navigation.PushModalAsync(new ItemPage(item));
             }
         }
     }
