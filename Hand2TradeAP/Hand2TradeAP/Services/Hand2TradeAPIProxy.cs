@@ -111,6 +111,34 @@ namespace Hand2TradeAP.Services
                 return null;
             }
         }
+        public async Task<bool> LogOut()
+        {
+
+            try
+            {
+                HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/LogOut?");
+                if (response.IsSuccessStatusCode)
+                {
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        ReferenceHandler = ReferenceHandler.Preserve, //avoid reference loops!
+                        PropertyNameCaseInsensitive = true
+                    };
+                    string content = await response.Content.ReadAsStringAsync();
+                    bool found = JsonSerializer.Deserialize<bool>(content, options);
+                    return found;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+        }
         public async Task<User> GetLoggedUser()
         {
             try

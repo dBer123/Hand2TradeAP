@@ -284,10 +284,19 @@ namespace Hand2TradeAP.ViewModels
                         await App.Current.MainPage.Navigation.PushModalAsync(p5);
                         break;
                     case 6:
-                        App theApp = (App)Application.Current;
-                        theApp.CurrentUser = null;
-                        Page p6 = new LogInPage();
-                        App.Current.MainPage = p6;
+                        Hand2TradeAPIProxy proxy = Hand2TradeAPIProxy.CreateProxy();
+                        bool found = await proxy.LogOut();
+                        if (found)
+                        {
+                            App theApp = (App)Application.Current;
+                            theApp.CurrentUser = null;
+                            Page p6 = new LogInPage();
+                            App.Current.MainPage = p6;
+                        }
+                        else
+                        {
+                            await App.Current.MainPage.DisplayAlert("Error", "Could not log out", "OK");
+                        }
                         break;
                 }
 

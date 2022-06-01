@@ -308,6 +308,7 @@ namespace Hand2TradeAP.ViewModels
         public RegisterViewModel()
         {
             SubmitCommand = new Command(OnSubmit);
+            BirthDate=DateTime.Today.AddYears(-13);     
         }
 
 
@@ -348,11 +349,9 @@ namespace Hand2TradeAP.ViewModels
            
 
         public ICommand NevigateToSignIn => new Command(ToSignIn);
-        void ToSignIn()
+        async void ToSignIn()
         {
-
-            Page p = new LogInPage();
-            App.Current.MainPage = p;
+            await App.Current.MainPage.Navigation.PopModalAsync();
         }
     }
 }

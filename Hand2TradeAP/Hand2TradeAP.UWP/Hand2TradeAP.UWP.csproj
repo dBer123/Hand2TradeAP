@@ -151,34 +151,34 @@
       <Version>2.0.3</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Licensing">
-      <Version>20.1.0.56</Version>
+      <Version>20.1.0.58</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.Buttons">
-      <Version>20.1.0.56</Version>
+      <Version>20.1.0.58</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.Cards">
-      <Version>20.1.0.56</Version>
+      <Version>20.1.0.58</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.Core">
-      <Version>20.1.0.56</Version>
+      <Version>20.1.0.58</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.Expander">
-      <Version>20.1.0.56</Version>
+      <Version>20.1.0.58</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfChart">
-      <Version>20.1.0.56</Version>
+      <Version>20.1.0.58</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfImageEditor">
-      <Version>20.1.0.56</Version>
+      <Version>20.1.0.58</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfPicker">
-      <Version>20.1.0.56</Version>
+      <Version>20.1.0.58</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfPopupLayout">
-      <Version>20.1.0.56</Version>
+      <Version>20.1.0.58</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfRating">
-      <Version>20.1.0.56</Version>
+      <Version>20.1.0.58</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.CommunityToolkit">
       <Version>2.0.2</Version>

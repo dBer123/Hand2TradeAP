@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31410.357
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hand2TradeAP.UWP", "Hand2TradeAP\Hand2TradeAP.UWP\Hand2TradeAP.UWP.csproj", "{8B69C856-577F-4D6E-BB1B-DDC1682B88B0}"
 EndProject
@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hand2TradeAP.Android", "Han
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hand2TradeAP.iOS", "Hand2TradeAP\Hand2TradeAP.iOS\Hand2TradeAP.iOS.csproj", "{FE8BFE56-2937-45BD-8814-7EF4A1477E1D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hand2TradeAP", "Hand2TradeAP\Hand2TradeAP\Hand2TradeAP.csproj", "{16A1C0C5-A6AC-4B14-9716-8442B6A5FB43}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hand2TradeAP", "Hand2TradeAP\Hand2TradeAP\Hand2TradeAP.csproj", "{16A1C0C5-A6AC-4B14-9716-8442B6A5FB43}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

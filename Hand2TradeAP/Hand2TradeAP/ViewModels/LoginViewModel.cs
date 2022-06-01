@@ -77,11 +77,11 @@ namespace Hand2TradeAP.ViewModels
 
 
         public ICommand NevigateToSignUp => new Command(ToSignUp);
-        void ToSignUp()
+        async void ToSignUp()
         {
 
             Page p = new RegisterPage();
-            App.Current.MainPage = p;
+            await App.Current.MainPage.Navigation.PushModalAsync(p);
 
 
 
