@@ -67,6 +67,11 @@ namespace Hand2TradeAP.ViewModels
                 RateUser(Rated);
             }
         }
+        public ICommand NevigateBack => new Command(Back);
+        async void Back()
+        {
+            await App.Current.MainPage.Navigation.PopModalAsync();
+        }
         public OwnerPageViewModel(User user)
         {
             Owner = user;

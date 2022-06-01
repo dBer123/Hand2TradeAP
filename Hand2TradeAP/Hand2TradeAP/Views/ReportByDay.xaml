@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Hand2TradeAP.Views.ReportByHourView"
-             xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms">
+             x:Class="Hand2TradeAP.Views.ReportByDay"
+             xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms">>
   <ContentView.Content>
         <chart:SfChart x:Name="Chart" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White">
             <chart:SfChart.PrimaryAxis>
@@ -20,7 +20,7 @@
             </chart:SfChart.Legend>
 
             <chart:SfChart.Title>
-                <chart:ChartTitle Text="Repot By Hour" FontSize="25" FontAttributes="Bold"/>
+                <chart:ChartTitle Text="Repot By Month" FontSize="25" FontAttributes="Bold"/>
             </chart:SfChart.Title>
 
 
@@ -41,6 +41,5 @@
 	 YBindingPath="Weight" IsVisibleOnLegend="true"/>
             </chart:SfChart.Series>
         </chart:SfChart>
-
     </ContentView.Content>
 </ContentView>

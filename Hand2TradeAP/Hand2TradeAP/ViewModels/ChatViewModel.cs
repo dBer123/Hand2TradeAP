@@ -89,7 +89,7 @@ namespace Hand2TradeAP.ViewModels
             App app = (App)Application.Current;
             user = app.CurrentUser;
             Item = chat.Item;
-            if (user == chat.Buyer)
+            if (user.UserId == chat.Buyer.UserId)
             {
                 IsSeller = false;
             }
@@ -142,21 +142,24 @@ namespace Hand2TradeAP.ViewModels
         public ICommand SendMessage => new Command(OnSendMessage);
         public async void OnSendMessage()
         {
-            TextMessage message = new TextMessage()
+            if(this.Message!=null && this.Message != "")
             {
-                SenderId = this.user.UserId,
-                TextMessage1 = this.Message,
-                SentTime = DateTime.Now,
-                ChatId = this.Group.ChatId,
-            };
-            Messages.Add(message);
-            Message = String.Empty;
-            string receiver;
-            if (Group.BuyerId == this.user.UserId)
-                receiver = Group.SellerId.ToString();
-            else
-                receiver = Group.BuyerId.ToString();
-            await chatService.SendMessage(user.UserId.ToString(), receiver,message.ChatId.ToString(), message.TextMessage1);
+                TextMessage message = new TextMessage()
+                {
+                    SenderId = this.user.UserId,
+                    TextMessage1 = this.Message,
+                    SentTime = DateTime.Now,
+                    ChatId = this.Group.ChatId,
+                };
+                Messages.Add(message);
+                Message = String.Empty;
+                string receiver;
+                if (Group.BuyerId == this.user.UserId)
+                    receiver = Group.SellerId.ToString();
+                else
+                    receiver = Group.BuyerId.ToString();
+                await chatService.SendMessage(user.UserId.ToString(), receiver, message.ChatId.ToString(), message.TextMessage1);
+            }           
         }
         public ICommand ToItem => new Command<Object>(ToItemPage);
         async void ToItemPage(Object obj)
@@ -167,14 +170,40 @@ namespace Hand2TradeAP.ViewModels
             }
         }
         public ICommand Sell => new Command(SellItem);
-        private void SellItem()
+        private async void SellItem()
         {
-
+            if (Group.Seller.Coins < Group.Item.Price)
+            {
+                await App.Current.MainPage.DisplayAlert("", "Buyer can not afford your Item", "OK");
+            }
+            else
+            {
+                Hand2TradeAPIProxy proxy = Hand2TradeAPIProxy.CreateProxy();
+                bool succeed = await proxy.SellItem(Group);
+                if (succeed)
+                {
+                    await App.Current.MainPage.DisplayAlert("Done Deal!", "", "OK");
+                    await App.Current.MainPage.Navigation.PopModalAsync();
+                }
+                else
+                {
+                    await App.Current.MainPage.DisplayAlert("Error", "Could not regect trade", "OK");
+                }
+            }
         }
         public ICommand Regect => new Command(RegectTrade);
-        private void RegectTrade()
+        private async void RegectTrade()
         {
-
+            Hand2TradeAPIProxy proxy = Hand2TradeAPIProxy.CreateProxy();
+            bool succeed = await proxy.RegectTrade(Group);
+            if (succeed)
+            {
+                await App.Current.MainPage.DisplayAlert("", "The trade was regected", "OK");
+            }
+            else
+            {
+                await App.Current.MainPage.DisplayAlert("Error", "Could not regect trade", "OK");
+            }
         }
     }
 }

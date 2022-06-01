@@ -18,5 +18,7 @@ namespace Hand2TradeAP.Views
             this.BindingContext = context;
             InitializeComponent();
         }
+
+      
     }
 }

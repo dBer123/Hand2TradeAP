@@ -25,11 +25,13 @@ namespace Hand2TradeAP.ViewModels
         #endregion
     
         public List<Person> Data { get; set; }
-        public ICollection<HourlyReport> hourlyReports { get; set; }
+        public ICollection<DailyReport> dailyReports { get; set; }
         public ICollection<MonthlyReport> monthlyReports { get; set; }
 
         public WebDataViewModel()
         {
+            dailyReports = new List<DailyReport>();
+            monthlyReports = new List<MonthlyReport>();
             Data = new List<Person>()
             {
                 new Person { Name = "David", Height = 180, Weight=62,Age=56 },
@@ -38,6 +40,21 @@ namespace Hand2TradeAP.ViewModels
                 new Person { Name = "Joel", Height = 182, Weight=88,Age=22}
             };
         }
+        public async void GetReports()
+        {
+            Hand2TradeAPIProxy proxy = Hand2TradeAPIProxy.CreateProxy();
+            List<DailyReport> hr = await proxy.GetDailyReport();
+            List<MonthlyReport> mr = await proxy.GetMonthlyReport();
+            foreach (var dailyReport in hr)
+            {
+                dailyReports.Add(dailyReport);
+            }
+            foreach (var monthlyReport in mr)
+            {
+                monthlyReports.Add(monthlyReport);
+            }
+        }
+       
     }
     public class Person
     {

@@ -102,20 +102,37 @@ namespace Hand2TradeAP.ViewModels
                 OnPropertyChanged("IsAdmin");
             }
         }
+        private bool isRefreshing;
+        public bool IsRefreshing
+        {
+            get => isRefreshing;
+            set
+            {
+                isRefreshing = value;
+                OnPropertyChanged("IsRefreshing");
+            }
+        }
         public ObservableCollection <string> Stars { get; set; }
         public ObservableCollection <Item> MyItems { get; set; }
         public List<PageItem> MenuItems { get; set; }
 
         public ProfileViewModel()
         {
-            App theApp = (App)Application.Current;
-            Email = theApp.CurrentUser.Email;
-            Coins = theApp.CurrentUser.Coins.ToString();
-            Address = theApp.CurrentUser.Adress;
-            Username = theApp.CurrentUser.UserName;
             MyItems = new ObservableCollection<Item>();
-            double sum = theApp.CurrentUser.SumRanks;
-            int count = theApp.CurrentUser.CountRanked;            
+
+            App theApp = (App)Application.Current;
+            Profile(theApp.CurrentUser);
+            
+
+        }
+        public void Profile(User CurrentUser)
+        {
+            Email = CurrentUser.Email;
+            Coins = CurrentUser.Coins.ToString();
+            Address = CurrentUser.Adress;
+            Username = CurrentUser.UserName;
+            double sum = CurrentUser.SumRanks;
+            int count = CurrentUser.CountRanked;
             if (sum != 0)
             {
                 Rating = sum / count;
@@ -123,12 +140,13 @@ namespace Hand2TradeAP.ViewModels
                 if (num > 0.5) Rating += 1;
             }
 
-            ImageU = theApp.CurrentUser.ImgSource == null ? "profile.png" : theApp.CurrentUser.ImgSource;
+            ImageU = CurrentUser.ImgSource == null ? "profile.png" : CurrentUser.ImgSource;
             //if (theApp.CurrentUser.ImgSource == null)
             //    ImageU = "profile.png";
             //else
             //    ImageU = theApp.CurrentUser.ImgSource;
-            foreach (var item in theApp.CurrentUser.Items)
+            MyItems.Clear();
+            foreach (var item in CurrentUser.Items)
             {
                 MyItems.Add(item);
             }
@@ -148,14 +166,14 @@ namespace Hand2TradeAP.ViewModels
             {
                 if (count2 >= 0.75)
                     Stars.Add(AppFonts.FontIconClass.Star);
-                else if(count2 > 0.25 && count2 < 0.75)
+                else if (count2 > 0.25 && count2 < 0.75)
                     Stars.Add(AppFonts.FontIconClass.StarHalfFull);
                 else Stars.Add(AppFonts.FontIconClass.StarOutline);
                 count2--;
             }
 
 
-            if (theApp.CurrentUser.IsAdmin)
+            if (CurrentUser.IsAdmin)
             {
 
                 MenuItems = new List<PageItem>(new[]
@@ -182,9 +200,13 @@ namespace Hand2TradeAP.ViewModels
 
                 });
                 IsAdmin = " ";
+            }
         }
-
-    }
+        public ICommand RefreshCommand => new Command(async () =>
+        {
+            Hand2TradeAPIProxy proxy = Hand2TradeAPIProxy.CreateProxy();
+            Profile(await proxy.GetLoggedUser());
+        });
 
         public ICommand Choose => new Command<Object>(ChooseAction);
         public async void ChooseAction(Object obj)
@@ -202,14 +224,14 @@ namespace Hand2TradeAP.ViewModels
             {
                 if (f == true)
                 {
-                    Item item = MyItems[((SfCardLayout)obj).TabIndex];
+                    Item item = MyItems[((SfCardLayout)obj).VisibleCardIndex];
                     App theApp = (App)Application.Current;
                     Hand2TradeAPIProxy proxy = Hand2TradeAPIProxy.CreateProxy();
                     bool isDeleted = await proxy.DeleteItem(item.ItemId);
                     if (isDeleted == true)
                     {
                         theApp.CurrentUser.Items.Remove(item);
-                        App.Current.MainPage = new Tabs();
+                        MyItems.Remove(item);
                     }
                     else
                     {
@@ -225,7 +247,7 @@ namespace Hand2TradeAP.ViewModels
             if (obj is SfCardLayout)
             {
 
-                Item item = MyItems[((SfCardLayout)obj).TabIndex];
+                Item item = MyItems[((SfCardLayout)obj).VisibleCardIndex];
                 Page p = new EditItem(item);
                 await App.Current.MainPage.Navigation.PushModalAsync(p);      
             }

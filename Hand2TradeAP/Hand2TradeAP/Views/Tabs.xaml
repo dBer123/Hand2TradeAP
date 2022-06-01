@@ -106,7 +106,7 @@
 
     <ContentPage.Content>
         <Grid>
-            <xct:TabView Style="{StaticResource CustomTabStyle}" IsSwipeEnabled="False">
+            <xct:TabView x:Name="tabView1" Style="{StaticResource CustomTabStyle}" IsSwipeEnabled="False">
                 <xct:TabView.TabStripBackgroundView>
                     <BoxView BackgroundColor="White" WidthRequest="30" xct:ShadowEffect.Color="Black"/>
                 </xct:TabView.TabStripBackgroundView>
@@ -119,7 +119,7 @@
                     Text="Shop" 
                     TextColor="#979797"
                     TextColorSelected="#00b34d"
-                    ControlTemplate="{StaticResource TabItemTemplate}">
+                    ControlTemplate="{StaticResource TabItemTemplate}" >
                     <xct:TabViewItem.Icon>
                         <FontImageSource Color="#979797"  FontFamily="MyIcon" Glyph="{x:Static  localfont:FontIconClass.Cart}"/>
                     </xct:TabViewItem.Icon>
@@ -131,23 +131,7 @@
                 </xct:TabViewItem>
 
 
-             
-                <xct:TabViewItem   
-                    TabTapped="MyTab1_TabTapped"  
-                    FontFamily="MyIcon"  
-                    Text="Loan" 
-                    TextColor="#979797"
-                    TextColorSelected="#00b34d"
-                    ControlTemplate="{StaticResource TabItemTemplate}">
-                    <xct:TabViewItem.Icon>
-                        <FontImageSource Color="#979797"   FontFamily="MyIcon" Glyph="{x:Static localfont:FontIconClass.CashPlus}"/>
-                    </xct:TabViewItem.Icon>
-                    <xct:TabViewItem.IconSelected>
-                        <FontImageSource Color="#00b34d"  FontFamily="MyIcon" Glyph="{x:Static  localfont:FontIconClass.CashPlus}"/>
-                    </xct:TabViewItem.IconSelected>
-                    <myviews:LoanView></myviews:LoanView>
-                </xct:TabViewItem>
-           
+                        
 
                 <xct:TabViewItem x:Name="MyTab1"   
                     TabTapped="MyTab1_TabTapped"  
@@ -155,7 +139,7 @@
                     Text="Chats"
                     TextColor="#979797"
                     TextColorSelected="#00b34d"
-                    ControlTemplate="{StaticResource TabItemTemplate}">
+                    ControlTemplate="{StaticResource TabItemTemplate}"  >
                     <xct:TabViewItem.Icon>
                         <FontImageSource Color="#979797"   FontFamily="MyIcon" Glyph="{x:Static localfont:FontIconClass.Chat}"/>
                     </xct:TabViewItem.Icon>

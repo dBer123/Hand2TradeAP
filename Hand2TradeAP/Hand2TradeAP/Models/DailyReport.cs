@@ -4,10 +4,10 @@ using System.Text;
 
 namespace Hand2TradeAP.Models
 {
-    public class HourlyReport
+    public class DailyReport
     {
-        public int HourlyReportId { get; set; }
-        public DateTime HourTime { get; set; }
+        public int DailyReportId { get; set; }
+        public DateTime DayTime { get; set; }
         public int NewSubs { get; set; }
         public int ItemsDraded { get; set; }
         public int LoansTaken { get; set; }

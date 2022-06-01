@@ -24,13 +24,13 @@
                                 <TapGestureRecognizer Command="{Binding ToItem}"/>
                             </Label.GestureRecognizers>
                         </Label>
-                        <StackLayout Orientation="Horizontal" Margin="8">
+                        <StackLayout Orientation="Vertical" Margin="8">
                             <Image Source="coin.jpg" Aspect="AspectFit" HeightRequest="30"/>
                             <Label Text="{Binding Item.Price}" FontSize="20" TextColor="CadetBlue"/>
                         </StackLayout>
                         <StackLayout Orientation="Vertical">
-                            <Button Text="{x:Static localfont:FontIconClass.Cancel}" FontFamily="MyIcon" IsVisible="{Binding IsSeller}" FontSize="25" HeightRequest="50" WidthRequest="50" BackgroundColor="Red" TextColor="White" CornerRadius="8"/>
-                            <Button Text="{x:Static localfont:FontIconClass.Trademark}" FontFamily="MyIcon" FontSize="25" IsVisible="{Binding IsSeller}" HeightRequest="50" WidthRequest="50" BackgroundColor="#00b34d" TextColor="White"  CornerRadius="8"/>
+                            <Button Text="{x:Static localfont:FontIconClass.Cancel}" FontFamily="MyIcon" IsVisible="{Binding IsSeller}" Command="{Binding Regect}" FontSize="25" HeightRequest="50" WidthRequest="50" BackgroundColor="Red" TextColor="White" CornerRadius="8"/>
+                            <Button Text="{x:Static localfont:FontIconClass.SwapHorizontalCircle}" FontFamily="MyIcon" FontSize="25" IsVisible="{Binding IsSeller}" Command="{Binding Sell}" HeightRequest="50" WidthRequest="50" BackgroundColor="#00b34d" TextColor="White"  CornerRadius="8"/>
                         </StackLayout>
                        
                     </StackLayout>
@@ -84,7 +84,7 @@
                         <Frame Style="{DynamicResource InputFieldStyle}" CornerRadius="20" VerticalOptions="CenterAndExpand" >
                             <Entry Text="{Binding Message}" FontSize="14" Margin="3,0,0,0" Placeholder="Type a message..." HorizontalOptions="FillAndExpand" />
                         </Frame>
-                        <ImageButton Source="icon_send.png" Command="{Binding SendMessage}" VerticalOptions="CenterAndExpand" HeightRequest="28" WidthRequest="28"/>
+                        <ImageButton Source="sendIcon.png" Command="{Binding SendMessage}" VerticalOptions="CenterAndExpand" HeightRequest="28" WidthRequest="28"/>
                     </StackLayout>
 
 

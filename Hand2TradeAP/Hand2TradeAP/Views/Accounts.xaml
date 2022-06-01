@@ -5,7 +5,7 @@
              xmlns:localfont="clr-namespace:Hand2TradeAP.AppFonts">
     <ContentPage.Content>
         <StackLayout BackgroundColor="White">
-            <Button Style="{StaticResource BackButtonStyle}"/>
+            <Button Style="{StaticResource BackButtonStyle}" Command="{Binding NevigateBack}"/>
             <SearchBar SearchCommand="{Binding Search}" Text="{Binding SearchText}" CancelButtonColor="Red" Placeholder="Search users"/>
             <CollectionView x:Name="searchedAcounts"                 
                   BackgroundColor="White"

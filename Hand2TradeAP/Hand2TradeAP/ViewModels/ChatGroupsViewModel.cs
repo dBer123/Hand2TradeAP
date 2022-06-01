@@ -61,7 +61,7 @@ namespace Hand2TradeAP.ViewModels
             Groups.Clear();
             foreach (TradeChat chat in userGroups)
             {
-                //chat.LastMessage = chat.TextMessages.OrderByDescending(m => m.SentTime).FirstOrDefault();
+                chat.LastMessage = chat.TextMessages.OrderByDescending(m => m.SentTime).FirstOrDefault();
                 Groups.Add(chat);
             }
             return true;

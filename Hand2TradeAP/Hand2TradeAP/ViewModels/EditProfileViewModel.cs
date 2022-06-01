@@ -16,7 +16,7 @@ using System.Collections.ObjectModel;
 
 namespace Hand2TradeAP.ViewModels
 {
-    class EditProfileViewModel : INotifyPropertyChanged
+    class EditProfileViewModel : INotifyPropertyChanged, IImageSourceUpdatable
     {
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
@@ -120,7 +120,14 @@ namespace Hand2TradeAP.ViewModels
         #endregion
         #region Adress
         #endregion
-
+        public async void UpdateImageSource(string imgSource)
+        {
+            this.imageFileResult = new FileResult(imgSource);
+            var stream = await imageFileResult.OpenReadAsync();
+            ImageSource source = ImageSource.FromStream(() => stream);
+            if (this.SetImageSourceEvent != null)
+                this.SetImageSourceEvent(source);
+        }
         private string adress;
         public string Adress
         {
@@ -169,7 +176,7 @@ namespace Hand2TradeAP.ViewModels
         }
 
         public ICommand NevigateBack => new Command(Back);
-        async void  Back()
+        async void Back()
         {
             await App.Current.MainPage.Navigation.PopModalAsync();
         }
@@ -188,18 +195,26 @@ namespace Hand2TradeAP.ViewModels
                 if (result != null)
                 {
                     this.imageFileResult = result;
-                    var stream = await result.OpenReadAsync();                    
-                    ImageSource imgSource = ImageSource.FromStream(() => stream);
-                   
-                    if (SetImageSourceEvent != null)
-                        SetImageSourceEvent(imgSource);
+                    await App.Current.MainPage.Navigation.PushModalAsync(new CropImage(this));
+                    //if (SetImageSourceEvent != null)
+                    //    SetImageSourceEvent(imgSource);
                 }
 
             }
             catch { }
 
         }
+        public string ImgSource
+        {
+            get
+            {
+                if (this.imageFileResult != null)
+                    return this.imageFileResult.FullPath;
+                else
+                    return string.Empty;
+            }
 
+        }
         ///The following command handle the take photo button
         public ICommand CameraImageCommand => new Command(OnCameraImage);
         public async void OnCameraImage()
@@ -210,10 +225,9 @@ namespace Hand2TradeAP.ViewModels
                 if (result != null)
                 {
                     this.imageFileResult = result;
-                    var stream = await result.OpenReadAsync();
-                    ImageSource imgSource = ImageSource.FromStream(() => stream);
-                    if (SetImageSourceEvent != null)
-                        SetImageSourceEvent(imgSource);
+                    await App.Current.MainPage.Navigation.PushModalAsync(new CropImage(this));
+                    //if (SetImageSourceEvent != null)
+                    //    SetImageSourceEvent(result.FullPath);
                 }
             }
             catch { }

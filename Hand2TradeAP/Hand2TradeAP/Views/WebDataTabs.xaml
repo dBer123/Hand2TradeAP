@@ -138,7 +138,7 @@
                     <xct:TabViewItem.IconSelected>
                         <FontImageSource Color="#00b34d"  FontFamily="MyIcon" Glyph="{x:Static  localfont:FontIconClass.Clock}"/>
                     </xct:TabViewItem.IconSelected>
-                    <myviews:ReportByHourView></myviews:ReportByHourView>
+                    <myviews:ReportByDay></myviews:ReportByDay>
                 </xct:TabViewItem>
 
 

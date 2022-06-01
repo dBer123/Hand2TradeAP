@@ -35,7 +35,7 @@
                 
             <Image Grid.Row="0" Source="profileBackground.jpg" VerticalOptions="Start" Aspect="Fill" />
                 <StackLayout>
-                    <controls:CircleImage Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Start" WidthRequest="180"  Source="{Binding ImageU}"></controls:CircleImage>
+                    <controls:CircleImage Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="180"  Margin="0,15" Source="{Binding ImageU}"></controls:CircleImage>
 
                     <Label Grid.Row="0" HorizontalTextAlignment="Center"  VerticalTextAlignment="Center" TextColor="#fdcc0d" HorizontalOptions="Center">
                         <Label.FormattedText>

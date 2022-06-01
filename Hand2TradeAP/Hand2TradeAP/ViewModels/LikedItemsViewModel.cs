@@ -41,7 +41,11 @@ namespace Hand2TradeAP.ViewModels
                 LikedItems.Add(Item);
             }
         }
-
+        public ICommand NevigateBack => new Command(Back);
+        async void Back()
+        {
+            await App.Current.MainPage.Navigation.PopModalAsync();
+        }
 
         public ICommand Choose => new Command<Object>(ChooseAction);
         public async void ChooseAction(Object obj)
@@ -56,7 +60,7 @@ namespace Hand2TradeAP.ViewModels
             if (obj is SfCardLayout)
             {
                 Hand2TradeAPIProxy proxy = Hand2TradeAPIProxy.CreateProxy();
-                Item item = LikedItems[((SfCardLayout)obj).TabIndex];
+                Item item = LikedItems[((SfCardLayout)obj).VisibleCardIndex];
                 bool found = await proxy.UnLike(item.ItemId);
                 if (!found)
                 {
@@ -68,7 +72,7 @@ namespace Hand2TradeAP.ViewModels
         {
             if (obj is SfCardLayout)
             {
-                Item item = LikedItems[((SfCardLayout)obj).TabIndex];
+                Item item = LikedItems[((SfCardLayout)obj).VisibleCardIndex];
                 await App.Current.MainPage.Navigation.PushModalAsync(new ItemPage(item));
             }
         }

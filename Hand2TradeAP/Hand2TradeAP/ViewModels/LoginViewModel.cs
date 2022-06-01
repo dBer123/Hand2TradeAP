@@ -71,8 +71,6 @@ namespace Hand2TradeAP.ViewModels
                 theApp.CurrentUser = user;
                 App.Current.MainPage = new Tabs();
 
-
-
             }
         }
 

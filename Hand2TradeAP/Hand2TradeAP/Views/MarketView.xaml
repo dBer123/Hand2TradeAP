@@ -68,13 +68,7 @@
                                             <Label Grid.Row="0" LineBreakMode="NoWrap" FontSize="30" TextColor="#474747" Text="{Binding ItemName}" />
                                             <Label Grid.Row="1" TextColor="#474747" LineBreakMode="NoWrap" Text="{Binding Price}"  />
                                         </Grid>
-                                        <Grid Grid.Row="0" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center">
-                                            <Label  FontSize="25" HorizontalOptions="Center" VerticalOptions="Center" Text="{x:Static localfont:FontIconClass.HeartOutline}" FontFamily="MyIcon">
-                                                <Label.GestureRecognizers>
-                                                    <TapGestureRecognizer/>
-                                                </Label.GestureRecognizers>
-                                            </Label>
-                                        </Grid>
+                                     
                                     </Grid>
                                 </Grid>
                             </Grid>

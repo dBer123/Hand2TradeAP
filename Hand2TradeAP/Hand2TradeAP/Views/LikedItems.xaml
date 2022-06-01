@@ -5,7 +5,7 @@
              xmlns:cards="clr-namespace:Syncfusion.XForms.Cards;assembly=Syncfusion.Cards.XForms">
     <ContentPage.Content>
         <StackLayout BackgroundColor="White">
-            <Button Style="{StaticResource BackButtonStyle}"/>
+            <Button Style="{StaticResource BackButtonStyle}" Command="{Binding NevigateBack}"/>
 
             <cards:SfCardLayout x:Name="CardsList"  CardTappedCommandParameter="{Binding Source={x:Reference CardsList}}" CardTappedCommand="{Binding Choose}" SwipeDirection="Left" HeightRequest="370" BindableLayout.ItemsSource="{Binding LikedItems}" >
                 <BindableLayout.ItemTemplate>

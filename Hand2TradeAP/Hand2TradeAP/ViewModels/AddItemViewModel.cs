@@ -169,9 +169,9 @@ namespace Hand2TradeAP.ViewModels
         }
 
         public ICommand NevigateBack => new Command(Back);
-        void Back()
+        async void Back()
         {
-            App.Current.MainPage = new Tabs(); 
+            await App.Current.MainPage.Navigation.PopModalAsync();
         }
 
         public FileResult imageFileResult;
@@ -275,7 +275,7 @@ namespace Hand2TradeAP.ViewModels
                     
                     App theApp = (App)Application.Current;
                     theApp.CurrentUser.Items.Add(itemAdded);
-                    App.Current.MainPage = new Tabs();
+                    await App.Current.MainPage.Navigation.PopModalAsync();
                 }
             }
           
