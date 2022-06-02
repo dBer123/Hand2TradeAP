@@ -21,6 +21,8 @@ namespace Hand2TradeAP.Views
             this.BindingContext = context;
             context.SetImageSourceEvent += OnSetImageSource;
             InitializeComponent();
+            App theApp = (App)Application.Current;
+            profileImage.Source = theApp.CurrentUser.ImgSource;
         }
 
         private void ToPopUp(object sender, EventArgs e)
@@ -32,7 +34,7 @@ namespace Hand2TradeAP.Views
 
         public void OnSetImageSource(ImageSource imgSource)
         {
-            itemImage.Source = imgSource;
+            profileImage.Source = imgSource;
             
         }
 

@@ -563,7 +563,7 @@ namespace Hand2TradeAP.Services
         {
             try
             {
-                HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/Like?itemID={itemID}");
+                HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/UnLike?itemID={itemID}");
                 if (response.IsSuccessStatusCode)
                 {
                     JsonSerializerOptions options = new JsonSerializerOptions

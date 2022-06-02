@@ -66,6 +66,10 @@ namespace Hand2TradeAP.ViewModels
                 {
                     await App.Current.MainPage.DisplayAlert("Error", "Can not Unlike Item", "OK");
                 }
+                else
+                {
+                    LikedItems.Remove(item);
+                }
             }            
         }
         public async void ExploreItem(Object obj)

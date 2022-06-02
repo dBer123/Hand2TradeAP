@@ -18,6 +18,8 @@ namespace Hand2TradeAP.Views
             MarketViewModel context = new MarketViewModel();
             this.BindingContext = context;
             InitializeComponent();
+            App theApp = (App)Application.Current;
+            profileImage.Source = theApp.CurrentUser.ImgSource;
         }
 
         private void searchedItems_SelectionChanged(object sender, SelectionChangedEventArgs e)

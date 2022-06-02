@@ -6,7 +6,7 @@
     <ContentPage.Content>
         <StackLayout BackgroundColor="White">
             <Button Style="{StaticResource BackButtonStyle}" Command="{Binding NevigateBack}"/>
-
+            <Label Text="Your liked Items:" Margin="10" TextColor="Black" FontSize="20" FontAttributes="Bold"/>
             <cards:SfCardLayout x:Name="CardsList"  CardTappedCommandParameter="{Binding Source={x:Reference CardsList}}" CardTappedCommand="{Binding Choose}" SwipeDirection="Left" HeightRequest="370" BindableLayout.ItemsSource="{Binding LikedItems}" >
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>
