@@ -227,7 +227,7 @@ namespace Hand2TradeAP.ViewModels
                     Item item = MyItems[((SfCardLayout)obj).VisibleCardIndex];
                     App theApp = (App)Application.Current;
                     Hand2TradeAPIProxy proxy = Hand2TradeAPIProxy.CreateProxy();
-                    bool isDeleted = await proxy.DeleteItem(item.ItemId);
+                    bool isDeleted = await proxy.DeleteItem(item);
                     if (isDeleted == true)
                     {
                         theApp.CurrentUser.Items.Remove(item);

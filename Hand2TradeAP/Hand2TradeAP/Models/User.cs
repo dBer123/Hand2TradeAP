@@ -19,7 +19,6 @@ namespace Hand2TradeAP.Models
         public bool IsBlocked { get; set; }
         public double SumRanks { get; set; }
         public int CountRanked { get; set; }
-        public DateTime JoinedDate { get; set; }
         public ICollection<Item> Items { get; set; }
 
 

@@ -14,7 +14,7 @@
                     <Label Grid.Row="0" Grid.Column="0" Text="Items" FontAttributes="Bold" FontSize="30"/>
                     <!-- Profile imagen with rounded corners-->
                     <PanCake:PancakeView Grid.Row="0" Grid.Column="1" HeightRequest="100" Grid.RowSpan="2"  CornerRadius="15">
-                        <Image Source="profile.png"/>
+                        <Image Source="{Binding ImageU}"/>
                     </PanCake:PancakeView>
                     <!-- Subtitle with number of talents-->
                     <Label Grid.Row="1" Grid.Column="0" Text="12 420 available" FontSize="15" TextColor="#90999f"/>

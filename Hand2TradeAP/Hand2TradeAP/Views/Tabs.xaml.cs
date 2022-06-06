@@ -27,11 +27,10 @@ namespace Hand2TradeAP.Views
 
         protected override void OnAppearing()
         {
-            base.OnAppearing();
-            if (tabView1.TabItems[2].IsSelected)
-                ((ProfileViewModel)tabView1.TabItems[2].Content.BindingContext).RefreshCommand.Execute(null);
-            if (tabView1.TabItems[1].IsSelected)
+            base.OnAppearing();          
+            ((ProfileViewModel)tabView1.TabItems[2].Content.BindingContext).RefreshCommand.Execute(null);
             ((ChatGroupsViewModel)tabView1.TabItems[1].Content.BindingContext).RefreshCommand.Execute(null);
+            ((MarketViewModel)tabView1.TabItems[0].Content.BindingContext).RefreshCommand.Execute(null);
         }
 
     }

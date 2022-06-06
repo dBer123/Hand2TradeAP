@@ -328,7 +328,6 @@ namespace Hand2TradeAP.ViewModels
                     BirthDate = BirthDate,
                     IsAdmin = false,
                     IsBlocked = true,
-                    JoinedDate= DateTime.Today
                 };
 
                 bool isReturned = await proxy.RegisterUser(u);

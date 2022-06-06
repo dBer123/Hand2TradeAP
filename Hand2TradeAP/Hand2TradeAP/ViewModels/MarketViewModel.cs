@@ -57,6 +57,16 @@ namespace Hand2TradeAP.ViewModels
                 OnPropertyChanged("ShowSearchTextError");
             }
         }
+        private ImageSource imageU;
+        public ImageSource ImageU
+        {
+            get { return imageU; }
+            set
+            {
+                imageU = value;
+                OnPropertyChanged("ImageU");
+            }
+        }
         void ValidateDescription()
         {
             ShowSearchTextError = true;
@@ -67,13 +77,7 @@ namespace Hand2TradeAP.ViewModels
         }
         #endregion
         public ObservableCollection<Item> SearchedItems { get; set; }
-        public ObservableCollection<string> SortByList { get; set; }
-        public ICommand Sort => new Command(SortBy);
-        public async void SortBy()
-        {
-            string s = await App.Current.MainPage.DisplayActionSheet("Sort by:", null, "CANCEL", "Price", "Name","Owner's rating");
-            
-        }
+        
         public ICommand Search => new Command(SearchItem);
         async void SearchItem()
         {
@@ -112,7 +116,7 @@ namespace Hand2TradeAP.ViewModels
                 Item item = (Item)obj;
                 App theApp = (App)Application.Current;
                 int userId = theApp.CurrentUser.UserId;
-                bool found = await proxy.Like(item.ItemId);
+                bool found = await proxy.Like(item);
                 if (!found)
                 {
                     await App.Current.MainPage.DisplayAlert("Error", "Can not like Item", "OK");
@@ -120,14 +124,23 @@ namespace Hand2TradeAP.ViewModels
                 }
             }              
         }
+        public ICommand RefreshCommand => new Command(async () =>
+        {
+
+            Market();
+        });
         public MarketViewModel()
         {
-            SortByList = new ObservableCollection<string>();
-            SortByList.Add("Name");
-            SortByList.Add("Price"); 
-            SortByList.Add("Owner's Rating");
-            SearchedItems = new ObservableCollection<Item>();
 
+            Market();
+        }
+        public void Market()
+        {
+
+            SearchedItems = new ObservableCollection<Item>();
+            App theApp = (App)Application.Current;
+            User CurrentUser = theApp.CurrentUser;
+            ImageU = CurrentUser.ImgSource == null ? "profile.png" : CurrentUser.ImgSource;
         }
     }
 }

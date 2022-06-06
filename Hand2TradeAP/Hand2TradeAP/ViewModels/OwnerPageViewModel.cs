@@ -85,7 +85,12 @@ namespace Hand2TradeAP.ViewModels
         public async void RateUser(double rate)
         {
             Hand2TradeAPIProxy proxy = Hand2TradeAPIProxy.CreateProxy();
-            bool found = await proxy.Rate(Owner.UserId, rate);
+            Rating rating = new Rating
+            {
+                Rate = rate,
+                RatedUserId = Owner.UserId
+            };
+            bool found = await proxy.Rate(rating);
             if (!found)
             {
                 await App.Current.MainPage.DisplayAlert("Error", "Something went wrong. Please try again later", "OK");
@@ -99,7 +104,7 @@ namespace Hand2TradeAP.ViewModels
         public async void ReportUser()
         {
             Hand2TradeAPIProxy proxy = Hand2TradeAPIProxy.CreateProxy();
-            bool found = await proxy.Report(Owner.UserId);
+            bool found = await proxy.Report(Owner);
             if (!found)
             {
                 await App.Current.MainPage.DisplayAlert(null, "You have already reported this user", "OK");

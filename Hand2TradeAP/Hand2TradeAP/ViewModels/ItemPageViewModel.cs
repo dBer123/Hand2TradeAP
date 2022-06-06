@@ -123,7 +123,6 @@ namespace Hand2TradeAP.ViewModels
                     SellerId = ItemUser.UserId,
                     Item = Item,
                     ItemId = Item.ItemId,
-                    IsTradeAgreed = false,
                 };
                 TradeChat returnedGroup = await proxy.CreateGroup(c);
 

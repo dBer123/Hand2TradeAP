@@ -21,9 +21,9 @@ namespace Hand2TradeAP.Services
         private const string DEV_ANDROID_EMULATOR_URL = "http://10.0.2.2:22847/Hand2TradeAPI"; //API url when using emulator on android
         private const string DEV_ANDROID_PHYSICAL_URL = "http://192.168.1.14:22847/Hand2TradeAPI"; //API url when using physucal device on android
         private const string DEV_WINDOWS_URL = "http://localhost:22847/Hand2TradeAPI"; //API url when using windoes on development
-        private const string DEV_ANDROID_EMULATOR_PHOTOS_URL = "http://10.0.2.2:22847/Images/"; //API url when using emulator on android
-        private const string DEV_ANDROID_PHYSICAL_PHOTOS_URL = "http://192.168.1.14:22847/Images/"; //API url when using physucal device on android
-        private const string DEV_WINDOWS_PHOTOS_URL = "http://localhost:22847/Images/"; //API url when using windoes on development
+        private const string DEV_ANDROID_EMULATOR_PHOTOS_URL = "http://10.0.2.2:22847/Hand2TradeAPI"; //API url when using emulator on android
+        private const string DEV_ANDROID_PHYSICAL_PHOTOS_URL = "http://192.168.1.14:22847/Hand2TradeAPI"; //API url when using physucal device on android
+        private const string DEV_WINDOWS_PHOTOS_URL = "http://localhost:22847/Hand2TradeAPI"; //API url when using windoes on development
 
         private HttpClient client;
         public string baseUri;
@@ -340,20 +340,24 @@ namespace Hand2TradeAP.Services
                 return null;
             }
         }
-        public async Task<bool> DeleteItem(int itemid)
+        public async Task<bool> DeleteItem(Item i)
         {
             try
             {
-                HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/DeleteItem?id={itemid}");
+                JsonSerializerOptions options = new JsonSerializerOptions
+                {
+                    ReferenceHandler = ReferenceHandler.Preserve,
+                    PropertyNameCaseInsensitive = true
+                };
+                string jsonObject = JsonSerializer.Serialize<Item>(i, options);
+                StringContent content = new StringContent(jsonObject, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = await this.client.PostAsync($"{this.baseUri}/DeleteItem", content);
                 if (response.IsSuccessStatusCode)
                 {
-                    JsonSerializerOptions options = new JsonSerializerOptions
-                    {
-                        ReferenceHandler = ReferenceHandler.Preserve, //avoid reference loops!
-                        PropertyNameCaseInsensitive = true
-                    };
-                    string content = await response.Content.ReadAsStringAsync();
-                    bool found = JsonSerializer.Deserialize<bool>(content, options);
+                    string jsonContent = await response.Content.ReadAsStringAsync();
+                    bool found = JsonSerializer.Deserialize<bool>(jsonContent, options);
+
                     return found;
                 }
                 else
@@ -423,170 +427,7 @@ namespace Hand2TradeAP.Services
             }
         }
 
-        public async Task<bool> Block(int userId)
-        {
-            try
-            {
-                HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/Block?userId={userId}");
-                if (response.IsSuccessStatusCode)
-                {
-                    JsonSerializerOptions options = new JsonSerializerOptions
-                    {
-                        ReferenceHandler = ReferenceHandler.Preserve, //avoid reference loops!
-                        PropertyNameCaseInsensitive = true
-                    };
-                    string content = await response.Content.ReadAsStringAsync();
-                    bool succeeded = JsonSerializer.Deserialize<bool>(content, options);
-                    return succeeded;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-                return false;
-            }
-        }
-
-        public async Task<bool> Promote(int userId)
-        {
-            try
-            {
-                HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/Promote?userId={userId}");
-                if (response.IsSuccessStatusCode)
-                {
-                    JsonSerializerOptions options = new JsonSerializerOptions
-                    {
-                        ReferenceHandler = ReferenceHandler.Preserve, //avoid reference loops!
-                        PropertyNameCaseInsensitive = true
-                    };
-                    string content = await response.Content.ReadAsStringAsync();
-                    bool succeeded = JsonSerializer.Deserialize<bool>(content, options);
-                    return succeeded;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-                return false;
-            }
-        }
-        public async Task<bool> Rate(int ratedUserID, double rate)
-        {
-            try
-            {
-                HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/Rate?ratedUserID={ratedUserID}&rate={rate}");
-                if (response.IsSuccessStatusCode)
-                {
-                    JsonSerializerOptions options = new JsonSerializerOptions
-                    {
-                        ReferenceHandler = ReferenceHandler.Preserve, //avoid reference loops!
-                        PropertyNameCaseInsensitive = true
-                    };
-                    string content = await response.Content.ReadAsStringAsync();
-                    bool succeeded = JsonSerializer.Deserialize<bool>(content, options);
-                    return succeeded;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-                return false;
-            }
-        }
-        public async Task<bool> Report(int reportedID)
-        {
-            try
-            {
-                HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/Report?reportedID={reportedID}");
-                if (response.IsSuccessStatusCode)
-                {
-                    JsonSerializerOptions options = new JsonSerializerOptions
-                    {
-                        ReferenceHandler = ReferenceHandler.Preserve, //avoid reference loops!
-                        PropertyNameCaseInsensitive = true
-                    };
-                    string content = await response.Content.ReadAsStringAsync();
-                    bool succeeded = JsonSerializer.Deserialize<bool>(content, options);
-                    return succeeded;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-                return false;
-            }
-        }
-        public async Task<bool> Like(int itemID)
-        {
-            try
-            {
-                HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/Like?itemID={itemID}");
-                if (response.IsSuccessStatusCode)
-                {
-                    JsonSerializerOptions options = new JsonSerializerOptions
-                    {
-                        ReferenceHandler = ReferenceHandler.Preserve, //avoid reference loops!
-                        PropertyNameCaseInsensitive = true
-                    };
-                    string content = await response.Content.ReadAsStringAsync();
-                    bool succeeded = JsonSerializer.Deserialize<bool>(content, options);
-                    return succeeded;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-                return false;
-            }
-        }
-        public async Task<bool> UnLike(int itemID)
-        {
-            try
-            {
-                HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/Like?itemID={itemID}");
-                if (response.IsSuccessStatusCode)
-                {
-                    JsonSerializerOptions options = new JsonSerializerOptions
-                    {
-                        ReferenceHandler = ReferenceHandler.Preserve, //avoid reference loops!
-                        PropertyNameCaseInsensitive = true
-                    };
-                    string content = await response.Content.ReadAsStringAsync();
-                    bool succeeded = JsonSerializer.Deserialize<bool>(content, options);
-                    return succeeded;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-                return false;
-            }
-        }
-        public async Task<bool> MakeALoan(Loan loan)
+        public async Task<bool> Block(User user)
         {
             try
             {
@@ -595,16 +436,16 @@ namespace Hand2TradeAP.Services
                     ReferenceHandler = ReferenceHandler.Preserve,
                     PropertyNameCaseInsensitive = true
                 };
-                string jsonObject = JsonSerializer.Serialize<Loan>(loan, options);
+                string jsonObject = JsonSerializer.Serialize<User>(user, options);
                 StringContent content = new StringContent(jsonObject, Encoding.UTF8, "application/json");
 
-                HttpResponseMessage response = await this.client.PostAsync($"{this.baseUri}/MakeALoan", content);
+                HttpResponseMessage response = await this.client.PostAsync($"{this.baseUri}/Block", content);
                 if (response.IsSuccessStatusCode)
                 {
                     string jsonContent = await response.Content.ReadAsStringAsync();
-                    bool ret = JsonSerializer.Deserialize<bool>(jsonContent, options);
+                    bool found = JsonSerializer.Deserialize<bool>(jsonContent, options);
 
-                    return ret;
+                    return found;
                 }
                 else
                 {
@@ -617,6 +458,163 @@ namespace Hand2TradeAP.Services
                 return false;
             }
         }
+
+        public async Task<bool> Promote(User user)
+        {
+            try
+            {
+                JsonSerializerOptions options = new JsonSerializerOptions
+                {
+                    ReferenceHandler = ReferenceHandler.Preserve,
+                    PropertyNameCaseInsensitive = true
+                };
+                string jsonObject = JsonSerializer.Serialize<User>(user, options);
+                StringContent content = new StringContent(jsonObject, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = await this.client.PostAsync($"{this.baseUri}/Promote", content);
+                if (response.IsSuccessStatusCode)
+                {
+                    string jsonContent = await response.Content.ReadAsStringAsync();
+                    bool found = JsonSerializer.Deserialize<bool>(jsonContent, options);
+
+                    return found;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+        }
+        public async Task<bool> Rate(Rating rating)
+        {
+            try
+            {
+                JsonSerializerOptions options = new JsonSerializerOptions
+                {
+                    ReferenceHandler = ReferenceHandler.Preserve,
+                    PropertyNameCaseInsensitive = true
+                };
+                string jsonObject = JsonSerializer.Serialize<Rating>(rating, options);
+                StringContent content = new StringContent(jsonObject, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = await this.client.PostAsync($"{this.baseUri}/Rate", content);
+                if (response.IsSuccessStatusCode)
+                {
+                    string jsonContent = await response.Content.ReadAsStringAsync();
+                    bool found = JsonSerializer.Deserialize<bool>(jsonContent, options);
+
+                    return found;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+        }
+        public async Task<bool> Report(User user)
+        {
+            try
+            {
+                JsonSerializerOptions options = new JsonSerializerOptions
+                {
+                    ReferenceHandler = ReferenceHandler.Preserve,
+                    PropertyNameCaseInsensitive = true
+                };
+                string jsonObject = JsonSerializer.Serialize<User>(user, options);
+                StringContent content = new StringContent(jsonObject, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = await this.client.PostAsync($"{this.baseUri}/Promote", content);
+                if (response.IsSuccessStatusCode)
+                {
+                    string jsonContent = await response.Content.ReadAsStringAsync();
+                    bool found = JsonSerializer.Deserialize<bool>(jsonContent, options);
+
+                    return found;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+        }
+        public async Task<bool> Like(Item i)
+        {
+            try
+            {
+                JsonSerializerOptions options = new JsonSerializerOptions
+                {
+                    ReferenceHandler = ReferenceHandler.Preserve,
+                    PropertyNameCaseInsensitive = true
+                };
+                string jsonObject = JsonSerializer.Serialize<Item>(i, options);
+                StringContent content = new StringContent(jsonObject, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = await this.client.PostAsync($"{this.baseUri}/Like", content);
+                if (response.IsSuccessStatusCode)
+                {
+                    string jsonContent = await response.Content.ReadAsStringAsync();
+                    bool found = JsonSerializer.Deserialize<bool>(jsonContent, options);
+
+                    return found;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+        }
+        public async Task<bool> UnLike(Item i)
+        {
+            try
+            {
+                JsonSerializerOptions options = new JsonSerializerOptions
+                {
+                    ReferenceHandler = ReferenceHandler.Preserve,
+                    PropertyNameCaseInsensitive = true
+                };
+                string jsonObject = JsonSerializer.Serialize<Item>(i, options);
+                StringContent content = new StringContent(jsonObject, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = await this.client.PostAsync($"{this.baseUri}/UnLike", content);
+                if (response.IsSuccessStatusCode)
+                {
+                    string jsonContent = await response.Content.ReadAsStringAsync();
+                    bool found = JsonSerializer.Deserialize<bool>(jsonContent, options);
+
+                    return found;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+        }
+             
         public async Task<TradeChat> CreateGroup(TradeChat chat)
         {
             try
@@ -648,29 +646,7 @@ namespace Hand2TradeAP.Services
             }
         }
 
-        //public async Task<TradeChat> GetGroup(int chatId)
-        //{
-        //    try
-        //    {
-        //        HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/get-group?chatId={chatId}");
-        //        if (response.IsSuccessStatusCode)
-        //        {
-        //            string jsonContent = await response.Content.ReadAsStringAsync();
-        //            TradeChat chat = JsonSerializer.Deserialize<TradeChat>(jsonContent);
 
-        //            return chat;
-        //        }
-        //        else
-        //        {
-        //            return null;
-        //        }
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Console.WriteLine(e);
-        //        return null;
-        //    }
-        //}
         public async Task<List<TradeChat>> GetGroups()
         {
             try

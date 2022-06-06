@@ -30,8 +30,36 @@ namespace Hand2TradeAP.ViewModels
 
         public WebDataViewModel()
         {
-            dailyReports = new List<DailyReport>();
+            dailyReports = new List<DailyReport>()
+            {
+                new DailyReport{ DayTime=DateTime.Today, ItemsDraded=1, NewSubs=2,ReportsNum=0},
+                new DailyReport{ DayTime=DateTime.Today.AddDays(-1), ItemsDraded=3, NewSubs=2,ReportsNum=6},
+                new DailyReport{ DayTime=DateTime.Today.AddDays(-2), ItemsDraded=3, NewSubs=2,ReportsNum=6},
+                new DailyReport{ DayTime=DateTime.Today.AddDays(-3), ItemsDraded=3, NewSubs=2,ReportsNum=6},
+                new DailyReport{ DayTime=DateTime.Today.AddDays(-4), ItemsDraded=1, NewSubs=1,ReportsNum=2},
+                new DailyReport{ DayTime=DateTime.Today.AddDays(-5), ItemsDraded=5, NewSubs=5,ReportsNum=5},
+                new DailyReport{ DayTime=DateTime.Today.AddDays(-6), ItemsDraded=0, NewSubs=4,ReportsNum=6}
+            };
+
+
             monthlyReports = new List<MonthlyReport>();
+            monthlyReports = new List<MonthlyReport>()
+            {
+                new MonthlyReport{ DateOfMonth=DateTime.Today.AddDays(-5), ItemsTraded=41, NewSubs=32,ReportsNum=30},
+                new MonthlyReport{ DateOfMonth=DateTime.Today.AddDays(-5).AddMonths(-1), ItemsTraded=3, NewSubs=2,ReportsNum=6},
+                new MonthlyReport{ DateOfMonth=DateTime.Today.AddDays(-5).AddMonths(-2), ItemsTraded=33, NewSubs=22,ReportsNum=33},
+                new MonthlyReport{ DateOfMonth=DateTime.Today.AddDays(-5).AddMonths(-3), ItemsTraded=31, NewSubs=12,ReportsNum=16},
+                new MonthlyReport{ DateOfMonth=DateTime.Today.AddDays(-5).AddMonths(-4), ItemsTraded=14, NewSubs=11,ReportsNum=22},
+                new MonthlyReport{ DateOfMonth=DateTime.Today.AddDays(-5).AddMonths(-5), ItemsTraded=15, NewSubs=35,ReportsNum=25},
+                new MonthlyReport{ DateOfMonth=DateTime.Today.AddDays(-5).AddMonths(-6), ItemsTraded=30, NewSubs=24,ReportsNum=16},
+                new MonthlyReport{ DateOfMonth=DateTime.Today.AddDays(-5).AddMonths(-7), ItemsTraded=19, NewSubs=8,ReportsNum=20},
+                new MonthlyReport{ DateOfMonth=DateTime.Today.AddDays(-5).AddMonths(-8), ItemsTraded=15, NewSubs=17,ReportsNum=12},
+                new MonthlyReport{ DateOfMonth=DateTime.Today.AddDays(-5).AddMonths(-9), ItemsTraded=9, NewSubs=11,ReportsNum=10},
+                new MonthlyReport{ DateOfMonth=DateTime.Today.AddDays(-5).AddMonths(-10), ItemsTraded=3, NewSubs=4,ReportsNum=6},
+                new MonthlyReport{ DateOfMonth=DateTime.Today.AddDays(-5).AddMonths(-11), ItemsTraded=12, NewSubs=8,ReportsNum=5}
+
+
+            };
             Data = new List<Person>()
             {
                 new Person { Name = "David", Height = 180, Weight=62,Age=56 },

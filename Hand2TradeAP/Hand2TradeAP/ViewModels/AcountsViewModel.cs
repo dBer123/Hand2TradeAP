@@ -105,7 +105,7 @@ namespace Hand2TradeAP.ViewModels
                 else
                 {
                     Hand2TradeAPIProxy proxy = Hand2TradeAPIProxy.CreateProxy();
-                    bool succeeded = await proxy.Promote(user.UserId);
+                    bool succeeded = await proxy.Promote(user);
                     if (!succeeded)
                     {
                         await App.Current.MainPage.DisplayAlert("Error", "Could not block user", "OK");
@@ -130,7 +130,7 @@ namespace Hand2TradeAP.ViewModels
                 else
                 {
                     Hand2TradeAPIProxy proxy = Hand2TradeAPIProxy.CreateProxy();
-                    bool succeeded = await proxy.Block(user.UserId);
+                    bool succeeded = await proxy.Block(user);
                     if (!succeeded)
                     {
                         await App.Current.MainPage.DisplayAlert("Error", "Could not block user", "OK");

@@ -11,7 +11,7 @@
                             <Image Source="emailCheckBack.jpg" Aspect="AspectFit"  Margin="0" />
                         </Frame>
                     </StackLayout>
-                    <StackLayout Padding="0" Margin="10,100,10,150" HorizontalOptions="FillAndExpand">
+                    <StackLayout Padding="0" Margin="10,100,10,0" HorizontalOptions="FillAndExpand">
                         <Frame  BackgroundColor="White" HeightRequest="500" HasShadow="True" Padding="0" Margin="0">
                             <StackLayout>
                             <StackLayout Margin="15">
@@ -29,9 +29,7 @@
                                         </StackLayout>
                                     </Frame>
 
-                                <Button Text="Enter" Command="{Binding SubmitCommand}"  BorderRadius="6" Margin="20,10" FontSize="17" FontAttributes="Bold" HeightRequest="40" WidthRequest="200" TextColor="White" BackgroundColor="#2FA999"></Button>
-                                <Button Text="To Sign Up" Command="{Binding}" BorderRadius="6" Margin="20,0" FontSize="17" FontAttributes="Bold" HeightRequest="40" WidthRequest="200" TextColor="White" BackgroundColor="MediumPurple"></Button>
-
+                                <Button Text="Enter" Command="{Binding SubmitCommand}"  BorderRadius="6" Margin="20,50" FontSize="17" FontAttributes="Bold" HeightRequest="70" WidthRequest="200" TextColor="White" BackgroundColor="#2FA999"></Button>
                             </StackLayout>
                             </StackLayout>
                            

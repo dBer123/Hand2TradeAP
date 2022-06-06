@@ -10,7 +10,6 @@ namespace Hand2TradeAP.Models
         public int ItemId { get; set; }
         public int BuyerId { get; set; }
         public int SellerId { get; set; }
-        public bool IsTradeAgreed { get; set; }
         public virtual User Buyer { get; set; }
         public virtual Item Item { get; set; }
         public virtual User Seller { get; set; }

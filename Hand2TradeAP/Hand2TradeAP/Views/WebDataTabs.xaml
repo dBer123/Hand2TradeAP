@@ -125,8 +125,23 @@
                 </xct:TabViewItem>
 
 
+                <xct:TabViewItem 
+                    TabTapped="MyTab_TabTapped"  
+                    TextColor="#979797"
+                    VerticalOptions="Center"
+                    TextColorSelected="#00b34d"
+                    ControlTemplate="{StaticResource TabItemTemplate}">
+                    <xct:TabViewItem.Icon>
+                        <FontImageSource Color="#979797"  FontFamily="MyIcon" Glyph="{x:Static  localfont:FontIconClass.Clock}"/>
+                    </xct:TabViewItem.Icon>
 
-                
+                    <xct:TabViewItem.IconSelected>
+                        <FontImageSource Color="#00b34d"  FontFamily="MyIcon" Glyph="{x:Static localfont:FontIconClass.Clock}"/>
+                    </xct:TabViewItem.IconSelected>
+                    <myviews:ReportByDayView></myviews:ReportByDayView>
+                </xct:TabViewItem>
+
+
 
 
             </xct:TabView>

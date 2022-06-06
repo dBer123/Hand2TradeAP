@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Hand2TradeAP.Views.ReportByMonthView"
-             xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms">
+             xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
+             x:Class="Hand2TradeAP.Views.ReportByDayView">
   <ContentView.Content>
         <chart:SfChart x:Name="Chart" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White">
             <chart:SfChart.PrimaryAxis>
-                <chart:CategoryAxis LabelPlacement="BetweenTicks"/>
+                <chart:CategoryAxis LabelPlacement="BetweenTicks" />
             </chart:SfChart.PrimaryAxis>
 
 
@@ -20,27 +20,25 @@
             </chart:SfChart.Legend>
 
             <chart:SfChart.Title>
-                <chart:ChartTitle Text="Repot By Month" FontSize="25" FontAttributes="Bold"/>
+                <chart:ChartTitle Text="Repot By Day" FontSize="25" FontAttributes="Bold"/>
             </chart:SfChart.Title>
 
 
             <chart:SfChart.SecondaryAxis>
                 <chart:NumericalAxis>
-
                 </chart:NumericalAxis>
             </chart:SfChart.SecondaryAxis>
 
             <chart:SfChart.Series>
-                <chart:ColumnSeries x:Name="Ages" ItemsSource ="{Binding monthlyReports}" XBindingPath="DateOfMonth" Label="Items Traded"
-                                    YBindingPath="ItemsTraded" IsVisibleOnLegend="true"/>
+                <chart:ColumnSeries x:Name="Ages" ItemsSource ="{Binding dailyReports }" XBindingPath="DayTime" Label="Items traded"
+                                    YBindingPath="ItemsDraded" IsVisibleOnLegend="true"/>
 
-                <chart:ColumnSeries ItemsSource ="{Binding monthlyReports}" XBindingPath="DateOfMonth" Label="New Subs"
+                <chart:ColumnSeries ItemsSource ="{Binding dailyReports}" XBindingPath="DayTime" Label="New Subs"
 	 YBindingPath="NewSubs" IsVisibleOnLegend="true"/>
 
-                <chart:ColumnSeries ItemsSource ="{Binding monthlyReports}" XBindingPath="DateOfMonth" Label="Reports Num"
+                <chart:ColumnSeries ItemsSource ="{Binding dailyReports}" XBindingPath="DayTime" Label="Reports Num"
 	 YBindingPath="ReportsNum" IsVisibleOnLegend="true"/>
             </chart:SfChart.Series>
         </chart:SfChart>
-
     </ContentView.Content>
 </ContentView>

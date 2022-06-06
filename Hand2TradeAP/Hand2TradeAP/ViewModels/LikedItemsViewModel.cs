@@ -61,10 +61,14 @@ namespace Hand2TradeAP.ViewModels
             {
                 Hand2TradeAPIProxy proxy = Hand2TradeAPIProxy.CreateProxy();
                 Item item = LikedItems[((SfCardLayout)obj).VisibleCardIndex];
-                bool found = await proxy.UnLike(item.ItemId);
+                bool found = await proxy.UnLike(item);
                 if (!found)
                 {
                     await App.Current.MainPage.DisplayAlert("Error", "Can not Unlike Item", "OK");
+                }
+                else
+                {
+                    LikedItems.Remove(item);
                 }
             }            
         }

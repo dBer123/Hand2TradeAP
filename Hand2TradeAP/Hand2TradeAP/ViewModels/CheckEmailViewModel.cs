@@ -59,12 +59,6 @@ namespace Hand2TradeAP.ViewModels
         }
 
 
-        public ICommand NevigateToSignUn => new Command(ToSignUp);
-        void ToSignUp()
-        {
-
-            Page p = new RegisterPage();
-            App.Current.MainPage = p;
-        }
+        
     }
 }
