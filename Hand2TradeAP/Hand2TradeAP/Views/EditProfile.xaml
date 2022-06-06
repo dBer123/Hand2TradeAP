@@ -10,7 +10,7 @@
         <ScrollView>
         <StackLayout BackgroundColor="White">
             <Button Style="{StaticResource BackButtonStyle}" Command="{Binding NevigateBack}"/>
-            <controls:CircleImage x:Name="itemImage" WidthRequest="200" HeightRequest="200" Aspect="Fill" BorderColor="Black" BorderThickness="2"/>
+            <controls:CircleImage x:Name="profileImage" WidthRequest="200" HeightRequest="200" Aspect="Fill" BorderColor="Black" BorderThickness="2"/>
             <Button Grid.Row="2" Clicked="ToPopUp" BackgroundColor="#00b34d" CornerRadius="5" HeightRequest="40" WidthRequest="40" Text="{x:Static localfont:FontIconClass.FileImage}"
          xct:ShadowEffect.Color="#00b34d" xct:TouchEffect.AnimationDuration="50" xct:TouchEffect.PressedScale="1.1" HorizontalOptions="Center" VerticalOptions="Center" Margin="-18" FontFamily="MyIcon" FontSize="20" TextColor="White"/>
             <inputLayout:SfTextInputLayout  Hint="User name:"  ContainerType="Outlined" ErrorText="{Binding UserNameError}" ErrorColor="Red" HasError="{Binding ShowUserNameError}" FocusedStrokeWidth="4" FocusedColor="#00b34d" UnfocusedStrokeWidth="2"  Margin="20,30">

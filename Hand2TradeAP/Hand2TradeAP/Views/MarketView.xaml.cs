@@ -18,6 +18,7 @@ namespace Hand2TradeAP.Views
             MarketViewModel context = new MarketViewModel();
             this.BindingContext = context;
             InitializeComponent();
+
         }
 
         private void searchedItems_SelectionChanged(object sender, SelectionChangedEventArgs e)

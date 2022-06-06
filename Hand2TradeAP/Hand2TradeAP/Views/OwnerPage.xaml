@@ -19,8 +19,8 @@
                 <Image Grid.Row="0" Source="profileBackground.jpg" VerticalOptions="Start" Aspect="Fill" Margin="-20" />
 
                 <StackLayout>
-                    <controls:CircleImage Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Start" WidthRequest="180"  Source="{Binding Owner.ImgSource}"></controls:CircleImage>
-                <rating:SfRating ItemSize="45" Value="{Binding UserRate}" Precision="Half" Margin="0,-60,0,0" ReadOnly="true" HorizontalOptions="Center" VerticalOptions="Center">
+                    <controls:CircleImage Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Start" WidthRequest="180" Margin="10"  Source="{Binding Owner.ImgSource}"></controls:CircleImage>
+                <rating:SfRating ItemSize="45" Value="{Binding UserRate}" Precision="Half" Margin="0,0,0,0" ReadOnly="true" HorizontalOptions="Center" VerticalOptions="Center">
                     <rating:SfRating.RatingSettings>
                         <rating:SfRatingSettings RatedFill="Gold" UnRatedStroke="Gold" UnRatedStrokeWidth="7"/>
                     </rating:SfRating.RatingSettings>

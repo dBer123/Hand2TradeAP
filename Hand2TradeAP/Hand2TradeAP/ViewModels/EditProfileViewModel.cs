@@ -120,6 +120,7 @@ namespace Hand2TradeAP.ViewModels
         #endregion
         #region Adress
         #endregion
+     
         public async void UpdateImageSource(string imgSource)
         {
             this.imageFileResult = new FileResult(imgSource);
