@@ -183,7 +183,7 @@ namespace Hand2TradeAP.ViewModels
         private void ValidateImage()
         {
             ShowimageError = true;
-            if (imageFileResult != null)
+            if (imageFileResult == null)
                 ImageError = "You must Add a picture of the item";
 
             else

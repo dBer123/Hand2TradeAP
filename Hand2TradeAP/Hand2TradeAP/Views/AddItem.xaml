@@ -22,7 +22,7 @@
                 </ff:CachedImage>
                 <Button Grid.Row="2" Clicked="ToPopUp" BackgroundColor="#00b34d" CornerRadius="5" HeightRequest="40" WidthRequest="40" Text="{x:Static localfont:FontIconClass.FileImage}"
          xct:ShadowEffect.Color="#00b34d" xct:TouchEffect.AnimationDuration="50" xct:TouchEffect.PressedScale="1.1" HorizontalOptions="Center" VerticalOptions="Center" Margin="-18" FontFamily="MyIcon" FontSize="20" TextColor="White"/>
-                <Label Text="{Binding ImageError}" TextColor="Red" IsVisible="{Binding ShowimageError}" />
+                <Label Text="{Binding ImageError}" TextColor="Red" IsVisible="{Binding ShowimageError}" Margin="5" />
                 <inputLayout:SfTextInputLayout  Hint="Item name:"  ContainerType="Outlined" ErrorText="{Binding ItemNameError}" ErrorColor="Red" HasError="{Binding ShowItemNameError}" FocusedStrokeWidth="4" FocusedColor="#00b34d" UnfocusedStrokeWidth="2"  Margin="20,30">
 
                     <Entry x:Name="entry1" Focused="Label1_Focused" Unfocused="entry1_Unfocused" Text="{Binding Itemname}" xct:SetFocusOnEntryCompletedBehavior.NextElement="{x:Reference entry2}"></Entry>

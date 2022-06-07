@@ -10,8 +10,6 @@ namespace Hand2TradeAP.Models
         public DateTime DateOfMonth { get; set; }
         public int NewSubs { get; set; }
         public int ItemsTraded { get; set; }
-        public int LoansTaken { get; set; }
-        public int LoansDeptPaid { get; set; }
         public int ReportsNum { get; set; }
     }
 }

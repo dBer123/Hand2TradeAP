@@ -1,60 +1,79 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ClassDiagram MajorVersion="1" MinorVersion="1">
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
   <Class Name="Hand2TradeAP.Models.DailyReport">
-    <Position X="9" Y="2.25" Width="1.5" />
+    <Position X="4.25" Y="0.75" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>BAAAQAAAAAAAAAAAAAAAAIBAAAAAgAAIAAAQAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAIBAAAAAgAAIAAAQAAAAAAA=</HashCode>
       <FileName>Models\DailyReport.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Hand2TradeAP.Models.FileInfo">
-    <Position X="5.25" Y="1.75" Width="1.5" />
+    <Position X="1.25" Y="5.5" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAARAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\FileInfo.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Hand2TradeAP.Models.Item">
-    <Position X="10.75" Y="2.5" Width="1.5" />
+    <Position X="7.75" Y="3.5" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AACFAAAAAQAAAAAAggAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\Item.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="User" />
+    </ShowAsAssociation>
   </Class>
   <Class Name="Hand2TradeAP.Models.MonthlyReport">
-    <Position X="9" Y="4.75" Width="1.5" />
+    <Position X="1.25" Y="3" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>BAAAQAAAAAAAAAAAAAAAAIBAAAAAgAAAAAAQAgAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAIBAAAAAgAAAAAAQAgAAAAA=</HashCode>
       <FileName>Models\MonthlyReport.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Hand2TradeAP.Models.Rating">
-    <Position X="7.25" Y="2.75" Width="1.5" />
+    <Position X="1.25" Y="0.75" Width="2.5" />
     <TypeIdentifier>
       <HashCode>QAAAAAAACAAIAAAAAAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\Rating.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Hand2TradeAP.Models.TextMessage">
-    <Position X="10.75" Y="4.75" Width="1.5" />
+    <Position X="7.75" Y="5.75" Width="2.5" />
     <TypeIdentifier>
       <HashCode>EAAAAAAAAAAAAAAAAAAAAAAAAAABAAgEAQAAAQAIAAQ=</HashCode>
       <FileName>Models\TextMessage.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Sender" />
+      <Property Name="Chat" />
+    </ShowAsAssociation>
   </Class>
   <Class Name="Hand2TradeAP.Models.TradeChat">
-    <Position X="7.25" Y="4.5" Width="1.5" />
+    <Position X="7.75" Y="0.75" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAEAAAAAAAAAAAgAAQAAAEAQAAAQAAAAAAAQAACAQ=</HashCode>
       <FileName>Models\TradeChat.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Buyer" />
+      <Property Name="Seller" />
+      <Property Name="Item" />
+      <Property Name="LastMessage" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="TextMessages" />
+    </ShowAsCollectionAssociation>
   </Class>
   <Class Name="Hand2TradeAP.Models.User">
-    <Position X="5.25" Y="3.25" Width="1.5" />
+    <Position X="4.25" Y="3.25" Width="2.5" />
     <TypeIdentifier>
       <HashCode>gAAAAAAAASAACAAAAgAACAwACAgAAgAAAQAAAAIAAAA=</HashCode>
       <FileName>Models\User.cs</FileName>
     </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Items" />
+    </ShowAsCollectionAssociation>
   </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

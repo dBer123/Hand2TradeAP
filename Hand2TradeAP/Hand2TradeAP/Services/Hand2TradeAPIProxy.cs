@@ -21,9 +21,9 @@ namespace Hand2TradeAP.Services
         private const string DEV_ANDROID_EMULATOR_URL = "http://10.0.2.2:22847/Hand2TradeAPI"; //API url when using emulator on android
         private const string DEV_ANDROID_PHYSICAL_URL = "http://192.168.1.14:22847/Hand2TradeAPI"; //API url when using physucal device on android
         private const string DEV_WINDOWS_URL = "http://localhost:22847/Hand2TradeAPI"; //API url when using windoes on development
-        private const string DEV_ANDROID_EMULATOR_PHOTOS_URL = "http://10.0.2.2:22847/Hand2TradeAPI"; //API url when using emulator on android
-        private const string DEV_ANDROID_PHYSICAL_PHOTOS_URL = "http://192.168.1.14:22847/Hand2TradeAPI"; //API url when using physucal device on android
-        private const string DEV_WINDOWS_PHOTOS_URL = "http://localhost:22847/Hand2TradeAPI"; //API url when using windoes on development
+        private const string DEV_ANDROID_EMULATOR_PHOTOS_URL = "http://10.0.2.2:22847/Images/"; //API url when using emulator on android
+        private const string DEV_ANDROID_PHYSICAL_PHOTOS_URL = "http://192.168.1.14:22847/Images/"; //API url when using physucal device on android
+        private const string DEV_WINDOWS_PHOTOS_URL = "http://localhost:22847/Images/"; //API url when using windoes on development
 
         private HttpClient client;
         public string baseUri;
