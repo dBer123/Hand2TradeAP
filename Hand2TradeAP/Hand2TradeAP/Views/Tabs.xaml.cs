@@ -17,7 +17,7 @@ namespace Hand2TradeAP.Views
         public Tabs()
         {
             
-            InitializeComponent();
+            InitializeComponent();            
            
         }
 

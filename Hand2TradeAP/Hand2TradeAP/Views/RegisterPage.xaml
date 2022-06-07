@@ -18,16 +18,17 @@
                     <Frame  BackgroundColor="White" HeightRequest="500" HasShadow="True" Padding="0" Margin="0">
 
                         <StackLayout>
-                            <controls:CircleImage x:Name="profileImage" Source="profile.png" WidthRequest="200" HeightRequest="200" Aspect="Fill" BorderColor="Black" BorderThickness="2"/>
-                            <Button Grid.Row="2" Clicked="ToPopUp" BackgroundColor="#00b34d" CornerRadius="5" HeightRequest="40" WidthRequest="40" Text="{x:Static localfont:FontIconClass.FileImage}"
-         xct:ShadowEffect.Color="#00b34d" xct:TouchEffect.AnimationDuration="50" xct:TouchEffect.PressedScale="1.1" HorizontalOptions="Center" VerticalOptions="Center" Margin="-18" FontFamily="MyIcon" FontSize="20" TextColor="White"/>
-
-                                <Label Text="{Binding ImageError}" TextColor="Red" IsVisible="{Binding ShowimageError}" />
+                            
                                 <StackLayout Margin="10">
                                 <Label Text="SIGN UP!" TextColor="Black" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="50"/>
                             </StackLayout>
                             <ScrollView VerticalScrollBarVisibility="Never">
                                 <StackLayout Padding="0" Margin="15,10">
+                                    <controls:CircleImage x:Name="profileImage" Source="profile.png" WidthRequest="200" HeightRequest="200" Aspect="AspectFit" BorderColor="Black" BorderThickness="2"/>
+                                    <Button  Grid.Row="2" Clicked="ToPopUp" BackgroundColor="#00b34d" CornerRadius="5" HeightRequest="40" WidthRequest="40" Text="{x:Static localfont:FontIconClass.FileImage}"
+         xct:ShadowEffect.Color="#00b34d" xct:TouchEffect.AnimationDuration="50" xct:TouchEffect.PressedScale="1.1" HorizontalOptions="Center" VerticalOptions="Center" Margin="0,-18,0,10" FontFamily="MyIcon" FontSize="20" TextColor="White"/>
+
+                                    <Label  Text="{Binding ImageError}" TextColor="Red" IsVisible="{Binding ShowimageError}" />
                                     <Label Text="{Binding EmailError}" TextColor="Red" IsVisible="{Binding ShowEmailError}" />
 
                                     <Frame BackgroundColor="Transparent" BorderColor="DarkGray" Padding="0" HorizontalOptions="FillAndExpand" CornerRadius="30">

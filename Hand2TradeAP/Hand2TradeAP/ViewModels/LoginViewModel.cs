@@ -51,7 +51,7 @@ namespace Hand2TradeAP.ViewModels
             SubmitCommand = new Command(OnSubmit);
             Email = "berdaniel04@gmail.com";
             Password = "daniel6839";
-            OnSubmit();
+            //OnSubmit();
         }
 
       

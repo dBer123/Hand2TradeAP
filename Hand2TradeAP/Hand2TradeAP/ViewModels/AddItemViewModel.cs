@@ -220,8 +220,6 @@ namespace Hand2TradeAP.ViewModels
                 {
                     this.imageFileResult = result;
                     await App.Current.MainPage.Navigation.PushModalAsync(new CropImage(this));
-                    //if (SetImageSourceEvent != null)
-                    //    SetImageSourceEvent(imgSource);
                 }
 
             }
