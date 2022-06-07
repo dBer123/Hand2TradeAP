@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Hand2TradeAP.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Xamarin.CommunityToolkit.Extensions;
 
 namespace Hand2TradeAP.Views
 {
@@ -16,7 +17,21 @@ namespace Hand2TradeAP.Views
         {
             RegisterViewModel context = new RegisterViewModel();
             this.BindingContext = context;
+            context.SetImageSourceEvent += OnSetImageSource;
+
             InitializeComponent();
+        }
+        private void ToPopUp(object sender, EventArgs e)
+        {
+            Navigation.ShowPopup(new PopUpAddImage(this.BindingContext));
+
+
+        }
+
+        public void OnSetImageSource(ImageSource imgSource)
+        {
+            profileImage.Source = imgSource;
+
         }
     }
 }

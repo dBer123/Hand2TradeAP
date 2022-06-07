@@ -14,7 +14,7 @@ using System.Net.Mail;
 
 namespace Hand2TradeAP.ViewModels
 {
-    class RegisterViewModel : INotifyPropertyChanged
+    class RegisterViewModel : INotifyPropertyChanged, IImageSourceUpdatable
     {
 
         #region INotifyPropertyChanged
@@ -24,6 +24,14 @@ namespace Hand2TradeAP.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
+        public async void UpdateImageSource(string imgSource)
+        {
+            this.imageFileResult = new FileResult(imgSource);
+            var stream = await imageFileResult.OpenReadAsync();
+            ImageSource source = ImageSource.FromStream(() => stream);
+            if (this.SetImageSourceEvent != null)
+                this.SetImageSourceEvent(source);
+        }
 
         private string email;
         public string Email
@@ -290,6 +298,89 @@ namespace Hand2TradeAP.ViewModels
                 OnPropertyChanged("ShowGeneralError");
             }
         }
+        private bool showimageError;
+
+        public bool ShowimageError
+        {
+            get => showimageError;
+            set
+            {
+                showimageError = value;
+                OnPropertyChanged("ShowimageError");
+            }
+        }
+        private string imageError;
+
+        public string ImageError
+        {
+            get => imageError;
+            set
+            {
+                imageError = value;
+                OnPropertyChanged("ImageError");
+            }
+        }
+        private void ValidateImage()
+        {
+            ShowimageError = true;
+            if (imageFileResult != null)
+                ImageError = "You must Add a profile picture";
+
+            else
+                ShowimageError = false;
+        }
+        FileResult imageFileResult;
+        public event Action<ImageSource> SetImageSourceEvent;
+       
+        public ICommand PickImageCommand => new Command(OnPickImage);
+        public async void OnPickImage()
+        {
+            try
+            {
+                var result = await FilePicker.PickAsync(new PickOptions()
+                {
+                    FileTypes = FilePickerFileType.Images
+                });
+
+                if (result != null)
+                {
+                    this.imageFileResult = result;
+                    await App.Current.MainPage.Navigation.PushModalAsync(new CropImage(this));
+                   
+                }
+
+            }
+            catch { }
+
+        }
+        public string ImgSource
+        {
+            get
+            {
+                if (this.imageFileResult != null)
+                    return this.imageFileResult.FullPath;
+                else
+                    return string.Empty;
+            }
+
+        }
+        ///The following command handle the take photo button
+        public ICommand CameraImageCommand => new Command(OnCameraImage);
+        public async void OnCameraImage()
+        {
+            try
+            {
+                var result = await MediaPicker.CapturePhotoAsync();
+                if (result != null)
+                {
+                    this.imageFileResult = result;
+                    await App.Current.MainPage.Navigation.PushModalAsync(new CropImage(this));
+
+                }
+            }
+            catch { }
+
+        }
 
 
         private bool ValidateForm()
@@ -299,9 +390,10 @@ namespace Hand2TradeAP.ViewModels
             ValidateUsername();
             ValidateAge();
             ValidateEmail();
-            ValidateAddress(); 
+            ValidateAddress();
+            ValidateImage();
 
-            return !(ShowPasswordError || ShowUsernameError || ShowAgeError || ShowEmailError || ShowAddressError);
+            return !(ShowPasswordError || ShowUsernameError || ShowAgeError || ShowEmailError || ShowAddressError || ShowimageError);
         }
         public ICommand SubmitCommand { protected set; get; }
 
@@ -330,15 +422,24 @@ namespace Hand2TradeAP.ViewModels
                     IsBlocked = true,
                 };
 
-                bool isReturned = await proxy.RegisterUser(u);
+                int isReturned = await proxy.RegisterUser(u);
 
-                if (isReturned == false)
+                if (isReturned == -1)
                 {
                     await Application.Current.MainPage.DisplayAlert("Sign Up Failed!", "Invalid input", "OK");
 
                 }
                 else
                 {
+                    if (this.imageFileResult != null)
+                    {
+
+
+                        bool success = await proxy.UploadImage(new FileInfo()
+                        {
+                            Name = this.imageFileResult.FullPath
+                        }, $"I{isReturned}.jpg");
+                    }
                     App theApp = (App)Application.Current;
                     Page p = new CheckEmailPage();
                     App.Current.MainPage = p;

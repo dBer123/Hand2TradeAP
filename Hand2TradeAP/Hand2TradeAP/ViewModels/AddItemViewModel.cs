@@ -158,7 +158,37 @@ namespace Hand2TradeAP.ViewModels
                 ShowItemNameError = false;
         }
         #endregion
+        private bool showimageError;
 
+        public bool ShowimageError
+        {
+            get => showimageError;
+            set
+            {
+                showimageError = value;
+                OnPropertyChanged("ShowimageError");
+            }
+        }
+        private string imageError;
+
+        public string ImageError
+        {
+            get => imageError;
+            set
+            {
+                imageError = value;
+                OnPropertyChanged("ImageError");
+            }
+        }
+        private void ValidateImage()
+        {
+            ShowimageError = true;
+            if (imageFileResult != null)
+                ImageError = "You must Add a picture of the item";
+
+            else
+                ShowimageError = false;
+        }
         public async void UpdateImageSource(string imgSource)
         {
             this.imageFileResult = new FileResult(imgSource);
@@ -235,10 +265,11 @@ namespace Hand2TradeAP.ViewModels
             ValidateItemName();
             ValidatePrice();
             ValidateDescription();
+            ValidateImage();
 
             //check if any validation failed
             if (ShowDescriptionError ||
-                ShowItemNameError || ShowPriceError)
+                ShowItemNameError || ShowPriceError || ShowimageError)
                 return false;
             return true;
         }

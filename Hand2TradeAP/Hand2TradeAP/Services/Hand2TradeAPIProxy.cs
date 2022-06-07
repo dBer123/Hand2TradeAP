@@ -166,7 +166,7 @@ namespace Hand2TradeAP.Services
                 return null;
             }
         }
-        public async Task<bool> RegisterUser(User u)
+        public async Task<int> RegisterUser(User u)
         {
             try
             {
@@ -183,17 +183,17 @@ namespace Hand2TradeAP.Services
                 {
                     string respContent = await response.Content.ReadAsStringAsync();
                     User result = JsonSerializer.Deserialize<User>(respContent);
-                    return true;
+                    return result.UserId;
                 }
                 else
                 {
-                    return false;
+                    return -1;
                 }
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                return false;
+                return -1;
             }
         }
 
