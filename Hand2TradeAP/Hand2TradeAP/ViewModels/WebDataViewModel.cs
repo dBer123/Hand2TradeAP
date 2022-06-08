@@ -36,9 +36,9 @@ namespace Hand2TradeAP.ViewModels
         public async void GetReports()
         {
             Hand2TradeAPIProxy proxy = Hand2TradeAPIProxy.CreateProxy();
-            List<DailyReport> hr = await proxy.GetDailyReport();
+            List<DailyReport> dr = await proxy.GetDailyReport();
             List<MonthlyReport> mr = await proxy.GetMonthlyReport();
-            foreach (var dailyReport in hr)
+            foreach (var dailyReport in dr)
             {
                 dailyReports.Add(dailyReport);
             }
