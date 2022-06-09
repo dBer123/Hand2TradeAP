@@ -120,6 +120,7 @@ namespace Hand2TradeAP.ViewModels
         {
             MyItems = new ObservableCollection<Item>();
 
+            Stars = new ObservableCollection<string>();
             App theApp = (App)Application.Current;
             Profile(theApp.CurrentUser);
             
@@ -159,7 +160,6 @@ namespace Hand2TradeAP.ViewModels
             string icon5 = AppFonts.FontIconClass.AccountCheck;
             string icon6 = AppFonts.FontIconClass.Logout;
 
-            Stars = new ObservableCollection<string>();
             double count2 = Rating;
             for (int i = 0; i <= 5; i++)
 
@@ -225,6 +225,7 @@ namespace Hand2TradeAP.ViewModels
                 if (f == true)
                 {
                     Item item = MyItems[((SfCardLayout)obj).VisibleCardIndex];
+                    item.User = null;
                     App theApp = (App)Application.Current;
                     Hand2TradeAPIProxy proxy = Hand2TradeAPIProxy.CreateProxy();
                     bool isDeleted = await proxy.DeleteItem(item);

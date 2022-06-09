@@ -113,9 +113,8 @@ namespace Hand2TradeAP.ViewModels
             if (obj is Item)
             {
                 Hand2TradeAPIProxy proxy = Hand2TradeAPIProxy.CreateProxy();
-                Item item = (Item)obj;
+                Item item = (Item)obj;               
                 App theApp = (App)Application.Current;
-                int userId = theApp.CurrentUser.UserId;
                 bool found = await proxy.Like(item);
                 if (!found)
                 {
@@ -131,13 +130,14 @@ namespace Hand2TradeAP.ViewModels
         });
         public MarketViewModel()
         {
-
+            SearchedItems = new ObservableCollection<Item>();
             Market();
         }
         public void Market()
         {
 
-            SearchedItems = new ObservableCollection<Item>();
+            SearchedItems.Clear();
+            SearchText = "";
             App theApp = (App)Application.Current;
             User CurrentUser = theApp.CurrentUser;
             ImageU = CurrentUser.ImgSource == null ? "profile.png" : CurrentUser.ImgSource;
