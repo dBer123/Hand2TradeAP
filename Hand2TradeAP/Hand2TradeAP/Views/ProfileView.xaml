@@ -22,7 +22,6 @@
     <ScrollView VerticalScrollBarVisibility="Never">
     <xct:SideMenuView x:Name="SideMenuView">
         
-            <!-- MainView -->
        
             <Grid BackgroundColor="White">
             <Grid.RowDefinitions>
@@ -31,7 +30,6 @@
 
                 </Grid.RowDefinitions>
            
-            <!-- 1. Profile picture-->
                 
             <Image Grid.Row="0" Source="profileBackground.jpg" VerticalOptions="Start" Aspect="Fill" />
                 <StackLayout>
@@ -67,7 +65,6 @@
                         HorizontalOptions="EndAndExpand"
                         Clicked="OnRightButtonClicked"  FontFamily="MyIcon"  />
 
-            <!-- 2. Contact informaqtion frame-->
             <StackLayout BackgroundColor="White" VerticalOptions="Center" Grid.Row="1" Margin="15">
 
                     <Label Padding="0,10,0,0" >
@@ -78,7 +75,11 @@
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
-                    <!-- 4. Contact information-->
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="coin.jpg" Aspect="AspectFit" HeightRequest="20"/>
+                        <Label Text="{Binding Coins}" FontSize="20" TextColor="CadetBlue"/>
+                    </StackLayout>
+                
                     <Label Text="{Binding Address}" TextColor="#a5a2a2" FontSize="16"/>
 
                     <Label Padding="0,10,0,0" FontSize="16">
